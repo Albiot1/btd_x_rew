@@ -1,0 +1,13 @@
+{
+  "$GMScript":"v1",
+  "%Name":"sqrt_add",
+  "isCompatibility":false,
+  "isDnD":false,
+  "name":"sqrt_add",
+  "parent":{
+    "name":"math",
+    "path":"folders/Scripts/USEFUL/math.yy",
+  },
+  "resourceType":"GMScript",
+  "resourceVersion":"2.0",
+}

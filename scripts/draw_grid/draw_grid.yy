@@ -1,0 +1,13 @@
+{
+  "$GMScript":"v1",
+  "%Name":"draw_grid",
+  "isCompatibility":false,
+  "isDnD":false,
+  "name":"draw_grid",
+  "parent":{
+    "name":"drawing",
+    "path":"folders/Scripts/USEFUL/drawing.yy",
+  },
+  "resourceType":"GMScript",
+  "resourceVersion":"2.0",
+}

@@ -1,0 +1,13 @@
+{
+  "$GMScript":"v1",
+  "%Name":"number_format_dotted",
+  "isCompatibility":false,
+  "isDnD":false,
+  "name":"number_format_dotted",
+  "parent":{
+    "name":"drawing",
+    "path":"folders/Scripts/USEFUL/drawing.yy",
+  },
+  "resourceType":"GMScript",
+  "resourceVersion":"2.0",
+}

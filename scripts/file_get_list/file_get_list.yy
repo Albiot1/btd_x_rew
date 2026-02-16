@@ -1,0 +1,13 @@
+{
+  "$GMScript":"v1",
+  "%Name":"file_get_list",
+  "isCompatibility":false,
+  "isDnD":false,
+  "name":"file_get_list",
+  "parent":{
+    "name":"file_managment",
+    "path":"folders/Scripts/USEFUL/file_managment.yy",
+  },
+  "resourceType":"GMScript",
+  "resourceVersion":"2.0",
+}

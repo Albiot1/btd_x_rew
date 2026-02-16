@@ -1,0 +1,13 @@
+{
+  "$GMScript":"v1",
+  "%Name":"align_set",
+  "isCompatibility":false,
+  "isDnD":false,
+  "name":"align_set",
+  "parent":{
+    "name":"drawing",
+    "path":"folders/Scripts/USEFUL/drawing.yy",
+  },
+  "resourceType":"GMScript",
+  "resourceVersion":"2.0",
+}

@@ -1,0 +1,13 @@
+{
+  "$GMScript":"v1",
+  "%Name":"angle_towards",
+  "isCompatibility":false,
+  "isDnD":false,
+  "name":"angle_towards",
+  "parent":{
+    "name":"math",
+    "path":"folders/Scripts/USEFUL/math.yy",
+  },
+  "resourceType":"GMScript",
+  "resourceVersion":"2.0",
+}

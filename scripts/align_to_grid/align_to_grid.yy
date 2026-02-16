@@ -1,0 +1,13 @@
+{
+  "$GMScript":"v1",
+  "%Name":"align_to_grid",
+  "isCompatibility":false,
+  "isDnD":false,
+  "name":"align_to_grid",
+  "parent":{
+    "name":"alignment",
+    "path":"folders/Scripts/USEFUL/alignment.yy",
+  },
+  "resourceType":"GMScript",
+  "resourceVersion":"2.0",
+}

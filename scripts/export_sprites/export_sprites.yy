@@ -1,0 +1,13 @@
+{
+  "$GMScript":"v1",
+  "%Name":"export_sprites",
+  "isCompatibility":false,
+  "isDnD":false,
+  "name":"export_sprites",
+  "parent":{
+    "name":"file_managment",
+    "path":"folders/Scripts/USEFUL/file_managment.yy",
+  },
+  "resourceType":"GMScript",
+  "resourceVersion":"2.0",
+}

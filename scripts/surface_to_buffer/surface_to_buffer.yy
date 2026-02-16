@@ -1,0 +1,13 @@
+{
+  "$GMScript":"v1",
+  "%Name":"surface_to_buffer",
+  "isCompatibility":false,
+  "isDnD":false,
+  "name":"surface_to_buffer",
+  "parent":{
+    "name":"drawing",
+    "path":"folders/Scripts/USEFUL/drawing.yy",
+  },
+  "resourceType":"GMScript",
+  "resourceVersion":"2.0",
+}

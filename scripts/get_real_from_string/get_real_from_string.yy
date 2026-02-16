@@ -1,0 +1,13 @@
+{
+  "$GMScript":"v1",
+  "%Name":"get_real_from_string",
+  "isCompatibility":false,
+  "isDnD":false,
+  "name":"get_real_from_string",
+  "parent":{
+    "name":"strings",
+    "path":"folders/Scripts/USEFUL/strings.yy",
+  },
+  "resourceType":"GMScript",
+  "resourceVersion":"2.0",
+}

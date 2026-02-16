@@ -1,0 +1,13 @@
+{
+  "$GMScript":"v1",
+  "%Name":"get_offset_relative",
+  "isCompatibility":false,
+  "isDnD":false,
+  "name":"get_offset_relative",
+  "parent":{
+    "name":"alignment",
+    "path":"folders/Scripts/USEFUL/alignment.yy",
+  },
+  "resourceType":"GMScript",
+  "resourceVersion":"2.0",
+}

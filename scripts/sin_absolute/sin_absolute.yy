@@ -1,0 +1,13 @@
+{
+  "$GMScript":"v1",
+  "%Name":"sin_absolute",
+  "isCompatibility":false,
+  "isDnD":false,
+  "name":"sin_absolute",
+  "parent":{
+    "name":"math",
+    "path":"folders/Scripts/USEFUL/math.yy",
+  },
+  "resourceType":"GMScript",
+  "resourceVersion":"2.0",
+}

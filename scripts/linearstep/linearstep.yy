@@ -1,0 +1,13 @@
+{
+  "$GMScript":"v1",
+  "%Name":"linearstep",
+  "isCompatibility":false,
+  "isDnD":false,
+  "name":"linearstep",
+  "parent":{
+    "name":"math",
+    "path":"folders/Scripts/USEFUL/math.yy",
+  },
+  "resourceType":"GMScript",
+  "resourceVersion":"2.0",
+}

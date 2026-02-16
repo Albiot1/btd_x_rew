@@ -1,0 +1,13 @@
+{
+  "$GMScript":"v1",
+  "%Name":"distance_1d",
+  "isCompatibility":false,
+  "isDnD":false,
+  "name":"distance_1d",
+  "parent":{
+    "name":"math",
+    "path":"folders/Scripts/USEFUL/math.yy",
+  },
+  "resourceType":"GMScript",
+  "resourceVersion":"2.0",
+}

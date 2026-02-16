@@ -1,0 +1,13 @@
+{
+  "$GMScript":"v1",
+  "%Name":"animcurve_evaluate",
+  "isCompatibility":false,
+  "isDnD":false,
+  "name":"animcurve_evaluate",
+  "parent":{
+    "name":"animcurve",
+    "path":"folders/Scripts/USEFUL/animcurve.yy",
+  },
+  "resourceType":"GMScript",
+  "resourceVersion":"2.0",
+}

@@ -1,0 +1,13 @@
+{
+  "$GMScript":"v1",
+  "%Name":"save_value_check",
+  "isCompatibility":false,
+  "isDnD":false,
+  "name":"save_value_check",
+  "parent":{
+    "name":"saving_loading",
+    "path":"folders/Scripts/USEFUL/saving_loading.yy",
+  },
+  "resourceType":"GMScript",
+  "resourceVersion":"2.0",
+}

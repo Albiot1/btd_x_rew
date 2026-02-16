@@ -1,0 +1,13 @@
+{
+  "$GMScript":"v1",
+  "%Name":"audio_3d_init",
+  "isCompatibility":false,
+  "isDnD":false,
+  "name":"audio_3d_init",
+  "parent":{
+    "name":"audio",
+    "path":"folders/Scripts/USEFUL/audio.yy",
+  },
+  "resourceType":"GMScript",
+  "resourceVersion":"2.0",
+}

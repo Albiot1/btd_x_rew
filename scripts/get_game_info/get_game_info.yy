@@ -1,0 +1,13 @@
+{
+  "$GMScript":"v1",
+  "%Name":"get_game_info",
+  "isCompatibility":false,
+  "isDnD":false,
+  "name":"get_game_info",
+  "parent":{
+    "name":"debug",
+    "path":"folders/Scripts/USEFUL/debug.yy",
+  },
+  "resourceType":"GMScript",
+  "resourceVersion":"2.0",
+}
