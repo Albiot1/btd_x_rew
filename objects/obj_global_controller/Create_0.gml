@@ -161,6 +161,11 @@ enum BOUNTY_RANK {
     ANNOINGLY_ALMIGHTY
 }
 
+function Bounty(_rank,_location) constructor {
+    rank = _rank
+    location = _location
+}
+
 global.bounty = {
     dialogue_finished:false,
     rewards:{
@@ -173,20 +178,20 @@ global.bounty = {
             xp[_type] = _xp
         }
     },
-    big_bully:5,
-    mighty_moab:0,
-    horror_bloon:0,
-    ufo_bloon:0,
-    super_bloon:0,
-    mother:0,
-    annoying_bloon:4,
-    clown_bloon:0,
-    blooming_bloon:0,
-    track_crawler:0,
-    tdom:0,
-    flying_bloon:0,
-    bloon_knight:0,
-    worm_bloon:0
+    big_bully: new Bounty(5,"monkey_meadows"),
+    mighty_moab: new Bounty(0,"monkey_fort"),
+    horror_bloon: new Bounty(0,"the_depths"),
+    ufo_bloon: new Bounty(0,"bloon_oasis"),
+    super_bloon: new Bounty(0,"swamp_spirals"),
+    mother: new Bounty(0,"minecarts"),
+    annoying_bloon: new Bounty(0,"shade_woods"),
+    clown_bloon: new Bounty(0,"omega_river"),
+    blooming_bloon: new Bounty(0,"autumn_acres"),
+    track_crawler: new Bounty(0,"bloon_circles_x"),
+    tdom: new Bounty(0,"graveyard"),
+    flying_bloon: new Bounty(0,"sky_battles"),
+    bloon_knight: new Bounty(0,"bloonlight_throwback"),
+    worm_bloon: new Bounty(0,"rubber_rug")
 }
 
 global.bounty.rewards.add(BOUNTY_RANK.LOW,200,2,100000)
@@ -202,44 +207,4 @@ global.bounty.rewards.add(BOUNTY_RANK.IMPOPPABLY_ANNOYING,700,7,350000)
 global.bounty.rewards.add(BOUNTY_RANK.ALMIGHTY,1000,10,500000)
 global.bounty.rewards.add(BOUNTY_RANK.ANNOINGLY_ALMIGHTY,1100,11,550000)
 
-Upgrade = function(_icon,_name,_desc,_unlocked = true,_rank = 0,_cost = 0) constructor {
-    icon = _icon
-    name = _name
-    desc = _desc
-    unlocked = _unlocked
-    unlock_rank = _rank
-    unlock_cost = _cost
-    static SetUnlockCost = function (){
-        
-        return self
-    }
-    static SetUpgradeData = function (_price,_object_change){
-        
-        
-        return self
-    }
-}
-
-enum UPGRADE_PATH_TYPE {
-    MAIN,
-    LEFT,
-    MIDDLE,
-    RIGHT
-}
-
-global.upgrades = {
-    dart_monkey:{
-        main_0: new Upgrade(-1,"STR","oh..."),
-        main_1: new Upgrade(-1,"STR","oh..."),
-        left_0: new Upgrade(-1,"STR","oh..."),
-        left_1: new Upgrade(-1,"STR","oh...",false,5,2),
-        special_path_info:{
-            replaces:UPGRADE_PATH_TYPE.MIDDLE,
-            bounty_type:"mighty_moab",
-            bounty_tier:1,
-            beaten:false,
-            switched:false
-        },
-        special_0: new Upgrade(-1,"STR","oh...")
-    }
-}
+scr_upgrades_initialize()
