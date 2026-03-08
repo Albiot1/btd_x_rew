@@ -26,7 +26,7 @@
   "origin":0,
   "parent":{
     "name":"Engineer monkey",
-    "path":"folders/Sprites/Upgrades/Engineer monkey.yy",
+    "path":"folders/Sprites/Upgrades menu/Engineer monkey.yy",
   },
   "preMultiplyAlpha":false,
   "resourceType":"GMSprite",

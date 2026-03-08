@@ -26,7 +26,7 @@
   "origin":0,
   "parent":{
     "name":"Ninja monkey",
-    "path":"folders/Sprites/Upgrades/Ninja monkey.yy",
+    "path":"folders/Sprites/Upgrades menu/Ninja monkey.yy",
   },
   "preMultiplyAlpha":false,
   "resourceType":"GMSprite",

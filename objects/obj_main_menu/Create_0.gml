@@ -1,5 +1,5 @@
 global.gui_layer = 0
-
+global.gui_wait = 0
 statues = {
     sprite:[spr_towers_statue,spr_agents_statue,spr_play_statue,spr_medals_statue,spr_bounty_statue,spr_info_statue,spr_credits_statue,spr_missions_statue,spr_goodie_statue,spr_challenges_statue],
     text:["Towers","Agents","Play!","Medals","Bounty","Info","Credits","Missions","Goodie","Challenges"],
@@ -17,8 +17,14 @@ statues = {
         function (){
             room_goto(rm_bounties_menu)
         },
-        -1,
-        -1,
+        function (){
+            instance_create_depth(0,0,depth-100,obj_info_panel)
+            global.gui_layer = 1
+        },
+        function (){
+            instance_create_depth(0,0,depth-100,obj_credits_panel)
+            global.gui_layer = 1
+        },
         function (){
             room_goto(rm_missions_menu)
         },
@@ -35,7 +41,7 @@ statues = {
             var _x = px[i]+64
             var _y = py[i]+64
             
-            if point_in_rectangle(mouse_x,mouse_y,_x-64,_y-64,_x+64,_y+64) and global.gui_layer == 0{
+            if point_in_rectangle(mouse_x,mouse_y,_x-64,_y-64,_x+64,_y+64) and global.gui_layer == 0 and global.gui_wait == 0{
                 mouse_on[i] = true
                 yplus[i] = lerp(yplus[i],10,0.1)
                 if mouse_check_button_pressed(mb_left) and actions[i]!=-1{

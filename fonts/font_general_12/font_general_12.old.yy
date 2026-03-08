@@ -8,6 +8,11 @@
   "bold":false,
   "canGenerateBitmap":true,
   "charset":1,
+  "ConfigValues":{
+    "FastMenus":{
+      "textureGroupId":"{ \"name\":\"main_menu_group\", \"path\":\"texturegroups/main_menu_group\" }",
+    },
+  },
   "first":0,
   "fontName":"Oetztype",
   "glyphOperations":0,

@@ -26,7 +26,7 @@
   "origin":0,
   "parent":{
     "name":"Bomb tower",
-    "path":"folders/Sprites/Upgrades/Bomb tower.yy",
+    "path":"folders/Sprites/Upgrades menu/Bomb tower.yy",
   },
   "preMultiplyAlpha":false,
   "resourceType":"GMSprite",

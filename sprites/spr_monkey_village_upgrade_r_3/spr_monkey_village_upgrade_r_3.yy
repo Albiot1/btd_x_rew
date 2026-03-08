@@ -26,7 +26,7 @@
   "origin":0,
   "parent":{
     "name":"Village",
-    "path":"folders/Sprites/Upgrades/Village.yy",
+    "path":"folders/Sprites/Upgrades menu/Village.yy",
   },
   "preMultiplyAlpha":false,
   "resourceType":"GMSprite",

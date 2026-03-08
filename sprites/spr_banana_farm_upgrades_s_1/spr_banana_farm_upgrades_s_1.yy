@@ -26,7 +26,7 @@
   "origin":0,
   "parent":{
     "name":"Banana farm",
-    "path":"folders/Sprites/Upgrades/Banana farm.yy",
+    "path":"folders/Sprites/Upgrades menu/Banana farm.yy",
   },
   "preMultiplyAlpha":false,
   "resourceType":"GMSprite",

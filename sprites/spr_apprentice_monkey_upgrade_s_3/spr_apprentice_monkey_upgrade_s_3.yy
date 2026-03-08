@@ -26,7 +26,7 @@
   "origin":0,
   "parent":{
     "name":"Apprentice monkey",
-    "path":"folders/Sprites/Upgrades/Apprentice monkey.yy",
+    "path":"folders/Sprites/Upgrades menu/Apprentice monkey.yy",
   },
   "preMultiplyAlpha":false,
   "resourceType":"GMSprite",

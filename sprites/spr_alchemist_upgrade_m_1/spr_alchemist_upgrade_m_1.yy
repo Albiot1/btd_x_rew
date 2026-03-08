@@ -26,7 +26,7 @@
   "origin":0,
   "parent":{
     "name":"Alchemist",
-    "path":"folders/Sprites/Upgrades/Alchemist.yy",
+    "path":"folders/Sprites/Upgrades menu/Alchemist.yy",
   },
   "preMultiplyAlpha":false,
   "resourceType":"GMSprite",

@@ -26,7 +26,7 @@
   "origin":0,
   "parent":{
     "name":"Submarine",
-    "path":"folders/Sprites/Upgrades/Submarine.yy",
+    "path":"folders/Sprites/Upgrades menu/Submarine.yy",
   },
   "preMultiplyAlpha":false,
   "resourceType":"GMSprite",

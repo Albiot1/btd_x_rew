@@ -1,3 +1,9 @@
+global.current_bloon_points = global.bloon_points
+global.current_monkey_money = global.monkey_money
+global.current_bloon_souls = global.bloon_souls
+global.current_trophies = global.trophies
+global.current_goodie_points = global.goodie_points
+
 resources = {
     rank_pos:[864,10],
     goodies_pos:[625,500],
@@ -15,19 +21,19 @@ resources = {
         
         var _pos = bloon_points_pos
         draw_sprite(spr_bloons_point_icon,0,_pos[0]+xshift,_pos[1])
-        draw_text_outline(_pos[0]+60+xshift,_pos[1]+48,c_black,#009fff,global.bloon_points)
+        draw_text_outline(_pos[0]+60+xshift,_pos[1]+48,c_black,COLOR_BLOONPOINTS,round(global.current_bloon_points))
         
         _pos = monkey_money_pos
         draw_sprite(spr_monkey_money_icon,0,_pos[0]+xshift,_pos[1])
-        draw_text_outline(_pos[0]+60+xshift,_pos[1]+48,c_black,#00c000,global.monkey_money)
+        draw_text_outline(_pos[0]+60+xshift,_pos[1]+48,c_black,COLOR_MONKEYMONEY,round(global.current_monkey_money))
         
         _pos = bloon_soul_pos
         draw_sprite(spr_bloon_soul_icon,0,_pos[0]+xshift,_pos[1])
-        draw_text_outline(_pos[0]+60+xshift,_pos[1]+48,c_black,#c40000,global.bloon_souls)
+        draw_text_outline(_pos[0]+60+xshift,_pos[1]+48,c_black,COLOR_BLOONSOULS,round(global.current_bloon_souls))
         
         _pos = trophies_pos
         draw_sprite(spr_trophy_icon,0,_pos[0]+xshift,_pos[1])
-        draw_text_outline(_pos[0]+60+xshift,_pos[1]+48,c_black,#ffff00,global.trophies)
+        draw_text_outline(_pos[0]+60+xshift,_pos[1]+48,c_black,COLOR_TROPHIES,round(global.current_trophies))
         
         if draw_goodie_exchange == true{
             _pos = [64,500]
@@ -43,7 +49,7 @@ resources = {
         if draw_goodie_token == true{
             _pos = goodies_pos
             draw_sprite(spr_goodie_token,0,_pos[0]+xshift,_pos[1])
-            draw_text_outline(_pos[0]+60+xshift,_pos[1]+48,c_black,#fff200,global.goodie_points)
+            draw_text_outline(_pos[0]+60+xshift,_pos[1]+48,c_black,#fff200,round(global.goodie_points))
         }
         
         draw_set_font(font_general_20)

@@ -19,11 +19,18 @@ global.particles.pop = _part
 alarm[0] = SPLASH_TIME
 //
 
-global.bloon_souls = 1
-global.bloon_points = 23
-global.trophies = 2
-global.monkey_money = 50
-global.goodie_points = 0
+#macro COLOR_TROPHIES #ffff00
+#macro COLOR_BLOONSOULS #c40000
+#macro COLOR_MONKEYMONEY #00c000
+#macro COLOR_BLOONPOINTS #009fff
+
+global.bloon_souls = 10
+global.bloon_points = 200
+global.trophies = 20
+global.monkey_money = 2500
+global.goodie_points = 5
+
+
 
 global.rank = 2
 global.xp = 0

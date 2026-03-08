@@ -26,7 +26,7 @@
   "origin":0,
   "parent":{
     "name":"Bloonchipper",
-    "path":"folders/Sprites/Upgrades/Bloonchipper.yy",
+    "path":"folders/Sprites/Upgrades menu/Bloonchipper.yy",
   },
   "preMultiplyAlpha":false,
   "resourceType":"GMSprite",

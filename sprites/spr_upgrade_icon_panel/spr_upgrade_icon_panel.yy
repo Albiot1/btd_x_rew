@@ -25,8 +25,8 @@
   "nineSlice":null,
   "origin":0,
   "parent":{
-    "name":"Upgrades",
-    "path":"folders/Sprites/Upgrades.yy",
+    "name":"Upgrades menu",
+    "path":"folders/Sprites/Upgrades menu.yy",
   },
   "preMultiplyAlpha":false,
   "resourceType":"GMSprite",

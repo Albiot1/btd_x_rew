@@ -26,7 +26,7 @@
   "origin":0,
   "parent":{
     "name":"Glue gunner",
-    "path":"folders/Sprites/Upgrades/Glue gunner.yy",
+    "path":"folders/Sprites/Upgrades menu/Glue gunner.yy",
   },
   "preMultiplyAlpha":false,
   "resourceType":"GMSprite",

@@ -243,6 +243,7 @@ exit_button = {
 }
 
 gui_layer = 0
+gui_wait = 0
 
 dialogue = {
     active:false,
@@ -320,6 +321,7 @@ dialogue = {
                 
                 if monkey_pos[0]<=-90{
                     obj_bounties.gui_layer = 0
+                    obj_bounties.gui_wait = 10
                     global.bounty.dialogue_finished = true
                     active = false
                 }

@@ -26,7 +26,7 @@
   "origin":0,
   "parent":{
     "name":"Dratling gunner",
-    "path":"folders/Sprites/Upgrades/Dratling gunner.yy",
+    "path":"folders/Sprites/Upgrades menu/Dratling gunner.yy",
   },
   "preMultiplyAlpha":false,
   "resourceType":"GMSprite",

@@ -32,7 +32,8 @@ buyables = {
             
             if point_in_rectangle(mouse_x,mouse_y,_x,_y,_x+349,_y+94){
                 mouse_on[i] = true
-                if mouse_check_button_pressed(mb_left){
+                if mouse_check_button_pressed(mb_left) and global.monkey_money>=cost[i]{
+                    global.monkey_money-=cost[i]
                     var _id = agent_id[i]
                     var _tp = buy_type[i]
                     switch (_tp) {

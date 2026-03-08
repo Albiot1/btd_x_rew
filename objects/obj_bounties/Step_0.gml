@@ -1,35 +1,43 @@
 dialogue.step()
 
-if point_in_rectangle(mouse_x,mouse_y,815,398,815+167,398+163) and gui_layer==0{
+if gui_wait>0
+    gui_wait--
+
+var _gui_active = true
+if gui_layer>0 or gui_wait>0{
+    _gui_active = false
+}
+
+if point_in_rectangle(mouse_x,mouse_y,815,398,815+167,398+163) and _gui_active==true{
     onduel = true
 }
 else {
 	onduel = false
 }
 
-if mouse_wheel_down() and page<max_page and gui_layer==0{
+if mouse_wheel_down() and page<max_page  and _gui_active==true{
     page++
 }
-if mouse_wheel_up() and page>0 and gui_layer==0{
+if mouse_wheel_up() and page>0 and _gui_active==true{
     page--
 }
 
 if page>0{
     var _x = 1024-64
     var _y = 16
-    if point_in_rectangle(mouse_x,mouse_y,_x,_y,_x+64,_y+32) and mouse_check_button_pressed(mb_left) and gui_layer==0{
+    if point_in_rectangle(mouse_x,mouse_y,_x,_y,_x+64,_y+32) and mouse_check_button_pressed(mb_left) and _gui_active==true{
         page--
     }
 }
 if page<max_page{
     var _x = 1024-64
     var _y = 384-48
-    if point_in_rectangle(mouse_x,mouse_y,_x,_y,_x+64,_y+32) and mouse_check_button_pressed(mb_left) and gui_layer==0{
+    if point_in_rectangle(mouse_x,mouse_y,_x,_y,_x+64,_y+32) and mouse_check_button_pressed(mb_left) and _gui_active==true{
         page++
     }
 }
 
-if gui_layer==0
+if _gui_active==true
 exit_button.step()
 
 for (var i = 0; i < bounties_num; i++) {
@@ -112,7 +120,7 @@ for (var i = 8*page; i < clamp(8*(page+1),0,bounties_num); i++) {
     var _max_rank = _bounty.max_rank
     var _rank = _bounty.current_rank
     
-    if point_in_rectangle(mouse_x,mouse_y,_x,_y,_x+109,_y+106) and gui_layer==0{
+    if point_in_rectangle(mouse_x,mouse_y,_x,_y,_x+109,_y+106) and _gui_active==true{
         _bounty.mouse_on = true
         if mouse_check_button_pressed(mb_left){
             if bounty_selected == i
