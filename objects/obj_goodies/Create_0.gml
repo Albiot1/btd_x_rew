@@ -154,19 +154,13 @@ goodies = {
             
             if _unlocked == true{
                 if _active == true{
-                    if _mouse_on == true{
+                    if _mouse_on == false{
                         _r = 0.47 _g = 1 _b = 0.47
-                    }
-                    else {
-                    	_r = 0 _g = 0.54 _b = 0
                     }
                 }
                 else {
-                	if _mouse_on == true{
+                	if _mouse_on == false{
                         _r = 1 _g = 0.47 _b = 0.47
-                    }
-                    else {
-                        _r = 0.54 _g = 0 _b = 0
                     }
                 }
             }
@@ -174,9 +168,9 @@ goodies = {
             shader_set_uniform_f( global.shaders.replace[0],_r,_g,_b )
             
             if (_mouse_on == true or _unlocked == true)
-            shader_set_uniform_f( global.shaders.replace[1],true )
+                shader_set_uniform_f( global.shaders.replace[1],true )
             else 
-            shader_set_uniform_f( global.shaders.replace[1],false )
+                shader_set_uniform_f( global.shaders.replace[1],false )
             draw_sprite_stretched(spr_goodie_panel,0,_x-8,_y,445,72)
             draw_sprite_stretched(spr_goodie_panel_top,0,_x-18,_y-6,84,84)
             shader_reset()
@@ -210,9 +204,9 @@ goodies = {
         
         draw_sprite_stretched(spr_scroll_bar,0,1024-64,0,64,576)
         if page>0
-        draw_sprite(spr_goodies_scroll_up,0,1024-64,16)
+        draw_sprite(spr_scroll_up,0,1024-64,16)
         if page<max_page
-        draw_sprite(spr_goodies_scroll_down,0,1024-64,576-48)
+        draw_sprite(spr_scroll_down,0,1024-64,576-48)
         
     }
 }
@@ -345,11 +339,8 @@ exit_button = {
     draw:function (){
         shader_set(sh_replace)
         shader_set_uniform_f( global.shaders.replace[0],1,1,1 )
-        if mouse_on == false
-        shader_set_uniform_f( global.shaders.replace[1],false )
-        else 
-        shader_set_uniform_f( global.shaders.replace[1],true )
-        draw_sprite(spr_agent_menu_exit_button,0,pos[0],pos[1])
+        shader_set_uniform_f( global.shaders.replace[1],mouse_on )
+        draw_sprite(spr_exit_button,0,pos[0],pos[1])
         shader_reset()
     }
 }

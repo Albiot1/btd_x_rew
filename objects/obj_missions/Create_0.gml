@@ -111,12 +111,7 @@ missions = {
             var _b = 1
             
             if _completed == true{
-                if _mouse_on == true{
-                    _r = 0.47
-                    _g = 1
-                    _b = 0.47
-                }
-                else {
+                if _mouse_on == false{
                     _r = 0
                     _g = 0.54
                     _b = 0
@@ -156,9 +151,9 @@ missions = {
         
         draw_sprite_stretched(spr_scroll_bar,0,1024-64,0,64,576)
         if page>0
-        draw_sprite(spr_missions_scroll_up,0,1024-64,16)
+        draw_sprite(spr_scroll_up,0,1024-64,16)
         if page<max_page
-        draw_sprite(spr_missions_scroll_down,0,1024-64,576-48)
+        draw_sprite(spr_scroll_down,0,1024-64,576-48)
         
     }
 }
@@ -221,7 +216,7 @@ missions.add(
 )
 missions.add(
     "Prison Break II",
-    "Bloon Bounty Center - Beat all the tier 2 bounty bloons trying to escape",
+    "Beat all the tier 2 bounty bloons trying to escape",
     spr_mission_icon_prison_break2,
     #ea854a,
     "prison_break_2",
@@ -229,7 +224,7 @@ missions.add(
 )
 missions.add(
     "Prison Break III",
-    "Bloon Bounty Center - Beat all the tier 3 bounty bloons trying to escape",
+    "Beat all the tier 3 bounty bloons trying to escape",
     spr_mission_icon_prison_break3,
     #ea854a,
     "prison_break_3",
@@ -237,7 +232,7 @@ missions.add(
 )
 missions.add(
     "Prison Break IV",
-    "Bloon Bounty Center - Beat all the tier 4 bounty bloons trying to escape",
+    "Beat all the tier 4 bounty bloons trying to escape",
     spr_mission_icon_prison_break4,
     #ea854a,
     "prison_break_4",
@@ -245,7 +240,7 @@ missions.add(
 )
 missions.add(
     "Ultra Break Out v1",
-    "Bloon Bounty Center - What have I done",
+    "What have I done",
     spr_mission_icon_ultra_break_out_v1,
     #ee1c24,
     "ultra_break_v1",
@@ -253,42 +248,13 @@ missions.add(
 )
 missions.add(
     "Ultra Break Out v4",
-    "Bloon Bounty Center - Because why not?",
+    "Because why not?",
     spr_mission_icon_ultra_break_out_v4,
     #ee1c24,
     "ultra_break_v4",
     "bloon_bounty_center"
 )
 
-//missions.max_page = ceil(missions.num/6)-1
-
 missions.max_page = ceil((missions.num-4)/2)-1
 
-
-exit_button = {
-    pos:[4,5],
-    mouse_on:false,
-    step:function (){
-        var _x = pos[0]
-        var _y = pos[1]
-        if point_in_rectangle(mouse_x,mouse_y,_x,_y,_x+64,_y+64){
-            mouse_on = true
-            if mouse_check_button_pressed(mb_left){
-                room_goto(rm_main_menu)
-            }
-        }
-        else {
-        	mouse_on = false
-        }
-    },
-    draw:function (){
-        shader_set(sh_replace)
-        shader_set_uniform_f( global.shaders.replace[0],1,1,1 )
-        if mouse_on == false
-        shader_set_uniform_f( global.shaders.replace[1],false )
-        else 
-        shader_set_uniform_f( global.shaders.replace[1],true )
-        draw_sprite(spr_agent_menu_exit_button,0,pos[0],pos[1])
-        shader_reset()
-    }
-}
+instance_create_depth(4,5,depth,obj_exit_button)

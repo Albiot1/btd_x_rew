@@ -214,37 +214,6 @@ bounties[13] = new Bounty("worm_bloon",4,"Massive mass of rubber crawls to the e
 bounties_num = array_length(bounties)
 max_page = ceil(bounties_num/8)-1
 
-exit_button = {
-    pos:[4,5],
-    mouse_on:false,
-    step:function (){
-        var _x = pos[0]
-        var _y = pos[1]
-        if point_in_rectangle(mouse_x,mouse_y,_x,_y,_x+64,_y+64){
-            mouse_on = true
-            if mouse_check_button_pressed(mb_left){
-                room_goto(rm_main_menu)
-            }
-        }
-        else {
-        	mouse_on = false
-        }
-    },
-    draw:function (){
-        shader_set(sh_replace)
-        shader_set_uniform_f( global.shaders.replace[0],1,1,1 )
-        if mouse_on == false
-        shader_set_uniform_f( global.shaders.replace[1],false )
-        else 
-        shader_set_uniform_f( global.shaders.replace[1],true )
-        draw_sprite(spr_agent_menu_exit_button,0,pos[0],pos[1])
-        shader_reset()
-    }
-}
-
-gui_layer = 0
-gui_wait = 0
-
 dialogue = {
     active:false,
     texts:[
@@ -320,8 +289,8 @@ dialogue = {
                 }
                 
                 if monkey_pos[0]<=-90{
-                    obj_bounties.gui_layer = 0
-                    obj_bounties.gui_wait = 10
+                    global.gui_layer = 0
+                    global.gui_wait = 10
                     global.bounty.dialogue_finished = true
                     active = false
                 }
@@ -355,7 +324,9 @@ dialogue = {
 
 if global.bounty.dialogue_finished == false{
     dialogue.active = true
-    gui_layer = 1
+    global.gui_layer = 1
 }
 
 onduel = false
+
+instance_create_depth(4,5,depth,obj_exit_button)

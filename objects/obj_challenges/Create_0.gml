@@ -77,12 +77,31 @@ challenges = {
             var _id = mid[i]
             var _mouse_on = mouse_on[i]
             
+            var _r = 1, _g = 1, _b = 1;
+            
+            var _completed = false
+            var _outline = false
+            
+            if _id != -1{
+                if global.challenges[$ _id].complete == true{
+                    _completed = true
+                    _outline = true
+                    
+                    if _mouse_on == false{
+                        _r = 0
+                        _g = 0.54
+                        _b = 0
+                    }
+                }
+            }
+            
+            if _mouse_on == true{
+                _outline = true
+            }
+            
             shader_set(sh_replace)
-            shader_set_uniform_f( global.shaders.replace[0],1,1,1 )
-            if _mouse_on == false
-            shader_set_uniform_f( global.shaders.replace[1],false )
-            else 
-            shader_set_uniform_f( global.shaders.replace[1],true)
+            shader_set_uniform_f( global.shaders.replace[0],_r,_g,_b )
+            shader_set_uniform_f( global.shaders.replace[1],_outline )
             draw_sprite_stretched(spr_challenge_bar_bottom,0,_x,_y,376,155)
             draw_sprite_stretched(spr_challenge_bar_top,0,_x-24,_y-24,84,84)
             shader_reset()
@@ -95,20 +114,18 @@ challenges = {
             draw_set_font(font_general_12)
             draw_text_ext(_x+4,_y+62,_desc,16,372)
             
-            if _id!=-1{
-                if global.challenges[$ _id].complete == false{
-                    draw_text(_x+28,_y+155+8+4,"Not completed")
-                    draw_sprite(spr_challenge_completion_marks,0,_x,_y+155+8)
+            if _completed == false{
+                draw_text(_x+28,_y+155+8+4,"Not completed")
+                draw_sprite(spr_challenge_completion_marks,0,_x,_y+155+8)
+            }
+            else {
+                if _type == CTYPE.NORMAL{
+                draw_text(_x+28,_y+155+8+4,"Completed !")
+                draw_sprite(spr_challenge_completion_marks,1,_x,_y+155+8)
                 }
-                else {
-                    if _type == CTYPE.NORMAL{
-                	   draw_text(_x+28,_y+155+8+4,"Completed !")
-                       draw_sprite(spr_challenge_completion_marks,1,_x,_y+155+8)
-                    }
-                    else if _type == CTYPE.TIMED{
-                        draw_text(_x+28,_y+155+8+4,$"Best time:{global.challenges[$ _id].time}")
-                        draw_sprite(spr_challenge_completion_marks,2,_x,_y+155+8)
-                    }
+                else if _type == CTYPE.TIMED{
+                    draw_text(_x+28,_y+155+8+4,$"Best time:{global.challenges[$ _id].time}")
+                    draw_sprite(spr_challenge_completion_marks,2,_x,_y+155+8)
                 }
             }
             
@@ -130,9 +147,9 @@ challenges = {
         
         draw_sprite_stretched(spr_scroll_bar,0,1024-64,0,64,576)
         if page>0
-        draw_sprite(spr_challenges_scroll_up,0,1024-64,16)
+        draw_sprite(spr_scroll_up,0,1024-64,16)
         if page<max_page
-        draw_sprite(spr_challenges_scroll_down,0,1024-64,576-48)
+        draw_sprite(spr_scroll_down,0,1024-64,576-48)
         
     }
 }
@@ -225,30 +242,4 @@ challenges.add(
 
 challenges.max_page = ceil(challenges.num/4)-1
 
-exit_button = {
-    pos:[4,5],
-    mouse_on:false,
-    step:function (){
-        var _x = pos[0]
-        var _y = pos[1]
-        if point_in_rectangle(mouse_x,mouse_y,_x,_y,_x+64,_y+64){
-            mouse_on = true
-            if mouse_check_button_pressed(mb_left){
-                room_goto(rm_main_menu)
-            }
-        }
-        else {
-        	mouse_on = false
-        }
-    },
-    draw:function (){
-        shader_set(sh_replace)
-        shader_set_uniform_f( global.shaders.replace[0],1,1,1 )
-        if mouse_on == false
-        shader_set_uniform_f( global.shaders.replace[1],false )
-        else 
-        shader_set_uniform_f( global.shaders.replace[1],true )
-        draw_sprite(spr_agent_menu_exit_button,0,pos[0],pos[1])
-        shader_reset()
-    }
-}
+instance_create_depth(4,5,depth,obj_exit_button)

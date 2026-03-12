@@ -11,16 +11,38 @@ function scr_upgrades_initialize(){
     #macro UPGRADE_LEFT_COLOR #ff9c75
     #macro UPGRADE_MIDDLE_COLOR #9ce675
     #macro UPGRADE_RIGHT_COLOR #9c9cd8
+    #macro LOCKED_UPGRADE_COLOR #808080 
     
     #macro UPGRADE_SPECIAL_COLOR_I #ff9cd8
     #macro UPGRADE_SPECIAL_COLOR_II #ff9c2b
     #macro UPGRADE_SPECIAL_COLOR_III #ffff47
-    
 
     Upgrade = function(_icon,_tower_id,_upgrade_id,_unlocked = false) constructor {
         icon = _icon
-        name = scr_get_upgrade_name(_tower_id,_upgrade_id)
-        desc = scr_get_upgrade_desc(_tower_id,_upgrade_id)
+        upgr_id = _upgrade_id
+        
+        var _search = _tower_id+"_"+_upgrade_id+"_name"
+        var _name = "NOT FOUND!"
+        if variable_struct_exists(global.upgrades.translation,_search){
+            _name = global.upgrades.translation[$ _search]
+        }
+        else {
+            show_debug_message($"Upgrade name : {_search} NOT FOUND !!!")
+        }
+        
+        name = _name
+        
+        
+        var _search = _tower_id+"_"+_upgrade_id+"_desc"
+        var _desc = "NOT FOUND!"
+        if variable_struct_exists(global.upgrades.translation,_search){
+            _desc = global.upgrades.translation[$ _search]
+        }
+        else {
+            show_debug_message($"Upgrade desc : {_search} NOT FOUND !!!")
+        }
+        
+        desc = _desc
         
         unlocked = _unlocked
         unlock_rank = 0
@@ -60,6 +82,7 @@ function scr_upgrades_initialize(){
     global.upgrades = {
         translation: {},
     }
+
     
     if file_exists("data/upgrades_translation.json"){
         global.upgrades.translation = load_json( "data/upgrades_translation.json" )
@@ -89,6 +112,7 @@ function scr_upgrades_initialize(){
         .SetUnlockCost(16,3)
     _dmkey.middle_2 = new Upgrade(spr_dart_monkey_upgrade_m_3,_mid,"middle_2")
         .SetUpgradeData(3_500,undefined)
+        .SetUnlockCost(40,7)
     _dmkey.right_0 = new Upgrade(spr_dart_monkey_upgrade_r_1,_mid,"right_0",true)
         .SetUpgradeData(400,undefined)
     _dmkey.right_1 = new Upgrade(spr_dart_monkey_upgrade_r_2,_mid,"right_1")
@@ -303,16 +327,16 @@ function scr_upgrades_initialize(){
         .SetUpgradeData(900,undefined)
     _bombt.left_1 = new Upgrade(spr_bomb_tower_upgrade_l_2,_mid,"left_1")
         .SetUpgradeData(1_400,undefined)
-        .SetUpgradeData(21,2)
+        .SetUnlockCost(21,2)
     _bombt.left_2 = new Upgrade(spr_bomb_tower_upgrade_l_3,_mid,"left_2")
         .SetUpgradeData(6_500,undefined)
         .SetUnlockCost(45,7)
-    _bombt.midddle_0 = new Upgrade(spr_bomb_tower_upgrade_m_1,_mid,"middle_0",true)
+    _bombt.middle_0 = new Upgrade(spr_bomb_tower_upgrade_m_1,_mid,"middle_0",true)
         .SetUpgradeData(800,undefined)
-    _bombt.midddle_1 = new Upgrade(spr_bomb_tower_upgrade_m_2,_mid,"middle_1")
+    _bombt.middle_1 = new Upgrade(spr_bomb_tower_upgrade_m_2,_mid,"middle_1")
         .SetUpgradeData(3_200,undefined)
         .SetUnlockCost(21,4)
-    _bombt.midddle_2 = new Upgrade(spr_bomb_tower_upgrade_m_3,_mid,"middle_2")
+    _bombt.middle_2 = new Upgrade(spr_bomb_tower_upgrade_m_3,_mid,"middle_2")
         .SetUpgradeData(9_900,undefined)
         .SetUnlockCost(45,7)
     _bombt.right_0 = new Upgrade(spr_bomb_tower_upgrade_r_1,_mid,"right_0",true)
@@ -391,7 +415,7 @@ function scr_upgrades_initialize(){
         .SetUpgradeData(330,undefined)
     _chart.left_0 = new Upgrade(spr_charge_tower_upgrade_l_1,_mid,"left_0",true)
         .SetUpgradeData(750,undefined)
-    _chart.left_1 = new Upgrade(spr_charge_tower_upgrade_l_1,_mid,"left_1")
+    _chart.left_1 = new Upgrade(spr_charge_tower_upgrade_l_2,_mid,"left_1")
         .SetUpgradeData(1_500,undefined)
         .SetUnlockCost(23,3)
     _chart.left_2 = new Upgrade(spr_charge_tower_upgrade_l_3,_mid,"left_2")
@@ -405,12 +429,12 @@ function scr_upgrades_initialize(){
     _chart.middle_2 = new Upgrade(spr_charge_tower_upgrade_m_3,_mid,"middle_2")
         .SetUpgradeData(13_500,undefined)
         .SetUnlockCost(47,9)
-    _chart.righ_0 = new Upgrade(spr_charge_tower_upgrade_r_1,_mid,"right_0",true)
+    _chart.right_0 = new Upgrade(spr_charge_tower_upgrade_r_1,_mid,"right_0",true)
         .SetUpgradeData(1_150,undefined)
-    _chart.righ_1 = new Upgrade(spr_charge_tower_upgrade_r_2,_mid,"right_1")
+    _chart.right_1 = new Upgrade(spr_charge_tower_upgrade_r_2,_mid,"right_1")
         .SetUpgradeData(2_700,undefined)
         .SetUnlockCost(23,4)
-    _chart.righ_2 = new Upgrade(spr_charge_tower_upgrade_r_3,_mid,"right_2")
+    _chart.right_2 = new Upgrade(spr_charge_tower_upgrade_r_3,_mid,"right_2")
         .SetUpgradeData(10_300,undefined)
         .SetUnlockCost(47,9)
     _chart.special_path = new SpecialPath(PATH_UPGR_TYPE.LEFT,UPGRADE_SPECIAL_COLOR_II)
@@ -441,7 +465,7 @@ function scr_upgrades_initialize(){
         .SetUnlockCost(24,4)
     _glueg.left_2 = new Upgrade(spr_glue_monkey_upgrade_l_3,_mid,"left_2")
         .SetUpgradeData(6_500,undefined)
-        .SetUnlockCost(48,0)
+        .SetUnlockCost(48,9)
     _glueg.middle_0 = new Upgrade(spr_glue_monkey_upgrade_m_1,_mid,"middle_0",true)
         .SetUpgradeData(1_800,undefined)
     _glueg.middle_1 = new Upgrade(spr_glue_monkey_upgrade_m_2,_mid,"middle_1")
@@ -978,7 +1002,7 @@ function scr_upgrades_initialize(){
         .SetUpgradeData(2_400,undefined)
     _spikefac.left_1 = new Upgrade(spr_spike_factory_upgrade_l_2,_mid,"left_1")
         .SetUpgradeData(8_500,undefined)
-        .SetUnlockCost(16,5)
+        .SetUnlockCost(36,5)
     _spikefac.left_2 = new Upgrade(spr_spike_factory_upgrade_l_3,_mid,"left_2")
         .SetUpgradeData(13_500,undefined)
         .SetUnlockCost(60,9)

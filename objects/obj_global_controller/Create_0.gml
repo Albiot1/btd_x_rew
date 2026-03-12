@@ -1,3 +1,5 @@
+global.gui_layer = 0
+global.gui_wait = 0
 //
 global.part_system = part_system_create()
 part_system_depth(global.part_system,-5)
@@ -23,6 +25,10 @@ alarm[0] = SPLASH_TIME
 #macro COLOR_BLOONSOULS #c40000
 #macro COLOR_MONKEYMONEY #00c000
 #macro COLOR_BLOONPOINTS #009fff
+#macro COLOR_RANK c_aqua 
+
+#macro HOVER_OUTLINE_COLOR_R 1
+#macro COMPLTED_OUTLINE_COLOR 567756
 
 global.bloon_souls = 10
 global.bloon_points = 200
@@ -32,7 +38,7 @@ global.goodie_points = 5
 
 
 
-global.rank = 2
+global.rank = 25
 global.xp = 0
 global.max_xp = 0
 global.max_xp = round(global.max_xp * 1.05) + 60 * (global.rank+2)
@@ -46,7 +52,7 @@ global.agents = {
 }
 
 global.challenges = {
-    deflation:{ complete:false },
+    deflation:{ complete:true },
     anti_anti_shield_swarm:{ complete:false },
     starve_out:{ complete:false },
     necronomicon:{ complete:false },
@@ -215,3 +221,5 @@ global.bounty.rewards.add(BOUNTY_RANK.ALMIGHTY,1000,10,500000)
 global.bounty.rewards.add(BOUNTY_RANK.ANNOINGLY_ALMIGHTY,1100,11,550000)
 
 scr_upgrades_initialize()
+
+scr_towers_initialize()

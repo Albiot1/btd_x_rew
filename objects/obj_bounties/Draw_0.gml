@@ -29,12 +29,7 @@ for (var i = 8*page; i < clamp(8*(page+1),0,bounties_num); i++) {
     var _r = 1 var _g = 1 var _b = 1
     
     if bounty_selected == i{
-        if _mouse_on == true{
-            _r = 0.721568
-            _g = 0.349019
-            _b = 0
-        }
-        else {
+        if _mouse_on == false{
             _r = 0.38431
             _g = 0.18431
             _b = 0
@@ -44,9 +39,9 @@ for (var i = 8*page; i < clamp(8*(page+1),0,bounties_num); i++) {
     shader_set(sh_replace)
     shader_set_uniform_f( global.shaders.replace[0],_r,_g,_b )
     if _mouse_on == true or bounty_selected == i
-    shader_set_uniform_f( global.shaders.replace[1],true )
+        shader_set_uniform_f( global.shaders.replace[1],true )
     else 
-    shader_set_uniform_f( global.shaders.replace[1],false)
+        shader_set_uniform_f( global.shaders.replace[1],false)
     draw_sprite(spr_bounty_cage,0,_x,_y)
     shader_reset()
     
@@ -76,11 +71,9 @@ for (var i = 8*page; i < clamp(8*(page+1),0,bounties_num); i++) {
 
 draw_sprite_stretched(spr_scroll_bar,0,1024-64,0,64,384)
 if page>0
-draw_sprite(spr_bounties_scroll_up,0,1024-64,16)
+draw_sprite(spr_scroll_up,0,1024-64,16)
 if page<max_page
-draw_sprite(spr_bounties_scroll_down,0,1024-64,384-48)
-
-exit_button.draw()
+draw_sprite(spr_scroll_down,0,1024-64,384-48)
 
 draw_sprite_stretched(spr_bounty_backpanel,0,0,384,1024,192)
 
@@ -243,10 +236,7 @@ if bounty_info.initialized == true and bounty_selected != -1{
         
         shader_set(sh_replace)
         shader_set_uniform_f( global.shaders.replace[0],1,1,1 )
-        if onduel == false
-        shader_set_uniform_f( global.shaders.replace[1],false )
-        else 
-        shader_set_uniform_f( global.shaders.replace[1],true )
+        shader_set_uniform_f( global.shaders.replace[1],onduel )
         draw_sprite_stretched(spr_bounty_info_icon_panel,0,815,398,167,163)
         shader_reset()
         

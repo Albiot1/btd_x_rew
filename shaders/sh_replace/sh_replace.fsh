@@ -13,6 +13,6 @@ void main()
         gl_FragColor = vec4(newcolor.rgb, texColor.a);
     }
     else{
-        gl_FragColor = texColor;
+        gl_FragColor = v_vColour * texture2D( gm_BaseTexture, v_vTexcoord );
     }
 }

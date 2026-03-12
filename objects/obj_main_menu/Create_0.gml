@@ -1,5 +1,3 @@
-global.gui_layer = 0
-global.gui_wait = 0
 statues = {
     sprite:[spr_towers_statue,spr_agents_statue,spr_play_statue,spr_medals_statue,spr_bounty_statue,spr_info_statue,spr_credits_statue,spr_missions_statue,spr_goodie_statue,spr_challenges_statue],
     text:["Towers","Agents","Play!","Medals","Bounty","Info","Credits","Missions","Goodie","Challenges"],
@@ -8,7 +6,9 @@ statues = {
     yplus:[0,0,0,0,0,0,0,0,0,0],
     mouse_on:[false,false,false,false,false,false,false,false,false,false],
     actions:[
-        -1,
+        function (){
+            room_goto(rm_towers_menu)
+        },
         function (){
             room_goto(rm_agent_menu)
         },
@@ -70,10 +70,7 @@ statues = {
             shader_set(sh_replace)
             shader_set_uniform_f( global.shaders.replace[0],1,1,1 )
             
-            if _mouse_on == false
-            shader_set_uniform_f( global.shaders.replace[1],false )
-            else 
-            shader_set_uniform_f( global.shaders.replace[1],true )
+            shader_set_uniform_f( global.shaders.replace[1],_mouse_on )
             
             draw_sprite_ext(_spr,0,_x,_y-20+_yp,1,1,0,c_white,1)
             

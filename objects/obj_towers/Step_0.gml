@@ -1,1 +1,3 @@
-exit_button.step()
+panels.step()
+
+upgrades.step()

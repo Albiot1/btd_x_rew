@@ -1,0 +1,5 @@
+shader_set(sh_replace)
+shader_set_uniform_f( global.shaders.replace[0],1,1,1 )
+shader_set_uniform_f( global.shaders.replace[1],mouse_on )
+draw_self()
+shader_reset()

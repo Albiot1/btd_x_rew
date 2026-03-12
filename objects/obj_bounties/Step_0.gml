@@ -1,10 +1,7 @@
 dialogue.step()
 
-if gui_wait>0
-    gui_wait--
-
 var _gui_active = true
-if gui_layer>0 or gui_wait>0{
+if global.gui_layer>0 or global.gui_wait>0{
     _gui_active = false
 }
 
@@ -36,9 +33,6 @@ if page<max_page{
         page++
     }
 }
-
-if _gui_active==true
-exit_button.step()
 
 for (var i = 0; i < bounties_num; i++) {
 	var _bounty = bounties[i]

@@ -8,6 +8,11 @@
   "bbox_top":25,
   "collisionKind":1,
   "collisionTolerance":0,
+  "ConfigValues":{
+    "FastMenus":{
+      "textureGroupId":"{ \"name\":\"upgrades_menu_group\", \"path\":\"texturegroups/upgrades_menu_group\" }",
+    },
+  },
   "DynamicTexturePage":false,
   "edgeFiltering":false,
   "For3D":false,

@@ -165,11 +165,8 @@ exit_button = {
     draw:function (_x,_y){
         shader_set(sh_replace)
         shader_set_uniform_f( global.shaders.replace[0],1,1,1 )
-        if mouse_on == false
-        shader_set_uniform_f( global.shaders.replace[1],false )
-        else 
-        shader_set_uniform_f( global.shaders.replace[1],true )
-        draw_sprite(spr_agent_menu_exit_button,0,_x+pos[0],_y+pos[1])
+        shader_set_uniform_f( global.shaders.replace[1],mouse_on )
+        draw_sprite(spr_exit_button,0,_x+pos[0],_y+pos[1])
         shader_reset()
     }
 }

@@ -1,1 +1,3 @@
-exit_button.draw()
+panels.draw()
+
+upgrades.draw()
