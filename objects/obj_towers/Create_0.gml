@@ -50,7 +50,7 @@ panels = {
             var _y = 8 + 64 * _col
             var _mouse_on = mouse_on[i]
             
-            var _r = 1, _g = 1, _b = 1
+            var _r = HOVER_OUTLINE_R, _g = HOVER_OUTLINE_G, _b = HOVER_OUTLINE_B
             var _outline = false
             if selected == i{
                 _outline = true
@@ -116,6 +116,7 @@ upgrades = {
     bp_now: [], //- int - for how much bp is left to "get in the upgrade" to unlock it
     bp_spawned: [],
     mouse_on: [],
+    instant_unlocking: global.settings.instant_upgrade_unlocking,
     px: [],
     py: [],
     num:0,
@@ -155,7 +156,7 @@ upgrades = {
                     
                     if _on == true{
                         mouse_on[i] = true
-                        if mouse_check_button(mb_left){
+                        if mouse_check_button(mb_left) and instant_unlocking==false{
                             
                             var _can_ulnock = false
                             var _enough_bloonpoints = false
@@ -196,16 +197,15 @@ upgrades = {
                             unlock_hold[i] -= 0.05
                     }
                     
+                    
+                    
                     bp_now[i] = round(bp_cost[i]*unlock_hold[i])
                     
                     var _spawn = bp_now[i] - bp_spawned[i] 
                     
-                    if _spawn!=0
-                    show_debug_message(_spawn)
-                    
                     if _spawn > 0{
                         repeat (_spawn) {
-                        	with instance_create_depth(925+32,500+32,-1,obj_fake_bp){
+                        	with instance_create_depth(925+32,500+32,-1,obj_fake_resource){
                                 next_x = _x + 67 + 10 + irandom_range(0,162)
                                 next_y = _y + 8 + irandom_range(0,73)
                             }
@@ -215,7 +215,7 @@ upgrades = {
                     	repeat (abs(_spawn)) {
                             var _spx = _x + 67 + 10 + irandom_range(0,162)
                             var _spy = _y + 8 + irandom_range(0,73)
-                        	with instance_create_depth(_spx,_spy,-1,obj_fake_bp){
+                        	with instance_create_depth(_spx,_spy,-1,obj_fake_resource){
                                 next_x = 925+32
                                 next_y = 500+32
                             }
@@ -224,7 +224,18 @@ upgrades = {
                     
                     bp_spawned[i] = bp_now[i]
                     
-                    if unlock_hold[i]>=1{
+                    var _unlock = false
+                    if _on == true and instant_unlocking == true and mouse_check_button_pressed(mb_left){
+                        _unlock = true
+                        repeat (bp_cost[i]) {
+                        	with instance_create_depth(925+32,500+32,-1,obj_fake_resource){
+                                next_x = _x + 67 + 10 + irandom_range(0,162)
+                                next_y = _y + 8 + irandom_range(0,73)
+                            }
+                        }
+                    }
+                    
+                    if unlock_hold[i]>=1 or _unlock == true{
                         unlock_hold[i] = 0
                         bp_spawned[i] = 0
                         bp_now[i] = 0
@@ -322,7 +333,7 @@ upgrades = {
                     var _held = clamp(unlock_hold[i],0,1)
                     
                     shader_set(sh_replace)
-                    shader_set_uniform_f( global.shaders.replace[0],1,1,1 )
+                    shader_set_uniform_f( global.shaders.replace[0],HOVER_OUTLINE_R,HOVER_OUTLINE_G,HOVER_OUTLINE_B )
                     shader_set_uniform_f( global.shaders.replace[1],_mouse_on )
                     
                     draw_sprite_stretched_ext(spr_upgrade_desc_panel,0,_x+67,_y,172,81,LOCKED_UPGRADE_COLOR,1)
@@ -352,11 +363,21 @@ upgrades = {
                     
                     draw_sprite_ext(spr_upgrade_bp_cost,0,_x+67+4,_y+48,1,1,0,c_white,_show_percent)
                     
-                    draw_text_outline(_x+67+4+26,_y+50,c_black,COLOR_BLOONPOINTS,$"x{_cost}")
+                    var _bpcost_color = COLOR_BLOONPOINTS
+                    if global.bloon_points < bp_cost[i]{
+                        _bpcost_color = COLOR_NOT_ENOUGH
+                    }
+                    
+                    draw_text_outline(_x+67+4+26,_y+50,c_black,_bpcost_color,$"x{_cost}")
                     
                     draw_set_halign(fa_right)
                     
-                    draw_text_outline(_x+67+172-8,_y+6,c_black,COLOR_RANK,$"Rank {_rank}")
+                    var _rankcost_color = COLOR_RANK
+                    if global.rank < rank[i]{
+                        _rankcost_color = COLOR_NOT_ENOUGH
+                    }
+                    
+                    draw_text_outline(_x+67+172-8,_y+6,c_black,_rankcost_color,$"Rank {_rank}")
                     
                     draw_set_halign(fa_left)
                     

@@ -1,3 +1,12 @@
+timer += 0.01
+flash_pos += 0.85
+if timer>pi*2{
+    timer-=pi*2
+}
+if flash_pos>=140{
+    flash_pos-=140+irandom_range(60,180)
+}
+
 if pressed_any_key == false{
     if keyboard_check_pressed(vk_anykey){
         pressed_any_key = true

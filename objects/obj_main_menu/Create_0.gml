@@ -68,7 +68,7 @@ statues = {
             draw_rectangle(_x-64,_y-64,_x+64,_y+64,1)
             
             shader_set(sh_replace)
-            shader_set_uniform_f( global.shaders.replace[0],1,1,1 )
+            shader_set_uniform_f( global.shaders.replace[0],HOVER_OUTLINE_R,HOVER_OUTLINE_G,HOVER_OUTLINE_B )
             
             shader_set_uniform_f( global.shaders.replace[1],_mouse_on )
             
@@ -85,6 +85,33 @@ statues = {
     }
 }
 
+discord_link = {
+    pos:[ 64+8,8 ],
+    text:"Ramaf Party discord server",
+    link:"https://discord.com/invite/hVYHPzA",
+    str_w:-1,
+    step:function (){
+        
+        if point_in_rectangle(mouse_x,mouse_y,pos[0],pos[1],pos[0]+str_w,pos[1]+24) and global.gui_layer == 0 and global.gui_wait == 0{
+            window_set_cursor(cr_handpoint)
+            if mouse_check_button_pressed(mb_left){
+                url_open(link)
+            }
+        }
+        else {
+        	window_set_cursor(cr_arrow)
+        }
+        
+    },
+    draw:function (){
+        draw_text_outline(pos[0],pos[1],c_black,c_aqua,text)
+        draw_line_width_color(pos[0],pos[1]+28,pos[0]+str_w,pos[1]+28,4,c_aqua,c_aqua)
+    }
+}
+
+draw_set_font(font_general_16)
+discord_link.str_w = string_width(discord_link.text)
+
 moon_temple = {
     pos:[376,252],
     state: 0,
@@ -93,3 +120,35 @@ moon_temple = {
     }
 }
 
+settings = {
+    pos:[4,4],
+    mouse_on:false,
+    step: function (){
+        if global.gui_layer == 0 and global.gui_wait == 0{
+            if point_in_rectangle(mouse_x,mouse_y,pos[0],pos[1],pos[0]+64,pos[1]+64){
+                mouse_on = true
+                
+                if mouse_check_button_pressed(mb_left){
+                    global.gui_layer = 1
+                    global.gui_wait = 10
+                    instance_create_depth(0,0,-1,obj_settings_panel)
+                }
+            }
+            else {
+            	mouse_on = false
+            }
+        }
+        else {
+        	mouse_on = false
+        }
+    },
+    draw: function (){
+        
+        shader_set(sh_replace)
+        shader_set_uniform_f(global.shaders.replace[0],HOVER_OUTLINE_R,HOVER_OUTLINE_G,HOVER_OUTLINE_B)
+        shader_set_uniform_f(global.shaders.replace[1],mouse_on)
+        draw_sprite(spr_settings_main_menu,0,pos[0],pos[1])
+        shader_reset()
+        
+    }
+}

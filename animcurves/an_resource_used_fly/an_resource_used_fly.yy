@@ -1,0 +1,31 @@
+{
+  "$GMAnimCurve":"",
+  "%Name":"an_resource_used_fly",
+  "channels":[
+    {"$GMAnimCurveChannel":"","%Name":"curve1","colour":4290799884,"name":"curve1","points":[
+        {"th0":-0.25,"th1":0.0,"tv0":0.0,"tv1":0.0,"x":0.0,"y":0.0,},
+        {"th0":-0.2544392,"th1":0.14165363,"tv0":-0.12118036,"tv1":0.06746459,"x":0.3424808,"y":0.9329951,},
+        {"th0":-0.2,"th1":0.25,"tv0":0.0,"tv1":0.0,"x":1.0,"y":1.0,},
+      ],"resourceType":"GMAnimCurveChannel","resourceVersion":"2.0","visible":true,},
+    {"$GMAnimCurveChannel":"","%Name":"curve2","colour":4281083598,"name":"curve2","points":[
+        {"th0":-0.1,"th1":0.0461754,"tv0":0.0,"tv1":0.0,"x":0.0,"y":1.0,},
+        {"th0":-0.19637714,"th1":0.14217585,"tv0":0.3224846,"tv1":-0.23347688,"x":0.6,"y":1.0,},
+        {"th0":-0.07413799,"th1":0.1208809,"tv0":0.024695098,"tv1":-0.040264994,"x":0.8,"y":0.0,},
+        {"th0":-0.033586025,"th1":0.1,"tv0":0.0,"tv1":0.0,"x":1.0,"y":0.0,},
+      ],"resourceType":"GMAnimCurveChannel","resourceVersion":"2.0","visible":true,},
+    {"$GMAnimCurveChannel":"","%Name":"curve3","colour":4279025727,"name":"curve3","points":[
+        {"th0":-0.1,"th1":0.049575426,"tv0":0.0,"tv1":0.0,"x":0.0,"y":1.0,},
+        {"th0":-0.46544978,"th1":0.101452276,"tv0":0.08175558,"tv1":-0.017819943,"x":0.5675573,"y":0.69435215,},
+        {"th0":-0.061288536,"th1":0.08252221,"tv0":0.19140047,"tv1":-0.2573846,"x":0.75,"y":0.0,},
+        {"th0":-0.028917551,"th1":0.1,"tv0":0.0,"tv1":0.0,"x":1.0,"y":0.0,},
+      ],"resourceType":"GMAnimCurveChannel","resourceVersion":"2.0","visible":true,},
+  ],
+  "function":2,
+  "name":"an_resource_used_fly",
+  "parent":{
+    "name":"AnimCurves",
+    "path":"folders/AnimCurves.yy",
+  },
+  "resourceType":"GMAnimCurve",
+  "resourceVersion":"2.0",
+}

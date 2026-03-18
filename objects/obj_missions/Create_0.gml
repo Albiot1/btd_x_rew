@@ -106,15 +106,13 @@ missions = {
             
             shader_set(sh_replace_mission)
             
-            var _r = 1
-            var _g = 1
-            var _b = 1
+            var _r = HOVER_OUTLINE_R,_g = HOVER_OUTLINE_G,_b = HOVER_OUTLINE_B
             
             if _completed == true{
                 if _mouse_on == false{
-                    _r = 0
-                    _g = 0.54
-                    _b = 0
+                    _r = COMPLETED_OUTLINE_R
+                    _g = COMPLETED_OUTLINE_G
+                    _b = COMPLETED_OUTLINE_B
                 }
             }
             
@@ -152,6 +150,9 @@ missions = {
         draw_sprite_stretched(spr_scroll_bar,0,1024-64,0,64,576)
         if page>0
         draw_sprite(spr_scroll_up,0,1024-64,16)
+        
+        draw_sprite_stretched(spr_scroll_bar_thumb,0,1024-56,48+2+416*(page/max_page),SCROLL_THUMB_WIDTH,SCROLL_THUMB_HEIGHT)
+        
         if page<max_page
         draw_sprite(spr_scroll_down,0,1024-64,576-48)
         

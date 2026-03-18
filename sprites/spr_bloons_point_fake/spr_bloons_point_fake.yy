@@ -30,8 +30,8 @@
   "nineSlice":null,
   "origin":4,
   "parent":{
-    "name":"Upgrades menu",
-    "path":"folders/Sprites/Upgrades menu.yy",
+    "name":"NEW Main menu",
+    "path":"folders/Sprites/NEW Main menu.yy",
   },
   "preMultiplyAlpha":false,
   "resourceType":"GMSprite",

@@ -26,13 +26,13 @@ for (var i = 8*page; i < clamp(8*(page+1),0,bounties_num); i++) {
     
     draw_surface(_cage.surface,_x,_y)
     
-    var _r = 1 var _g = 1 var _b = 1
+    var _r = HOVER_OUTLINE_R var _g = HOVER_OUTLINE_G var _b = HOVER_OUTLINE_B
     
     if bounty_selected == i{
         if _mouse_on == false{
-            _r = 0.38431
-            _g = 0.18431
-            _b = 0
+            _r = BOUNTY_CAGE_OUTLINE_R
+            _g = BOUNTY_CAGE_OUTLINE_G
+            _b = BOUNTY_CAGE_OUTLINE_B
         }
     }
     
@@ -72,8 +72,11 @@ for (var i = 8*page; i < clamp(8*(page+1),0,bounties_num); i++) {
 draw_sprite_stretched(spr_scroll_bar,0,1024-64,0,64,384)
 if page>0
 draw_sprite(spr_scroll_up,0,1024-64,16)
+
+draw_sprite_stretched(spr_scroll_bar_thumb,0,1024-56,48+2+226*(page/max_page),SCROLL_THUMB_WIDTH,SCROLL_THUMB_HEIGHT)
+
 if page<max_page
-draw_sprite(spr_scroll_down,0,1024-64,384-48)
+draw_sprite(spr_scroll_down,0,1024-64,336)
 
 draw_sprite_stretched(spr_bounty_backpanel,0,0,384,1024,192)
 
@@ -235,7 +238,7 @@ if bounty_info.initialized == true and bounty_selected != -1{
     if surface_exists(bounty_info.surface){
         
         shader_set(sh_replace)
-        shader_set_uniform_f( global.shaders.replace[0],1,1,1 )
+        shader_set_uniform_f( global.shaders.replace[0],HOVER_OUTLINE_R,HOVER_OUTLINE_G,HOVER_OUTLINE_B )
         shader_set_uniform_f( global.shaders.replace[1],onduel )
         draw_sprite_stretched(spr_bounty_info_icon_panel,0,815,398,167,163)
         shader_reset()

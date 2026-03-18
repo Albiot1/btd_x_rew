@@ -8,6 +8,11 @@
   "bbox_top":0,
   "collisionKind":4,
   "collisionTolerance":0,
+  "ConfigValues":{
+    "FastMenus":{
+      "textureGroupId":"{ \"name\":\"start_screen_group\", \"path\":\"texturegroups/start_screen_group\" }",
+    },
+  },
   "DynamicTexturePage":false,
   "edgeFiltering":false,
   "For3D":false,

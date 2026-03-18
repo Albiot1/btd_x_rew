@@ -20,6 +20,7 @@ resources = {
     draw_bloon_souls:true,
     draw_monkey_money:true,
     draw_bloon_points:true,
+    draw_rank:true,
     draw:function (){
         var _current_xpos = 0
         var _pos_x = 0
@@ -84,24 +85,35 @@ resources = {
             draw_text_outline(_gpos_pos[0]+4,_gpos_pos[1]+24,c_black,c_white,1)
         }
         
-        draw_set_font(font_general_20)
-        
-        var _rpos = rank_pos
-        
-        draw_set_halign(fa_left)
-        
-        draw_text_outline(_rpos[0],_rpos[1],c_black,COLOR_RANK,$"Rank:{global.rank}")
+        if draw_rank == true{
+            draw_set_font(font_general_20)
+            
+            var _rpos = rank_pos
+            
+            draw_set_halign(fa_left)
+            
+            draw_text_outline(_rpos[0]+xshift,_rpos[1],c_black,COLOR_RANK,$"Rank:{global.rank}")
+        }
         
     }
 }
 
-if room == rm_goodies_menu{
-    resources.draw_goodie_token = true
-    resources.draw_goodie_exchange = true
-    resources.xshift = -32
-}
-else if room == rm_towers_menu{
-    resources.draw_bloon_souls = false
-    resources.draw_monkey_money = false
-    resources.draw_trophies = false
+switch (room) {
+	case rm_goodies_menu:
+        resources.draw_goodie_token = true
+        resources.draw_goodie_exchange = true
+        resources.draw_bloon_souls = false
+        resources.draw_monkey_money = false
+        resources.draw_bloon_points = false
+        resources.xshift = -32
+    break;
+    case rm_towers_menu:
+        resources.draw_bloon_souls = false
+        resources.draw_monkey_money = false
+        resources.draw_trophies = false
+    break;
+    case rm_agent_menu:
+        resources.draw_bloon_souls = false
+        resources.draw_trophies = false
+    break;
 }

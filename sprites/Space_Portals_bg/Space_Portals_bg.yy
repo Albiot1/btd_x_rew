@@ -26,7 +26,7 @@
   "origin":0,
   "parent":{
     "name":"Tracks",
-    "path":"folders/Sprites/tilesets/Tracks.yy",
+    "path":"folders/Sprites/Track Backgrounds/Tracks.yy",
   },
   "preMultiplyAlpha":false,
   "resourceType":"GMSprite",

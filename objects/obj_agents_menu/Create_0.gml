@@ -34,6 +34,16 @@ buyables = {
                 mouse_on[i] = true
                 if mouse_check_button_pressed(mb_left) and global.monkey_money>=cost[i]{
                     global.monkey_money-=cost[i]
+                    
+                    draw_set_font(font_general_12)
+                    var _cost_w = string_width(cost[i])
+                    repeat ( round(cost[i]/25) )
+                    with instance_create_depth(925+34,500+34,-1,obj_fake_resource){
+                        sprite_index = spr_monkey_money_icon_fake
+                        next_x = _x + 342 - _cost_w - 26 + irandom_range(-9,9)
+                        next_y = _y + 12 + 9 + irandom_range(-4,4)
+                    }
+                    
                     var _id = agent_id[i]
                     var _tp = buy_type[i]
                     switch (_tp) {
@@ -44,6 +54,13 @@ buyables = {
                         break;
                         case BTYPES.BLOON_POINTS:
                             global.bloon_points+=4
+                            
+                            repeat ( 4 )
+                            with instance_create_depth(_x + 96 + irandom_range(0,261),_y + 45 + irandom_range(0,48),-1,obj_fake_resource){
+                                next_x = 850+32
+                                next_y = 500+32
+                            }
+                            
                         break;
                     }
 
@@ -83,7 +100,7 @@ buyables = {
             _y+=8
             
             shader_set(sh_replace)
-            shader_set_uniform_f( global.shaders.replace[0],1,1,1 )
+            shader_set_uniform_f( global.shaders.replace[0],HOVER_OUTLINE_R,HOVER_OUTLINE_G,HOVER_OUTLINE_B )
             shader_set_uniform_f( global.shaders.replace[1],_mouse_on )
             draw_sprite(spr_agents_buy_panel,0,_x,_y)
             shader_reset()
@@ -116,7 +133,7 @@ buyables = {
                 var _txt_w = string_width(_txt)
                 
                 shader_set(sh_replace)
-                shader_set_uniform_f( global.shaders.replace[0],1,1,1 )
+                shader_set_uniform_f( global.shaders.replace[0],HOVER_OUTLINE_R,HOVER_OUTLINE_G,HOVER_OUTLINE_B )
                 shader_set_uniform_f( global.shaders.replace[1],_mouse_on )
                 draw_sprite_stretched(spr_buy_amount_panel,0,_x+108,_y+85,_txt_w+8,24)
                 shader_reset()

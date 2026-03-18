@@ -1,6 +1,11 @@
 {
   "$GMWindowsOptions":"v1",
   "%Name":"Windows",
+  "ConfigValues":{
+    "FastMenus":{
+      "option_windows_texture_page":"4096x4096",
+    },
+  },
   "name":"Windows",
   "option_windows_allow_fullscreen_switching":false,
   "option_windows_borderless":false,

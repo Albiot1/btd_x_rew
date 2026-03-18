@@ -26,17 +26,33 @@ alarm[0] = SPLASH_TIME
 #macro COLOR_MONKEYMONEY #00c000
 #macro COLOR_BLOONPOINTS #009fff
 #macro COLOR_RANK c_aqua 
+#macro COLOR_NOT_ENOUGH #c40000
 
-#macro HOVER_OUTLINE_COLOR_R 1
-#macro COMPLTED_OUTLINE_COLOR 567756
+#macro HOVER_OUTLINE_R 1
+#macro HOVER_OUTLINE_G 1
+#macro HOVER_OUTLINE_B 1
+#macro COMPLETED_OUTLINE_R 0
+#macro COMPLETED_OUTLINE_G 0.54
+#macro COMPLETED_OUTLINE_B 0
+#macro DISABLED_OUTLINE_R 0.54
+#macro DISABLED_OUTLINE_G 0
+#macro DISABLED_OUTLINE_B 0
+#macro BOUNTY_CAGE_OUTLINE_R 0.38431
+#macro BOUNTY_CAGE_OUTLINE_G 0.18431
+#macro BOUNTY_CAGE_OUTLINE_B 0 
+#macro HOVER_GOODIE_OUTLINE_ENABLED_R 0 
+#macro HOVER_GOODIE_OUTLINE_ENABLED_G 1
+#macro HOVER_GOODIE_OUTLINE_ENABLED_B 0
+#macro HOVER_GOODIE_OUTLINE_DISABLED_R 1
+#macro HOVER_GOODIE_OUTLINE_DISABLED_G 0
+#macro HOVER_GOODIE_OUTLINE_DISABLED_B 0
 
 global.bloon_souls = 10
-global.bloon_points = 200
+global.bloon_points = 5
 global.trophies = 20
 global.monkey_money = 2500
-global.goodie_points = 5
-
-
+global.goodie_points_used = 0
+global.goodie_points = floor(global.trophies/10) - global.goodie_points_used
 
 global.rank = 25
 global.xp = 0
@@ -113,15 +129,39 @@ enum TRACK_DIFFICULTY {
     MAD_POP
 }
 
-Track = function (_name,_difficulty,_icon = -1) constructor {
+enum TRACK_TYPE {
+    NORMAL,
+    SPECIAL
+}
+
+Track = function (_name,_difficulty,_icon = -1,_type = TRACK_TYPE.SPECIAL) constructor {
     name = _name
     difficulty = _difficulty
     icon = _icon
-}
-
-global.tracks = {
+    type = _type
+    
+    if type == TRACK_TYPE.NORMAL{
+        best_wave = {
+            normal: 0,
+            impoppable: 0,
+            nightmare: 0
+        }
+        best_time = 60 * 60 * 24
+        best_score = {
+            normal: 0,
+            impoppable: 0,
+            nightmare: 0
+        }
+        winning_wave = {
+            normal: 0,
+            impoppable: 0,
+            nightmare: 0
+        }
+    }
     
 }
+
+global.tracks = {}
 
 global.tracks.monkey_meadows = new Track("Monkey Meadows",TRACK_DIFFICULTY.FLOATY)
 global.tracks.bloon_oasis = new Track("Bloon Oasis",TRACK_DIFFICULTY.FLOATY)
@@ -155,7 +195,7 @@ global.tracks.the_depths = new Track("The Depths",TRACK_DIFFICULTY.MAD_POP)
 global.tracks.lawless_badlands = new Track("Lawless Badlands",TRACK_DIFFICULTY.MAD_POP)
 global.tracks.lost_pools = new Track("Lost Pools",TRACK_DIFFICULTY.MAD_POP)
 
-global.tracks.bloon_bounty_center = new Track("Bloon Bounty Center",TRACK_DIFFICULTY.MAD_POP)
+global.tracks.bloon_bounty_center = new Track("Bloon Bounty Center",TRACK_DIFFICULTY.MAD_POP,TRACK_TYPE.SPECIAL)
 
 //
 
@@ -223,3 +263,77 @@ global.bounty.rewards.add(BOUNTY_RANK.ANNOINGLY_ALMIGHTY,1100,11,550000)
 scr_upgrades_initialize()
 
 scr_towers_initialize()
+
+enum HOTKEY {
+    SELL,
+    START_WAVE,
+    LEFT_UPGRADE,
+    MIDDLE_UPGRADE,
+    RIGHT_UPGRADE,
+    TOWER_DARTM,
+    TOWER_TACKS,
+    TOWER_BOMRM,
+    TOWER_SNIPM,
+    TOWER_NINJM,
+    TOWER_BOMBS,
+    TOWER_SUBMM,
+    TOWER_CHARG,
+    TOWER_GLUEG,
+    TOWER_ICEMO,
+    TOWER_BUCCM,
+    TOWER_ENGIM,
+    TOWER_ACEMO,
+    TOWER_BLONC,
+    TOWER_ALCHE,
+    TOWER_APPRE,
+    TOWER_VILLA,
+    TOWER_BANAN,
+    TOWER_MORTA,
+    TOWER_DARTG,
+    TOWER_SPIKE,
+    TOWER_HELIP,
+    TOWER_PLASM,
+    TOWER_SUPER,
+    ROAD_SPIKES,
+    GRIL_PINEAP
+}
+
+global.settings = {
+    instant_upgrade_unlocking: false,
+    instant_start_transition: false,
+    show_fps: false,
+    fullscreen: false,
+    hotkeys:[
+        vk_backspace,
+        vk_space,
+        ord("Z"),
+        ord("X"),
+        ord("C"),
+        ord("1"),
+        ord("Q"),
+        ord("2"),
+        ord("W"),
+        ord("3"),
+        ord("E"),
+        ord("4"),
+        ord("R"),
+        ord("5"),
+        ord("T"),
+        ord("6"),
+        ord("Y"),
+        ord("7"),
+        ord("U"),
+        ord("8"),
+        ord("I"),
+        ord("9"),
+        ord("O"),
+        ord("0"),
+        ord("P"),
+        ord("F"),
+        ord("V"),
+        ord("G"),
+        ord("B"),
+        ord("H"),
+        ord("N")
+    ]
+}

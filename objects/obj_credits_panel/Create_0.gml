@@ -4,8 +4,10 @@ info = {
     texts:[
             [
                 "Bloons TDX Rewritten Credits:",
-                "Bloons TDX Rewritten is made by Peeko Hiko",
-                "its a complete rewrite of Bloons TDX",
+                "Bloons TDX Rewritten is made by Peeko Hiko with consultation",
+                "from Ramaf",
+                "",
+                "Its a complete rewrite of Bloons TDX",
                 "",
                 "Original Bloons TDX Credits:",
                 "Bloons TDX is a fangame made by Ramaf Party",
@@ -164,7 +166,7 @@ exit_button = {
     },
     draw:function (_x,_y){
         shader_set(sh_replace)
-        shader_set_uniform_f( global.shaders.replace[0],1,1,1 )
+        shader_set_uniform_f( global.shaders.replace[0],HOVER_OUTLINE_R,HOVER_OUTLINE_G,HOVER_OUTLINE_B )
         shader_set_uniform_f( global.shaders.replace[1],mouse_on )
         draw_sprite(spr_exit_button,0,_x+pos[0],_y+pos[1])
         shader_reset()

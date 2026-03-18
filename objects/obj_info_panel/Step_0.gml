@@ -38,17 +38,21 @@ switch (state) {
             wait--
         
         if mouse_check_button_pressed(mb_left) and wait==0{
-            if _all_alpha == true{
-                	state = "dissapear"
-                    global.gui_layer = 0
-                    global.gui_wait = 10
-            }
-            else {
+            if _all_alpha == false{
                 for (var i = 0; i < info.number; i++) {
                     texts_alpha[i] = 1
                 }
             }
         }
+        
+        if _all_alpha == true{
+            if exit_button.step(x,y){
+                state = "dissapear"
+                global.gui_layer = 0
+                global.gui_wait = 10
+            }
+        }
+        
     break;
     case "dissapear":
         var _an_value = animcurve_channel_evaluate(chan[1],anim_pos)

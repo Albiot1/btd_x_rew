@@ -55,7 +55,19 @@ goodies = {
                 mouse_on[i] = true
                 if mouse_check_button_pressed(mb_left){
                     if global.goodies[$ _id].unlocked == false{
-                        global.goodies[$ _id].unlocked = true
+                        if global.goodie_points>0{
+                            global.goodies[$ _id].unlocked = true
+                            global.goodie_points_used++
+                            
+                            global.goodie_points = floor(global.trophies/10) - global.goodie_points_used
+                            
+                            with instance_create_depth(925+32,500+32,-1,obj_fake_resource){
+                                sprite_index = spr_goodie_token_fake
+                                next_x = _x - 8 + 32
+                                next_y = _y + 4 + 32
+                                anim_spd = 0.1
+                            }
+                        }
                     }
                     else if global.goodies[$ _id].unlocked == true{
                         if global.goodies[$ _id].active == false{
@@ -148,19 +160,31 @@ goodies = {
             
             shader_set(sh_replace)
             
-            var _r = 1
-            var _g = 1
-            var _b = 1
+            var _r = HOVER_OUTLINE_R,_g = HOVER_OUTLINE_G,_b = HOVER_OUTLINE_B
             
             if _unlocked == true{
                 if _active == true{
                     if _mouse_on == false{
-                        _r = 0.47 _g = 1 _b = 0.47
+                        _r = COMPLETED_OUTLINE_R
+                        _g = COMPLETED_OUTLINE_G
+                        _b = COMPLETED_OUTLINE_B
+                    }
+                    else {
+                    	_r = HOVER_GOODIE_OUTLINE_ENABLED_R
+                        _g = HOVER_GOODIE_OUTLINE_ENABLED_G
+                        _b = HOVER_GOODIE_OUTLINE_ENABLED_B
                     }
                 }
                 else {
                 	if _mouse_on == false{
-                        _r = 1 _g = 0.47 _b = 0.47
+                        _r = DISABLED_OUTLINE_R
+                        _g = DISABLED_OUTLINE_G
+                        _b = DISABLED_OUTLINE_B
+                    }
+                    else {
+                    	_r = HOVER_GOODIE_OUTLINE_DISABLED_R
+                        _g = HOVER_GOODIE_OUTLINE_DISABLED_G
+                        _b = HOVER_GOODIE_OUTLINE_DISABLED_B
                     }
                 }
             }
@@ -205,6 +229,9 @@ goodies = {
         draw_sprite_stretched(spr_scroll_bar,0,1024-64,0,64,576)
         if page>0
         draw_sprite(spr_scroll_up,0,1024-64,16)
+        
+        draw_sprite_stretched(spr_scroll_bar_thumb,0,1024-56,48+2+416*(page/max_page),SCROLL_THUMB_WIDTH,SCROLL_THUMB_HEIGHT)
+        
         if page<max_page
         draw_sprite(spr_scroll_down,0,1024-64,576-48)
         
@@ -338,7 +365,7 @@ exit_button = {
     },
     draw:function (){
         shader_set(sh_replace)
-        shader_set_uniform_f( global.shaders.replace[0],1,1,1 )
+        shader_set_uniform_f( global.shaders.replace[0],HOVER_OUTLINE_R,HOVER_OUTLINE_G,HOVER_OUTLINE_B )
         shader_set_uniform_f( global.shaders.replace[1],mouse_on )
         draw_sprite(spr_exit_button,0,pos[0],pos[1])
         shader_reset()
