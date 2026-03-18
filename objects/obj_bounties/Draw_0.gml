@@ -45,7 +45,16 @@ for (var i = 8*page; i < clamp(8*(page+1),0,bounties_num); i++) {
     draw_sprite(spr_bounty_cage,0,_x,_y)
     shader_reset()
     
-    draw_sprite(spr_bounty_cage_bars,0,_x,_y)
+    var _bars_index = 2
+    
+    if _rank>=_max_rank*0.5{
+        _bars_index = 1
+    }
+    if _rank==_max_rank{
+        _bars_index = 0
+    }
+    
+    draw_sprite(spr_bounty_cage_bars,_bars_index,_x,_y)
     
     var _ymax = 31 * _max_rank
     

@@ -14,12 +14,12 @@ enum BOUNTY_ICON_POSITION {
     LEFT
 }
 
-Bounty = function (_id,_max_rank,_description) constructor {
+Bounty = function (_id,_description) constructor {
     mid = _id
-    max_rank = _max_rank
+    max_rank = global.bounty.list[$ _id].max_rank
     desc = _description
-    location = global.bounty[$ _id].location
-    current_rank = global.bounty[$ _id].rank
+    location = global.bounty.list[$ _id].location
+    current_rank = global.bounty.list[$ _id].rank
     names = []
     ranks = []
     mouse_on = false
@@ -113,98 +113,98 @@ bounty_info = {
     initialized: false
 }
 
-bounties[0] = new Bounty("big_bully",5,"Continues to lap around the track and leak lives until you are dead")
+bounties[0] = new Bounty("big_bully","Continues to lap around the track and leak lives until you are dead")
     .SetInfoIcon(spr_bounty_icon_big_bully_bloon)
     .SetCageIcon(spr_bounty_big_bully_blooon)
     .SetCageEffectFloaty(5)
     .SetNames(["Big Bully Bloon","Big Bull","Big Rage Bloon","Big Bully Rage","Rage God"])
     .SetRanks([BOUNTY_RANK.LOW,BOUNTY_RANK.MEDIUM,BOUNTY_RANK.MODERATELY_HIGH,BOUNTY_RANK.HIGH,BOUNTY_RANK.ALMIGHTY])
     
-bounties[1] = new Bounty("mighty_moab",4,"Has a very strong shell and causes moabs to spawn")
+bounties[1] = new Bounty("mighty_moab","Has a very strong shell and causes moabs to spawn")
     .SetInfoIcon(spr_bounty_icon_mighty_moab)
     .SetCageIcon(spr_bounty_mighty_moab)
     .SetCageEffectPush(0.02,18)
     .SetNames(["Mighty Moab","Mighty Moab MK II","Mighty Fist","Mightiest Moab"])
     .SetRanks([BOUNTY_RANK.MEDIUM,BOUNTY_RANK.MODERATELY_HIGH,BOUNTY_RANK.HIGH,BOUNTY_RANK.VERY_HIGH])
 
-bounties[2] = new Bounty("horror_bloon",4,"You don't want it to break free")
+bounties[2] = new Bounty("horror_bloon","You don't want it to break free")
     .SetInfoIcon(spr_bounty_icon_horror_bloon)
     .SetCageIcon(spr_bounty_horror_bloon)
     .SetCageEffectShaky(2,2)
     .SetNames(["Horror Bloon","Darkness Bloon","Demonic Bloon","True Horror"])
     .SetRanks([BOUNTY_RANK.MODERATELY_HIGH,BOUNTY_RANK.HIGH,BOUNTY_RANK.VERY_HIGH,BOUNTY_RANK.IMPOPPABLE])
 
-bounties[3] = new Bounty("ufo_bloon",4,"Flies around fast and sucks up all your money")
+bounties[3] = new Bounty("ufo_bloon","Flies around fast and sucks up all your money")
     .SetInfoIcon(spr_bounty_icon_ufo_bloon)
     .SetCageIcon(spr_bounty_ufo_bloon)
     .SetCageEffectFloaty(3)
     .SetNames(["UFO Bloon","UFO Squad","UFO Cluseter","UFO Mothership"])
     .SetRanks([BOUNTY_RANK.LOW,BOUNTY_RANK.MEDIUM,BOUNTY_RANK.MODERATELY_HIGH,BOUNTY_RANK.HIGH])
 
-bounties[4] = new Bounty("super_bloon",4,"Flies across the screen with an array of powers")
+bounties[4] = new Bounty("super_bloon","Flies across the screen with an array of powers")
     .SetInfoIcon(spr_bounty_icon_super_bloon)
     .SetCageIcon(spr_bounty_super_bloon)
     .SetCageEffectFloaty(5)
     .SetNames(["Super Bloon","Super Duper Bloon","Super Villain Bloon","Super Bloon 2"])
     .SetRanks([BOUNTY_RANK.MEDIUM,BOUNTY_RANK.MODERATELY_HIGH,BOUNTY_RANK.HIGH,BOUNTY_RANK.VERY_HIGH])
 
-bounties[5] = new Bounty("mother",4,"Terraforming Bloon from another dimension.\nHas lots of reality altering abilities.")
+bounties[5] = new Bounty("mother","Terraforming Bloon from another dimension.\nHas lots of reality altering abilities.")
     .SetInfoIcon(spr_bounty_icon_the_mother)
     .SetCageIcon(spr_bounty_the_mother)
     .SetCageEffectSides(5,0.02)
     .SetNames(["The Mother","The Queen","Monster Mom","Monster Queen"])
     .SetRanks([BOUNTY_RANK.MODERATELY_HIGH,BOUNTY_RANK.HIGH,BOUNTY_RANK.VERY_HIGH,BOUNTY_RANK.IMPOPPABLE])
 
-bounties[6] = new Bounty("annoying_bloon",5,"?????????\nEmoji Bloon")
+bounties[6] = new Bounty("annoying_bloon","?????????\nEmoji Bloon")
     .SetInfoIcon(spr_bounty_icon_annoying_bloon)
     .SetCageIcon(spr_bounty_annoying_bloon)
     .SetCageEffectFloaty(5)
     .SetNames(["Annoying Bloon","Irritating Bloon","Frustrating Bloon","4 Letter Word Bloon","Giga Emoji"])
     .SetRanks([BOUNTY_RANK.MODERATELY_ANNOYING,BOUNTY_RANK.ANNOYING,BOUNTY_RANK.VERY_ANNOYING,BOUNTY_RANK.IMPOPPABLY_ANNOYING,BOUNTY_RANK.ANNOINGLY_ALMIGHTY])
 
-bounties[7] = new Bounty("clown_bloon",5,"Bloon that likes to play tricks on the monkeys")
+bounties[7] = new Bounty("clown_bloon","Bloon that likes to play tricks on the monkeys")
     .SetInfoIcon(spr_bounty_icon_clown_bloon)
     .SetCageIcon(spr_bounty_clown_bloon)
     .SetCageEffectFloaty(5)
     .SetNames(["Clown Bloon","Joker Bloon","Demon Clown","Rubber Terror","Trickster God"])
     .SetRanks([BOUNTY_RANK.MEDIUM,BOUNTY_RANK.MODERATELY_HIGH,BOUNTY_RANK.HIGH,BOUNTY_RANK.VERY_HIGH,BOUNTY_RANK.ALMIGHTY])
 
-bounties[8] = new Bounty("blooming_bloon",4,"Primordial Spring Spirit that resembles a flower")
+bounties[8] = new Bounty("blooming_bloon","Primordial Spring Spirit that resembles a flower")
     .SetInfoIcon(spr_bounty_icon_blooming_bloon)
     .SetCageIcon(spr_bounty_blooming_bloon)
     .SetCageEffectFloaty(5)
     .SetNames(["Blooming Bloon","Gardening Bloon","Blossom Bloon","Earth Spirity"])
     .SetRanks([BOUNTY_RANK.MEDIUM,BOUNTY_RANK.HIGH,BOUNTY_RANK.VERY_HIGH])
 
-bounties[9] = new Bounty("track_crawler",4,"Big Spider-like bloon that towers over the monkeys")
+bounties[9] = new Bounty("track_crawler","Big Spider-like bloon that towers over the monkeys")
     .SetInfoIcon(spr_bounty_icon_track_crawler)
     .SetCageIcon(spr_bounty_track_crawler)
     .SetCageEffectSides(4)
     .SetNames(["Track Crawler","Track Nest","Track Spire","Track Swarm"])
     .SetRanks([BOUNTY_RANK.MODERATELY_HIGH,BOUNTY_RANK.HIGH,BOUNTY_RANK.VERY_HIGH,BOUNTY_RANK.IMPOPPABLE])
 
-bounties[10] = new Bounty("tdom",4,"Really strong and has several methods to ensure destruction")
+bounties[10] = new Bounty("tdom","Really strong and has several methods to ensure destruction")
     .SetInfoIcon(spr_bounty_icon_tdom)
     .SetCageIcon(spr_bounty_tdom)
     .SetCageEffectSides(4)
     .SetNames(["tDoM","tDoM Second Form","tDoM Zero Form","tDoM Full Power"])
     .SetRanks([BOUNTY_RANK.MODERATELY_HIGH,BOUNTY_RANK.HIGH,BOUNTY_RANK.VERY_HIGH,BOUNTY_RANK.IMPOPPABLE])
 
-bounties[11] = new Bounty("flying_bloon",4,"Soars high and sends gusts of wind and Eternal Bloons")
+bounties[11] = new Bounty("flying_bloon","Soars high and sends gusts of wind and Eternal Bloons")
     .SetInfoIcon(spr_bounty_icon_flying_bloon)
     .SetCageIcon(spr_bounty_flying_bloon)
     .SetCageEffectFloaty(8)
     .SetNames(["Flying Bloon","Higher Bloon","Ascended Bloon","Almighty Bloon"])
     .SetRanks([BOUNTY_RANK.MEDIUM,BOUNTY_RANK.MODERATELY_HIGH,BOUNTY_RANK.HIGH,BOUNTY_RANK.VERY_HIGH])
 
-bounties[12] = new Bounty("bloon_knight",4,"Knight Bloon Protects its allies with the power of the Light!")
+bounties[12] = new Bounty("bloon_knight","Knight Bloon Protects its allies with the power of the Light!")
     .SetInfoIcon(spr_bounty_icon_bloon_knight)
     .SetCageIcon(spr_bounty_knight_bloon)
     .SetCageEffectFloaty(4)
     .SetNames(["Bloon Knight","White Knight","Paladin Bloon","Birthday Delivery"])
     .SetRanks([BOUNTY_RANK.MODERATELY_HIGH,BOUNTY_RANK.HIGH,BOUNTY_RANK.VERY_HIGH,BOUNTY_RANK.IMPOPPABLE])
 
-bounties[13] = new Bounty("worm_bloon",4,"Massive mass of rubber crawls to the exit")
+bounties[13] = new Bounty("worm_bloon","Massive mass of rubber crawls to the exit")
     .SetInfoIcon(spr_bounty_icon_worm_bloon,BOUNTY_ICON_POSITION.LEFT)
     .SetCageIcon(spr_bounty_worm_bloon)
     .SetCageEffectRepeat(0.3,22)

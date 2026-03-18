@@ -214,8 +214,9 @@ enum BOUNTY_RANK {
     ANNOINGLY_ALMIGHTY
 }
 
-function Bounty(_rank,_location) constructor {
-    rank = _rank
+function Bounty(_max_rank,_location) constructor {
+    rank = 0
+    max_rank = _max_rank
     location = _location
 }
 
@@ -231,21 +232,27 @@ global.bounty = {
             xp[_type] = _xp
         }
     },
-    big_bully: new Bounty(5,"monkey_meadows"),
-    mighty_moab: new Bounty(0,"monkey_fort"),
-    horror_bloon: new Bounty(0,"the_depths"),
-    ufo_bloon: new Bounty(0,"bloon_oasis"),
-    super_bloon: new Bounty(0,"swamp_spirals"),
-    mother: new Bounty(0,"minecarts"),
-    annoying_bloon: new Bounty(0,"shade_woods"),
-    clown_bloon: new Bounty(0,"omega_river"),
-    blooming_bloon: new Bounty(0,"autumn_acres"),
-    track_crawler: new Bounty(0,"bloon_circles_x"),
-    tdom: new Bounty(0,"graveyard"),
-    flying_bloon: new Bounty(0,"sky_battles"),
-    bloon_knight: new Bounty(0,"bloonlight_throwback"),
-    worm_bloon: new Bounty(0,"rubber_rug")
+    list:{
+        big_bully: new Bounty(5,"monkey_meadows"),
+        mighty_moab: new Bounty(4,"monkey_fort"),
+        horror_bloon: new Bounty(4,"the_depths"),
+        ufo_bloon: new Bounty(4,"bloon_oasis"),
+        super_bloon: new Bounty(4,"swamp_spirals"),
+        mother: new Bounty(4,"minecarts"),
+        annoying_bloon: new Bounty(5,"shade_woods"),
+        clown_bloon: new Bounty(5,"omega_river"),
+        blooming_bloon: new Bounty(4,"autumn_acres"),
+        track_crawler: new Bounty(4,"bloon_circles_x"),
+        tdom: new Bounty(4,"graveyard"),
+        flying_bloon: new Bounty(4,"sky_battles"),
+        bloon_knight: new Bounty(4,"bloonlight_throwback"),
+        worm_bloon: new Bounty(4,"rubber_rug")
+    }
 }
+
+global.bounty.list.big_bully.rank = 3
+global.bounty.list.mighty_moab.rank = 4
+//global.bounty.list.horror_bloon.rank = 
 
 global.bounty.rewards.add(BOUNTY_RANK.LOW,200,2,100000)
 global.bounty.rewards.add(BOUNTY_RANK.MEDIUM,300,3,150000)

@@ -87,7 +87,6 @@ main_settings = {
     checkboxes:{
         px:[],
         py:[],
-        num:0,
         values:[],
         action:[],
         mouse_on:[],
@@ -102,6 +101,27 @@ main_settings = {
             array_push(action,_action)
             array_push(values,_value)
             array_push(text_w,string_width(_text))
+            num++
+        }
+    },
+    reset_buttons:{
+        px:[],
+        py:[],
+        cooldown:[],
+        text:[],
+        action:[],
+        mouse_on:[],
+        resetted:[],
+        num:0,
+        max_cooldown:60*5,
+        add:function (_x,_y,_text,_action){
+            array_push(px,_x)
+            array_push(py,_y)
+            array_push(text,_text)
+            array_push(mouse_on,false)
+            array_push(action,_action)
+            array_push(cooldown,0)
+            array_push(resetted,0)
             num++
         }
     },
@@ -186,6 +206,34 @@ main_settings = {
             
         }
         
+        var _max_cooldown = reset_buttons.max_cooldown
+
+        for (var i = 0; i < reset_buttons.num; i++) {
+        	var _rx = _x+reset_buttons.px[i]
+            var _ry = _y+reset_buttons.py[i]
+            
+            if reset_buttons.resetted[i]>0
+                reset_buttons.resetted[i]--
+            
+            if point_in_rectangle(mouse_x,mouse_y,_rx,_ry,_rx+256,_ry+48) and reset_buttons.resetted[i]==0{
+                reset_buttons.mouse_on[i] = true
+                if mouse_check_button(mb_left){
+                    reset_buttons.cooldown[i]++
+                    if reset_buttons.cooldown[i] >= _max_cooldown{
+                        reset_buttons.cooldown[i] = 0
+                        reset_buttons.resetted[i] = 40
+                        reset_buttons.action[i]()
+                    }
+                }
+                else {
+                	reset_buttons.cooldown[i]=0
+                }
+            }
+            else {
+            	reset_buttons.mouse_on[i] = false
+                reset_buttons.cooldown[i] = 0
+            }
+        }
     },
     draw:function (_x,_y){
         draw_set_font(font_general_15)
@@ -248,6 +296,31 @@ main_settings = {
             draw_sprite(spr_checbox_marks,_value,_cx+8+_cwid,_cy-4)
         }
         
+        var _max_cooldown = reset_buttons.max_cooldown
+        draw_set_halign(fa_middle)
+        for (var i = 0; i < reset_buttons.num; i++) {
+        	var _rx = _x+reset_buttons.px[i]
+            var _ry = _y+reset_buttons.py[i]
+            var _txt = reset_buttons.text[i]
+            var _cdwn = reset_buttons.cooldown[i]
+            var _mouse_on = reset_buttons.mouse_on[i]
+            
+            if reset_buttons.resetted[i]>0{
+                draw_sprite_stretched(spr_button_reset_settings,2,_rx,_ry,256,48)
+            }
+            else {
+                shader_set(sh_replace)
+                shader_set_uniform_f(global.shaders.replace[0],HOVER_OUTLINE_R,HOVER_OUTLINE_G,HOVER_OUTLINE_B)
+                shader_set_uniform_f(global.shaders.replace[1],_mouse_on)
+                draw_sprite_stretched(spr_button_reset_settings,0,_rx,_ry,256,48)
+                shader_reset()
+                
+                draw_text_outline(_rx+128,_ry+12,c_red,c_black,_txt)
+                
+                draw_sprite_stretched(spr_button_reset_settings,1,_rx,_ry,256*(_cdwn/_max_cooldown),48)
+            }
+        }
+        draw_set_halign(fa_left)
     }
 }
 
@@ -312,6 +385,22 @@ main_settings.checkboxes.add(373+8,143+48+48+48,"Fullscreen",global.settings.ful
         }
         
         return false
+    }
+)
+
+main_settings.reset_buttons.add(8,500-48-8,"RESET BOUNTIES",
+    function (){
+        var _names = variable_struct_get_names(global.bounty.list)
+        for (var i = 0; i < array_length(_names); i++) {
+        	global.bounty.list[$ _names[i]].rank = 0
+        }
+    }
+)
+
+main_settings.reset_buttons.add(746-256-8,500-48-8,"DELETE SAVE",
+    function (){
+        //TODO delete save when saving is added
+        game_restart()
     }
 )
 

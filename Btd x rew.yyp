@@ -1407,6 +1407,7 @@
     {"id":{"name":"spr_buccaneer_upgrade_s_2","path":"sprites/spr_buccaneer_upgrade_s_2/spr_buccaneer_upgrade_s_2.yy",},},
     {"id":{"name":"spr_buccaneer_upgrade_s_3","path":"sprites/spr_buccaneer_upgrade_s_3/spr_buccaneer_upgrade_s_3.yy",},},
     {"id":{"name":"spr_Bully_Face","path":"sprites/spr_Bully_Face/spr_Bully_Face.yy",},},
+    {"id":{"name":"spr_button_reset_settings","path":"sprites/spr_button_reset_settings/spr_button_reset_settings.yy",},},
     {"id":{"name":"spr_button_settings","path":"sprites/spr_button_settings/spr_button_settings.yy",},},
     {"id":{"name":"spr_buy_amount_panel","path":"sprites/spr_buy_amount_panel/spr_buy_amount_panel.yy",},},
     {"id":{"name":"spr_buy_banana_mobile","path":"sprites/spr_buy_banana_mobile/spr_buy_banana_mobile.yy",},},
