@@ -5,8 +5,8 @@
   "isDnD":false,
   "name":"scr_is_additional_key",
   "parent":{
-    "name":"Scripts",
-    "path":"folders/Scripts.yy",
+    "name":"HotKeys",
+    "path":"folders/Scripts/HotKeys.yy",
   },
   "resourceType":"GMScript",
   "resourceVersion":"2.0",

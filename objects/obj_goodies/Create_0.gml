@@ -131,12 +131,9 @@ goodies = {
         
         var _row = 0
         var _col = 0
-        var _start_i = 0
-        var _end_i = clamp(8,0,num)
-        if page>0{
-            _start_i = 2*page
-            _end_i = clamp(8+2*(page),0,num)
-        }
+
+        var _start_i = 2*page
+        var _end_i = clamp(8+2*(page),0,num)
         for (var i = _start_i; i < _end_i; i++) {
             
             var _x = 32 + 478*_row

@@ -107,6 +107,11 @@ switch (room) {
         resources.draw_bloon_points = false
         resources.xshift = -32
     break;
+    case rm_medals_menu:
+        resources.draw_goodie_token = true
+        resources.draw_bloon_souls = false
+        resources.xshift = -32
+    break;
     case rm_towers_menu:
         resources.draw_bloon_souls = false
         resources.draw_monkey_money = false

@@ -23,8 +23,8 @@ function scr_upgrades_initialize(){
         
         var _search = _tower_id+"_"+_upgrade_id+"_name"
         var _name = "NOT FOUND!"
-        if variable_struct_exists(global.upgrades.translation,_search){
-            _name = global.upgrades.translation[$ _search]
+        if variable_struct_exists(global.translation,_search){
+            _name = global.translation[$ _search]
         }
         else {
             show_debug_message($"Upgrade name : {_search} NOT FOUND !!!")
@@ -35,8 +35,8 @@ function scr_upgrades_initialize(){
         
         var _search = _tower_id+"_"+_upgrade_id+"_desc"
         var _desc = "NOT FOUND!"
-        if variable_struct_exists(global.upgrades.translation,_search){
-            _desc = global.upgrades.translation[$ _search]
+        if variable_struct_exists(global.translation,_search){
+            _desc = global.translation[$ _search]
         }
         else {
             show_debug_message($"Upgrade desc : {_search} NOT FOUND !!!")
@@ -81,11 +81,6 @@ function scr_upgrades_initialize(){
     
     global.upgrades = {
         translation: {},
-    }
-
-    
-    if file_exists("data/upgrades_translation.json"){
-        global.upgrades.translation = load_json( "data/upgrades_translation.json" )
     }
     
     #region DART MONKEY

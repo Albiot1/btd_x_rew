@@ -5,8 +5,8 @@
   "isDnD":false,
   "name":"scr_towers_initialize",
   "parent":{
-    "name":"Scripts",
-    "path":"folders/Scripts.yy",
+    "name":"DataInit",
+    "path":"folders/Scripts/DataInit.yy",
   },
   "resourceType":"GMScript",
   "resourceVersion":"2.0",

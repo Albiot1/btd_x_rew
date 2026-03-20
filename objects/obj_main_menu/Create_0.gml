@@ -13,7 +13,9 @@ statues = {
             room_goto(rm_agent_menu)
         },
         -1,
-        -1,
+        function (){
+            room_goto(rm_medals_menu)
+        },
         function (){
             room_goto(rm_bounties_menu)
         },

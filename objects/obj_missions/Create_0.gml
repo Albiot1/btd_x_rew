@@ -9,10 +9,10 @@ missions = {
     page:0,
     max_page:0,
     mouse_on:[],
-    add:function (_name,_description,_icon,_color,_id,_track_id){
-        array_push(name,_name)
+    add:function (_icon,_color,_id,_track_id){
+        array_push(name, global.translation[$ "mission_"+_id+"_name"] )
         var _track_name = global.tracks[$ _track_id].name
-        array_push(desc,_track_name+" - "+_description)
+        array_push(desc,_track_name+" - "+global.translation[$ "mission_"+_id+"_desc"])
         array_push(icon,_icon)
         array_push(color, [ color_get_red(_color)/255,color_get_green(_color)/255,color_get_blue(_color)/255 ] )
         array_push(mid,_id)
@@ -160,96 +160,72 @@ missions = {
 }
 
 missions.add(
-    "Color Splash",
-    "Face off against an assorment of colored bloons.",
     spr_mission_icon_color_splash,
     #68b34e,
     "color_splash",
     "swamp_spirals"
 )
 missions.add(
-    "Non-Stop Assault",
-    "Pop all the bloons before the trojan bloons get through. Watch out for bombs!",
     spr_mission_icon_non_stop_assault,
     #008000,
     "non_stop_assault",
     "monkey_fort"
 )
 missions.add(
-    "Flood",
-    "Defend agains one really long wave of bloons as water bloons try to negate your defenses.",
     spr_mission_icon_flood,
     #009dff,
     "flood",
     "monkey_town_docks"
 )
 missions.add(
-    "Blimp Brigade",
-    "25 waves of Moab Class Bloons",
     spr_mission_icon_blimp_brigade,
     #808080,
     "blimp_brigade",
     "conveyor_belt"
 )
 missions.add(
-    "Necropolis",
-    "Darkness covers the track as evil resurrected bloons try to leak through!",
     spr_mission_icon_necropolis,
     #5f5f47,
     "necropolis",
     "the_depths"
 )
 missions.add(
-    "Solar Storm",
-    "Sun Stone - Sun Blessed Bloons stun your towers and appear from four directions.",
     spr_mission_icon_solar_storm,
     #ffff75,
     "solar_storm",
     "sun_stone"
 )
 missions.add(
-    "Prison Break I",
-    "Beat all the tier 1 bounty bloons trying to escape",
     spr_mission_icon_prison_break1,
     #ea854a,
     "prison_break_1",
     "bloon_bounty_center"
 )
 missions.add(
-    "Prison Break II",
-    "Beat all the tier 2 bounty bloons trying to escape",
     spr_mission_icon_prison_break2,
     #ea854a,
     "prison_break_2",
     "bloon_bounty_center"
 )
 missions.add(
-    "Prison Break III",
-    "Beat all the tier 3 bounty bloons trying to escape",
     spr_mission_icon_prison_break3,
     #ea854a,
     "prison_break_3",
     "bloon_bounty_center"
 )
 missions.add(
-    "Prison Break IV",
-    "Beat all the tier 4 bounty bloons trying to escape",
     spr_mission_icon_prison_break4,
     #ea854a,
     "prison_break_4",
     "bloon_bounty_center"
 )
 missions.add(
-    "Ultra Break Out v1",
-    "What have I done",
     spr_mission_icon_ultra_break_out_v1,
     #ee1c24,
     "ultra_break_v1",
     "bloon_bounty_center"
 )
 missions.add(
-    "Ultra Break Out v4",
-    "Because why not?",
     spr_mission_icon_ultra_break_out_v4,
     #ee1c24,
     "ultra_break_v4",

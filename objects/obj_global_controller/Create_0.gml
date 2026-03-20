@@ -46,10 +46,13 @@ alarm[0] = SPLASH_TIME
 #macro HOVER_GOODIE_OUTLINE_DISABLED_R 1
 #macro HOVER_GOODIE_OUTLINE_DISABLED_G 0
 #macro HOVER_GOODIE_OUTLINE_DISABLED_B 0
+#macro GRAYED_OUT_OUTLINE_R 0.41176
+#macro GRAYED_OUT_OUTLINE_G 0.41176
+#macro GRAYED_OUT_OUTLINE_B 0.41176
 
 global.bloon_souls = 10
 global.bloon_points = 5
-global.trophies = 20
+global.trophies = 0
 global.monkey_money = 2500
 global.goodie_points_used = 0
 global.goodie_points = floor(global.trophies/10) - global.goodie_points_used
@@ -58,6 +61,11 @@ global.rank = 25
 global.xp = 0
 global.max_xp = 0
 global.max_xp = round(global.max_xp * 1.05) + 60 * (global.rank+2)
+
+global.translation = {}
+
+if file_exists("data//translation.json")
+    global.translation = load_json("data//translation.json")
 
 global.agents = {
     squirrel:0,
@@ -101,6 +109,10 @@ global.goodies = {
     ulo:{ unlocked:false, active:false }
 }
 
+Mission = function (_name,_desc,_color,_icon) constructor {
+    completed = false
+}
+
 global.missions = {
     color_splash:{ completed:true },
     non_stop_assault:{ completed:false },
@@ -134,19 +146,51 @@ enum TRACK_TYPE {
     SPECIAL
 }
 
-Track = function (_name,_difficulty,_icon = -1,_type = TRACK_TYPE.SPECIAL) constructor {
+global.milestone_rewards = {
+    normal:{
+        wave:[40,60,75,90,140,190],
+        monkeymoney:[90,120,150,180,180,180],
+        bloonpoints:[3,4,5,6,6,6],
+    },
+    impoppable:{
+        wave:[35,50,65,75,125,175],
+        monkeymoney:[120,150,180,210,210,210],
+        bloonpoints:[4,5,6,7,7,7],
+    },
+    nightmare:{
+        wave:[30,40,50,60,110,160],
+        monkeymoney:[150,180,210,240,240,240],
+        bloonpoints:[5,6,7,8,8,8],
+    },
+    timetrial:{
+        // 12 min , 10 min , 8 min, 6,5 min, 4 min
+        time:[720,600,480,390,240],
+        monkeymoney:[100,150,200,400,600],
+        bloonpoints:[2,3,4,6,8],
+    }
+    //only show 8min, 6,5 min and 4 min in track selected menu
+}
+
+Track = function (_name,_difficulty,_icon = -1,_type = TRACK_TYPE.NORMAL) constructor {
     name = _name
     difficulty = _difficulty
     icon = _icon
     type = _type
     
     if type == TRACK_TYPE.NORMAL{
+        best_time = 86_400
+        
+        milestone = {
+            normal: 0,
+            impoppable: 0,
+            nightmare: 0,
+            timetrial: 0,
+        }
         best_wave = {
             normal: 0,
             impoppable: 0,
             nightmare: 0
         }
-        best_time = 60 * 60 * 24
         best_score = {
             normal: 0,
             impoppable: 0,
@@ -195,8 +239,8 @@ global.tracks.the_depths = new Track("The Depths",TRACK_DIFFICULTY.MAD_POP)
 global.tracks.lawless_badlands = new Track("Lawless Badlands",TRACK_DIFFICULTY.MAD_POP)
 global.tracks.lost_pools = new Track("Lost Pools",TRACK_DIFFICULTY.MAD_POP)
 
-global.tracks.bloon_bounty_center = new Track("Bloon Bounty Center",TRACK_DIFFICULTY.MAD_POP,TRACK_TYPE.SPECIAL)
-
+global.tracks.bloon_bounty_center = new Track("Bloon Bounty Center",TRACK_DIFFICULTY.MAD_POP,,TRACK_TYPE.SPECIAL)
+global.tracks.lunar_temple = new Track("Lunar Temple",TRACK_DIFFICULTY.MAD_POP,,TRACK_TYPE.SPECIAL)
 //
 
 enum BOUNTY_RANK {
@@ -250,9 +294,10 @@ global.bounty = {
     }
 }
 
-global.bounty.list.big_bully.rank = 3
-global.bounty.list.mighty_moab.rank = 4
-//global.bounty.list.horror_bloon.rank = 
+global.moon_temple = {
+    souls_price:[30,40,50],
+    beaten:[false,false,false]
+}
 
 global.bounty.rewards.add(BOUNTY_RANK.LOW,200,2,100000)
 global.bounty.rewards.add(BOUNTY_RANK.MEDIUM,300,3,150000)
@@ -344,3 +389,164 @@ global.settings = {
         ord("N")
     ]
 }
+
+enum ACHIEVEMENT_STATE {
+    LOCKED,
+    UNLOCKED_NOTCHECKED,
+    CHECKED
+}
+
+enum ACHIEVEMENT_MAIN_TYPE {
+    MILESTONE,
+    TOWER,
+    CHALLENGE
+}
+
+enum ACHIEVEMENT_EXACT_TYPE {
+    MILESTONE_NORMAL_90_WAVE,
+    MILESTONE_NORMAL_190_WAVE,
+    MILESTONE_IMPOPPABLE_75_WAVE,
+    MILESTONE_NIGHTMARE_60_WAVE,
+    MILESTONE_2MIL_SCORE,
+    MILESTONE_UNDER_240_SECONDS,
+    TOWER_ALL_FIFTH_TIER_UPGRADES,
+    TOWER_SPECIAL_PATH,
+    CHALLENGE_BOUNTY,
+    CHALLENGE_MISSIONS,
+    CHALLENGE_MOON_TEMPLE
+}
+
+enum REWARD_TYPE {
+    TROPHY,
+    MONKEY_MONEY,
+    BLOON_POINT
+}
+
+function Achievement(_text,_type,_exact_type,_icon = spr_achievement_unlocked_icon) constructor {
+    state = ACHIEVEMENT_STATE.UNLOCKED_NOTCHECKED
+    
+    if chance(50){
+        state = ACHIEVEMENT_STATE.LOCKED
+    }
+    
+    type = _type
+    text = _text
+    exact_type = _exact_type
+    reward = { trophy:1 }
+    icon = _icon
+    data = {}
+    
+    static setReward = function(_reward_type,_number){
+        switch (_reward_type) {
+        	case REWARD_TYPE.MONKEY_MONEY: reward.monkey_money = _number break;
+            case REWARD_TYPE.TROPHY: reward.trophy = _number break;
+            case REWARD_TYPE.BLOON_POINT: reward.bloon_point = _number break;
+        }
+        
+        return self
+    }
+    
+    static setData = function (_mydata){
+        data = _mydata
+        
+        return self
+    }
+}
+
+global.achievements = {}
+global.achievements_order = {
+    milestone:[],
+    tower:[],
+    challenge:[]
+}
+
+var _tracks = variable_struct_get_names(global.tracks)
+var _tracks_num = array_length(_tracks)
+
+for (var i = 0; i < _tracks_num; i++) {
+    var _track_id = _tracks[i]
+	var _mytrack = global.tracks[$ _track_id]
+    
+    if _mytrack.type != TRACK_TYPE.NORMAL
+        continue
+    
+    var _track_name = _mytrack.name
+    
+    var _ach_id = "milestone_normal_90_"+_track_id
+    global.achievements[$ _ach_id] = new Achievement("Beat 90 waves on "+_track_name+" on Normal difficulty",ACHIEVEMENT_MAIN_TYPE.MILESTONE,ACHIEVEMENT_EXACT_TYPE.MILESTONE_NORMAL_90_WAVE)
+        .setData( { map:_track_id } )
+    array_push(global.achievements_order.milestone,_ach_id)
+    _ach_id = "milestone_normal_190_"+_track_id
+    global.achievements[$ _ach_id] = new Achievement("Beat 190 waves on "+_track_name+" on Normal difficulty",ACHIEVEMENT_MAIN_TYPE.MILESTONE,ACHIEVEMENT_EXACT_TYPE.MILESTONE_NORMAL_190_WAVE)
+        .setData( { map:_track_id } )
+    array_push(global.achievements_order.milestone,_ach_id)
+    _ach_id = "milestone_impoppable_75_"+_track_id
+    global.achievements[$ _ach_id] = new Achievement("Beat 75 waves on "+_track_name+" on Impoppable difficulty",ACHIEVEMENT_MAIN_TYPE.MILESTONE,ACHIEVEMENT_EXACT_TYPE.MILESTONE_IMPOPPABLE_75_WAVE)
+        .setData( { map:_track_id } )
+    array_push(global.achievements_order.milestone,_ach_id)
+    _ach_id = "milestone_nightmare_60_"+_track_id
+    global.achievements[$ _ach_id] = new Achievement("Beat 60 waves on "+_track_name+" on Nightmare difficulty",ACHIEVEMENT_MAIN_TYPE.MILESTONE,ACHIEVEMENT_EXACT_TYPE.MILESTONE_NIGHTMARE_60_WAVE)
+        .setData( { map:_track_id } )
+    array_push(global.achievements_order.milestone,_ach_id)
+    _ach_id = "milestone_score_2mil_"+_track_id
+    global.achievements[$ _ach_id] = new Achievement("Get score 2 Million on "+_track_name,ACHIEVEMENT_MAIN_TYPE.MILESTONE,ACHIEVEMENT_EXACT_TYPE.MILESTONE_2MIL_SCORE)
+        .setData( { map:_track_id } )
+    array_push(global.achievements_order.milestone,_ach_id)
+    _ach_id = "milestone_time_under_240_"+_track_id
+    global.achievements[$ _ach_id] = new Achievement("Beat time trial on "+_track_name+" under 240 seconds",ACHIEVEMENT_MAIN_TYPE.MILESTONE,ACHIEVEMENT_EXACT_TYPE.MILESTONE_UNDER_240_SECONDS)
+        .setData( { map:_track_id } )
+    array_push(global.achievements_order.milestone,_ach_id)
+}
+
+var _monkeys = variable_struct_get_names(global.towers)
+var _monkeys_num = array_length(_monkeys)
+
+for (var i = 0; i < _monkeys_num; i++) {
+	var _monkey_id = _monkeys[i]
+    var _monkey_name = global.towers[$ _monkey_id].name
+    
+    var _ach_id = "tower_unlock_fifth_tiers_"+_monkey_id
+    global.achievements[$ _ach_id] = new Achievement("Unlock all 5 th tiers for "+_monkey_name,ACHIEVEMENT_MAIN_TYPE.TOWER,ACHIEVEMENT_EXACT_TYPE.TOWER_ALL_FIFTH_TIER_UPGRADES)
+        .setData( { tower:_monkey_id } )
+    array_push(global.achievements_order.tower,_ach_id)
+    var _ach_id = "tower_unlock_special_path_"+_monkey_id
+    global.achievements[$ _ach_id] = new Achievement("Unlock Secret path for "+_monkey_name,ACHIEVEMENT_MAIN_TYPE.TOWER,ACHIEVEMENT_EXACT_TYPE.TOWER_SPECIAL_PATH)
+        .setData( { tower:_monkey_id } )
+    array_push(global.achievements_order.tower,_ach_id)
+}
+
+var _missions = variable_struct_get_names(global.missions)
+var _missions_num = array_length(_missions)
+
+for (var i = 0; i < _missions_num; i++) {
+    var _mission_id = _missions[i]
+    var _mission_name = global.translation[$ "mission_"+_mission_id+"_name"]
+    
+    var _ach_id = "challenge_beat_mission_"+_mission_id
+    global.achievements[$ _ach_id] = new Achievement("Beat mission "+_mission_name,ACHIEVEMENT_MAIN_TYPE.CHALLENGE,ACHIEVEMENT_EXACT_TYPE.CHALLENGE_MISSIONS)
+        .setData( { mission:_mission_id } )
+    array_push(global.achievements_order.challenge,_ach_id)
+}
+
+var _bounties = variable_struct_get_names(global.bounty.list)
+var _bounties_num = array_length(_bounties)
+
+for (var i = 0; i < _bounties_num; i++) {
+	var _bounty_id = _bounties[i]
+    var _bounty_name = global.translation[$ "bounty_"+_bounty_id+"_name_0"]
+    
+    var _ach_id = "challenge_beat_bounty_"+_bounty_id
+    global.achievements[$ _ach_id] = new Achievement("Beat 4th tier of "+_bounty_name,ACHIEVEMENT_MAIN_TYPE.CHALLENGE,ACHIEVEMENT_EXACT_TYPE.CHALLENGE_BOUNTY)
+    array_push(global.achievements_order.challenge,_ach_id)
+}
+
+
+var _ach_id = $"challenge_moon_temple_0"
+global.achievements[$ _ach_id] = new Achievement("Beat moon temple I",ACHIEVEMENT_MAIN_TYPE.CHALLENGE,ACHIEVEMENT_EXACT_TYPE.CHALLENGE_MOON_TEMPLE)
+array_push(global.achievements_order.challenge,_ach_id)
+var _ach_id = $"challenge_moon_temple_1"
+global.achievements[$ _ach_id] = new Achievement("Beat moon temple II",ACHIEVEMENT_MAIN_TYPE.CHALLENGE,ACHIEVEMENT_EXACT_TYPE.CHALLENGE_MOON_TEMPLE)
+array_push(global.achievements_order.challenge,_ach_id)
+var _ach_id = $"challenge_moon_temple_2"
+global.achievements[$ _ach_id] = new Achievement("Beat moon temple III",ACHIEVEMENT_MAIN_TYPE.CHALLENGE,ACHIEVEMENT_EXACT_TYPE.CHALLENGE_MOON_TEMPLE)
+array_push(global.achievements_order.challenge,_ach_id)
