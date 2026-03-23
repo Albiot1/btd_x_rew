@@ -8,6 +8,11 @@
   "bbox_top":2,
   "collisionKind":1,
   "collisionTolerance":0,
+  "ConfigValues":{
+    "FastMenus":{
+      "textureGroupId":"{ \"name\":\"play_menu_group\", \"path\":\"texturegroups/play_menu_group\" }",
+    },
+  },
   "DynamicTexturePage":false,
   "edgeFiltering":false,
   "For3D":false,
@@ -81,8 +86,8 @@
   "swatchColours":null,
   "swfPrecision":0.5,
   "textureGroupId":{
-    "name":"Default",
-    "path":"texturegroups/Default",
+    "name":"play_menu_group",
+    "path":"texturegroups/play_menu_group",
   },
   "type":0,
   "VTile":false,

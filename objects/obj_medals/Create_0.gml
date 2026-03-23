@@ -5,6 +5,8 @@ draw_set_font(font_general_15)
 achievements = {
     unlocked: [0,0,0],
     maximum: [0,0,0],
+    allunlocked: 0,
+    allmaximum: 0,
     page: 0,
     max_page: 0,
     current_order: [],
@@ -232,6 +234,11 @@ achievements = {
         }
     },
     draw:function (){
+        draw_set_font(font_general_15)
+        draw_set_halign(fa_middle)
+        draw_text_outline(room_width/2,2,c_black,COLOR_TROPHIES,$"Achievements {allunlocked}/{allmaximum}")
+        draw_set_halign(fa_left)
+        
         var _type_text = "ALL"
         switch (type_selected) {
         	case ACHIEVEMENT_MAIN_TYPE.CHALLENGE: _type_text = "CHALLENGES" break;
@@ -379,9 +386,6 @@ achievements = {
     },
 }
 
-achievemnts_unlocked = 0
-achievemnts_maximum = 0
-
 var _unlocked = 0
 var _achievement_ids = global.achievements_order.milestone
 achievements.maximum[0] = array_length(_achievement_ids)
@@ -416,8 +420,8 @@ for (var i = 0; i < achievements.maximum[2]; i++) {
 achievements.unlocked[2] = _unlocked
 
 for (var i = 0; i < 3; i++) {
-	achievemnts_maximum+=achievements.maximum[i]
-    achievemnts_unlocked+=achievements.unlocked[i]
+	achievements.allmaximum+=achievements.maximum[i]
+    achievements.allunlocked+=achievements.unlocked[i]
 }
 
 achievements.type_buttons.add(room_width/2-148-48,32,global.translation[$ "achievement_type_0"],0,ACHIEVEMENT_MAIN_TYPE.MILESTONE)

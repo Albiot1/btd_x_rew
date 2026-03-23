@@ -86,8 +86,8 @@
   "swatchColours":null,
   "swfPrecision":2.525,
   "textureGroupId":{
-    "name":"challenges_menu_group",
-    "path":"texturegroups/challenges_menu_group",
+    "name":"main_menu_group",
+    "path":"texturegroups/main_menu_group",
   },
   "type":0,
   "VTile":false,

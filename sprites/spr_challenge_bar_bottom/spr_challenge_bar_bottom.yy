@@ -105,8 +105,8 @@
   "swatchColours":null,
   "swfPrecision":0.5,
   "textureGroupId":{
-    "name":"Default",
-    "path":"texturegroups/Default",
+    "name":"challenges_menu_group",
+    "path":"texturegroups/challenges_menu_group",
   },
   "type":0,
   "VTile":false,

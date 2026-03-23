@@ -12,7 +12,9 @@ statues = {
         function (){
             room_goto(rm_agent_menu)
         },
-        -1,
+        function (){
+            room_goto(rm_play_menu)
+        },
         function (){
             room_goto(rm_medals_menu)
         },
@@ -66,8 +68,6 @@ statues = {
             var _y = py[i]+64
             var _mouse_on = mouse_on[i]
             var _yp = yplus[i]
-            
-            draw_rectangle(_x-64,_y-64,_x+64,_y+64,1)
             
             shader_set(sh_replace)
             shader_set_uniform_f( global.shaders.replace[0],HOVER_OUTLINE_R,HOVER_OUTLINE_G,HOVER_OUTLINE_B )

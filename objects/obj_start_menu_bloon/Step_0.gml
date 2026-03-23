@@ -1,20 +1,13 @@
-if collision_circle(mouse_x,mouse_y,12,self,false,false){
-    if mouse_on == false{
-        mouse_on = true
-        
-        if image_index>0
-            image_index--
-        else
-            instance_destroy()
-        
-        audio_play_sound(snd_popping,0,0,1,0,random_range(0.9,1.1))
-        instance_create_depth(x,y,depth-1,obj_fake_pop)
-        type --
-    }
+if knockback_time>0{
+    x+=knockback[0]*(knockback_time/10)
+    y+=knockback[1]*(knockback_time/10)
+    knockback_time--
 }
-else {
-	mouse_on = false
-}
+
+
+if mouse_on>0
+    mouse_on--
+
 
 if inside_room == false{
     if point_in_rectangle(x,y,0,0,room_width,room_height){

@@ -239,8 +239,6 @@ if bounty_info.initialized == false and bounty_selected != -1{
     
     bounty_info.buffer = surface_to_buffer(bounty_info.surface)
     bounty_info.initialized = true
-    
-    surface_save(bounty_info.surface,working_directory+"surf//test.png")
 }
 
 if bounty_info.initialized == true and bounty_selected != -1{

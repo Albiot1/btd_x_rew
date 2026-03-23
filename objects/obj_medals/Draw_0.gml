@@ -1,6 +1,2 @@
 achievements.type_buttons.draw()
-draw_set_font(font_general_15)
-draw_set_halign(fa_middle)
-draw_text_outline(room_width/2,2,c_black,COLOR_TROPHIES,$"Achievements {achievemnts_unlocked}/{achievemnts_maximum}")
-draw_set_halign(fa_left)
 achievements.draw()

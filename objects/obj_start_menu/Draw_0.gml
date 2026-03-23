@@ -1,3 +1,6 @@
+if mouse_dist>8
+    draw_line(mdraw[0],mdraw[1],mdraw[2],mdraw[3])
+
 draw_set_halign(fa_middle)
 draw_set_valign(fa_center)
 
@@ -36,3 +39,8 @@ var _y = 1008 + 173
 draw_sprite(spr_deluxe_outline,0,_x,_y)
 
 draw_surface(deluxe_surface,_x,_y)
+
+draw_sprite(spr_clouds_left_bottom,0,0,cammaxy-40)
+draw_sprite(spr_clouds_right_bottom,0,1064,cammaxy-40)
+draw_sprite(spr_clouds_left,0,0,cammaxy-40)
+draw_sprite(spr_clouds_right,0,1064,cammaxy-40)

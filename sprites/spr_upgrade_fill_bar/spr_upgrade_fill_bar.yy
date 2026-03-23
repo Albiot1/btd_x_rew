@@ -109,8 +109,8 @@
   "swatchColours":null,
   "swfPrecision":0.5,
   "textureGroupId":{
-    "name":"Default",
-    "path":"texturegroups/Default",
+    "name":"upgrades_menu_group",
+    "path":"texturegroups/upgrades_menu_group",
   },
   "type":0,
   "VTile":false,

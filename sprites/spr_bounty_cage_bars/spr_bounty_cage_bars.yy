@@ -94,8 +94,8 @@
   "swatchColours":null,
   "swfPrecision":0.5,
   "textureGroupId":{
-    "name":"Default",
-    "path":"texturegroups/Default",
+    "name":"bounty_menu_group",
+    "path":"texturegroups/bounty_menu_group",
   },
   "type":0,
   "VTile":false,

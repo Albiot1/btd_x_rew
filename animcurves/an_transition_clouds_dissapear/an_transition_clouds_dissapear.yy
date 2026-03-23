@@ -1,0 +1,21 @@
+{
+  "$GMAnimCurve":"",
+  "%Name":"an_transition_clouds_dissapear",
+  "channels":[
+    {"$GMAnimCurveChannel":"","%Name":"curve1","colour":4290799884,"name":"curve1","points":[
+        {"th0":-0.25,"th1":0.0,"tv0":0.0,"tv1":0.0,"x":0.0,"y":0.0,},
+        {"th0":-0.12379297,"th1":0.047946766,"tv0":-0.07857326,"tv1":0.030200683,"x":0.23664123,"y":0.096022695,},
+        {"th0":-0.04690793,"th1":0.08255473,"tv0":-0.07615073,"tv1":0.13492829,"x":0.37213743,"y":0.2641822,},
+        {"th0":-0.1204229,"th1":0.07761115,"tv0":-0.1040746,"tv1":0.06739795,"x":0.5438931,"y":0.961347,},
+        {"th0":-0.17616647,"th1":0.25,"tv0":0.0,"tv1":0.0,"x":1.0,"y":1.0,},
+      ],"resourceType":"GMAnimCurveChannel","resourceVersion":"2.0","visible":true,},
+  ],
+  "function":2,
+  "name":"an_transition_clouds_dissapear",
+  "parent":{
+    "name":"AnimCurves",
+    "path":"folders/AnimCurves.yy",
+  },
+  "resourceType":"GMAnimCurve",
+  "resourceVersion":"2.0",
+}

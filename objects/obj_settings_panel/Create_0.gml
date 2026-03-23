@@ -331,8 +331,10 @@ main_settings.buttons.add(8,133,"Hotkeys",
         main_settings.slider_grabbed = noone
         global.gui_wait = 10
         state = "hotkeys"
-        for (var i = 0; i < buttons.num; i++) {
-        	buttons.mouse_on[i] = false
+        with obj_settings_panel.main_settings{
+            for (var i = 0; i < buttons.num; i++) {
+            	buttons.mouse_on[i] = false
+            }
         }
     }
 )
@@ -394,6 +396,12 @@ main_settings.reset_buttons.add(8,500-48-8,"RESET BOUNTIES",
         for (var i = 0; i < array_length(_names); i++) {
         	global.bounty.list[$ _names[i]].rank = 0
         }
+    }
+)
+
+main_settings.reset_buttons.add(8,500-48-8-48-8,"RESET HOTKEYS",
+    function (){
+        global.settings.hotkeys = variable_clone( global.settings.default_hotkeys )
     }
 )
 

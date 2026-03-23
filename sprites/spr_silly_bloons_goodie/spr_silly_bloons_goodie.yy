@@ -105,8 +105,8 @@
   "swatchColours":null,
   "swfPrecision":2.525,
   "textureGroupId":{
-    "name":"Default",
-    "path":"texturegroups/Default",
+    "name":"goodies_menu_group",
+    "path":"texturegroups/goodies_menu_group",
   },
   "type":0,
   "VTile":false,

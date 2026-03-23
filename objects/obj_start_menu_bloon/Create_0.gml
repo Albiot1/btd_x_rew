@@ -7,12 +7,12 @@ image_index = _type
 
 if chance(2.5){
     sprite_index = spr_laughing_bloon_start_menu
-    _type = 5
 }
-
-type = _type
 
 depth = choose(99,199,299)
 
 inside_room = false
-mouse_on = false
+mouse_on = 0
+
+knockback = [0,0]
+knockback_time = 0

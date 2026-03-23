@@ -5,6 +5,7 @@ panels = {
     myid:[],
     selected:-1,
     mouse_on:[],
+    unlocked:[],
     shader_colors:{ value:[],number:-1 },
     add:function (_id){
         var _data = global.towers[$ _id]
@@ -12,6 +13,7 @@ panels = {
         array_push(color,_data.panel_color)
         array_push(myid,_id)
         array_push(mouse_on,false)
+        array_push(unlocked,_data.unlocked)
         num++
     },
     step: function (){
@@ -23,7 +25,7 @@ panels = {
             
             if point_in_rectangle(mouse_x,mouse_y,_x,_y,_x+48,_y+48){
                 mouse_on[i] = true
-                if mouse_check_button_pressed(mb_left) and selected != i{
+                if mouse_check_button_pressed(mb_left) and selected != i and unlocked[i] == true{
                     selected = i
                     global.selected_tower_id = myid[i]
                     obj_towers.upgrades_update()
@@ -71,14 +73,29 @@ panels = {
                 }
             }
             
-            shader_set(sh_replace)
-            shader_set_uniform_f( global.shaders.replace[0],_r,_g,_b )
-            shader_set_uniform_f( global.shaders.replace[1],_outline )
-        	draw_sprite_ext(spr_tower_panel_icon,0,_x,_y,1,1,0,_color,1)
-            
-            shader_reset()
-            
-            draw_sprite_ext(_icon,0,_x,_y,1,1,0,c_white,1)
+            if unlocked[i] == true{
+                shader_set(sh_replace)
+                shader_set_uniform_f( global.shaders.replace[0],_r,_g,_b )
+                shader_set_uniform_f( global.shaders.replace[1],_outline )
+                
+            	draw_sprite_ext(spr_tower_panel_icon,0,_x,_y,1,1,0,_color,1)
+                
+                shader_reset()
+                
+                draw_sprite_ext(_icon,0,_x,_y,1,1,0,c_white,1)
+            }
+            else {
+                shader_set(sh_grayscale)
+                
+            	draw_sprite_ext(spr_tower_panel_icon,0,_x,_y,1,1,0,_color,1)
+                
+                draw_sprite_ext(_icon,0,_x,_y,1,1,0,c_white,1)
+                
+                draw_sprite(spr_tower_panel_lock_icon,0,_x,_y)
+                
+                shader_reset()
+            }
+
             
             _row++
             if _row>11{

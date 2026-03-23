@@ -8,6 +8,11 @@
   "bbox_top":0,
   "collisionKind":1,
   "collisionTolerance":0,
+  "ConfigValues":{
+    "FastMenus":{
+      "textureGroupId":"{ \"name\":\"backgrounds_group\", \"path\":\"texturegroups/backgrounds_group\" }",
+    },
+  },
   "DynamicTexturePage":false,
   "edgeFiltering":false,
   "For3D":false,
@@ -25,8 +30,8 @@
   "nineSlice":null,
   "origin":0,
   "parent":{
-    "name":"Tracks",
-    "path":"folders/Sprites/Track Backgrounds/Tracks.yy",
+    "name":"Main",
+    "path":"folders/Sprites/Track Backgrounds/Tracks/Main.yy",
   },
   "preMultiplyAlpha":false,
   "resourceType":"GMSprite",

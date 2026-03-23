@@ -12,10 +12,7 @@
     "name":"Start Menu",
     "path":"folders/Objects/Start Menu.yy",
   },
-  "parentObjectId":{
-    "name":"obj_start_menu_bloon",
-    "path":"objects/obj_start_menu_bloon/obj_start_menu_bloon.yy",
-  },
+  "parentObjectId":null,
   "persistent":false,
   "physicsAngularDamping":0.1,
   "physicsDensity":0.5,

@@ -1,5 +1,6 @@
 global.gui_layer = 0
 global.gui_wait = 0
+global.start_transition_ened = false
 //
 global.part_system = part_system_create()
 part_system_depth(global.part_system,-5)
@@ -8,9 +9,12 @@ global.particles = {
     
 }
 
+global.show_debug = false
+
+
 var _part = part_type_create()
 part_type_sprite(_part,spr_pop,false,false,false)
-part_type_life(_part,2,2)
+part_type_life(_part,4,4)
 part_type_direction(_part,0,0,0,0)
 part_type_speed(_part,0,0,0,0)
 
@@ -176,6 +180,8 @@ Track = function (_name,_difficulty,_icon = -1,_type = TRACK_TYPE.NORMAL) constr
     difficulty = _difficulty
     icon = _icon
     type = _type
+    my_bounty = -1
+    bounty_medal_icon = -1
     
     if type == TRACK_TYPE.NORMAL{
         best_time = 86_400
@@ -185,6 +191,12 @@ Track = function (_name,_difficulty,_icon = -1,_type = TRACK_TYPE.NORMAL) constr
             impoppable: 0,
             nightmare: 0,
             timetrial: 0,
+        }
+        lastmedal = {
+            milestone_normal: 0,
+            milestone_impoppable: 0,
+            milestone_nightmare: 0,
+            milestone_time: 0
         }
         best_wave = {
             normal: 0,
@@ -203,44 +215,52 @@ Track = function (_name,_difficulty,_icon = -1,_type = TRACK_TYPE.NORMAL) constr
         }
     }
     
+    static setBounty = function (_bounty_id,_medal_icon){
+        lastmedal.bounty = 0
+        bounty_medal_icon = _medal_icon
+        my_bounty = _bounty_id
+    }
+    
 }
 
 global.tracks = {}
 
-global.tracks.monkey_meadows = new Track("Monkey Meadows",TRACK_DIFFICULTY.FLOATY)
-global.tracks.bloon_oasis = new Track("Bloon Oasis",TRACK_DIFFICULTY.FLOATY)
-global.tracks.shade_woods = new Track("Shade Woods",TRACK_DIFFICULTY.FLOATY)
-global.tracks.bloonlight_throwback = new Track("Bloonlight Throwback",TRACK_DIFFICULTY.FLOATY)
-global.tracks.bloon_circles_x = new Track("Bloon Circles X",TRACK_DIFFICULTY.FLOATY)
-global.tracks.rubber_rug = new Track("Rubber Rug",TRACK_DIFFICULTY.FLOATY)
-global.tracks.monkey_fort = new Track("Monkey Fort",TRACK_DIFFICULTY.INFLATE)
-global.tracks.swamp_spirals = new Track("Swamp Spirals",TRACK_DIFFICULTY.INFLATE)
-global.tracks.portal_lab = new Track("Portal Lab",TRACK_DIFFICULTY.INFLATE)
-global.tracks.autumn_acres = new Track("Autumn Acres",TRACK_DIFFICULTY.INFLATE)
-global.tracks.minecarts = new Track("Minecarts",TRACK_DIFFICULTY.INFLATE)
-global.tracks.omega_river = new Track("Omega River",TRACK_DIFFICULTY.INFLATE)
-global.tracks.graveyard = new Track("Graveyard",TRACK_DIFFICULTY.INFLATE)
-global.tracks.frozen_lake = new Track("Frozen Lake",TRACK_DIFFICULTY.INFLATE)
-global.tracks.sky_battles = new Track("Sky Battles",TRACK_DIFFICULTY.INFLATE)
-global.tracks.monkey_town_docks = new Track("Monkey Town Docks",TRACK_DIFFICULTY.HARD_TORN)
-global.tracks.conveyor_belt = new Track("Conveyor Belt",TRACK_DIFFICULTY.HARD_TORN)
-global.tracks.circuit = new Track("Circuit",TRACK_DIFFICULTY.HARD_TORN)
-global.tracks.crimson_creek = new Track("Crimson Creek",TRACK_DIFFICULTY.HARD_TORN)
-global.tracks.space_portals = new Track("Space Portals",TRACK_DIFFICULTY.HARD_TORN)
-global.tracks.village_defense = new Track("Village Defense",TRACK_DIFFICULTY.HARD_TORN)
-global.tracks.lava_stream = new Track("Lava Stream",TRACK_DIFFICULTY.HARD_TORN)
-global.tracks.ravine_river = new Track("Ravine River",TRACK_DIFFICULTY.HARD_TORN)
-global.tracks.sun_stone = new Track("Sun Stone",TRACK_DIFFICULTY.MAD_POP)
-global.tracks.xtreme_park = new Track("Xtreme Park",TRACK_DIFFICULTY.MAD_POP)
-global.tracks.bloonside_river = new Track("Bloonside River",TRACK_DIFFICULTY.MAD_POP)
-global.tracks.grand_canyon = new Track("Grand Canyon",TRACK_DIFFICULTY.MAD_POP)
-global.tracks.peaceful_bridge = new Track("Peaceful Bridge",TRACK_DIFFICULTY.MAD_POP)
-global.tracks.the_depths = new Track("The Depths",TRACK_DIFFICULTY.MAD_POP)
-global.tracks.lawless_badlands = new Track("Lawless Badlands",TRACK_DIFFICULTY.MAD_POP)
-global.tracks.lost_pools = new Track("Lost Pools",TRACK_DIFFICULTY.MAD_POP)
+global.tracks.monkey_meadows = new Track("Monkey Meadows",TRACK_DIFFICULTY.FLOATY,spr_background_monkey_meadows_preview)
+global.tracks.bloon_oasis = new Track("Bloon Oasis",TRACK_DIFFICULTY.FLOATY,spr_background_bloon_oasis_preview)
+global.tracks.shade_woods = new Track("Shade Woods",TRACK_DIFFICULTY.FLOATY,spr_background_shade_woods_preview)
+global.tracks.bloonlight_throwback = new Track("Bloonlight Throwback",TRACK_DIFFICULTY.FLOATY,spr_background_bloon_light_throwback_preview)
+global.tracks.bloon_circles_x = new Track("Bloon Circles X",TRACK_DIFFICULTY.FLOATY,spr_background_bloon_circles_preview)
+global.tracks.rubber_rug = new Track("Rubber Rug",TRACK_DIFFICULTY.FLOATY,spr_background_rubber_rug_preview)
+global.tracks.monkey_fort = new Track("Monkey Fort",TRACK_DIFFICULTY.INFLATE,spr_background_monkey_fort_preview)
+global.tracks.swamp_spirals = new Track("Swamp Spirals",TRACK_DIFFICULTY.INFLATE,spr_background_swamp_spirals_preview)
+global.tracks.portal_lab = new Track("Portal Lab",TRACK_DIFFICULTY.INFLATE,spr_background_portal_lab_preview)
+global.tracks.autumn_acres = new Track("Autumn Acres",TRACK_DIFFICULTY.INFLATE,spr_background_autumn_acres_preview)
+global.tracks.minecarts = new Track("Minecarts",TRACK_DIFFICULTY.INFLATE,spr_background_minecarts_preview)
+global.tracks.omega_river = new Track("Omega River",TRACK_DIFFICULTY.INFLATE,spr_background_omega_river_preview)
+global.tracks.graveyard = new Track("Graveyard",TRACK_DIFFICULTY.INFLATE,spr_background_graveyard_preview)
+global.tracks.frozen_lake = new Track("Frozen Lake",TRACK_DIFFICULTY.INFLATE,spr_background_frozen_lake_preview)
+global.tracks.sky_battles = new Track("Sky Battles",TRACK_DIFFICULTY.INFLATE,spr_background_sky_battles_preview)
+global.tracks.monkey_town_docks = new Track("Monkey Town Docks",TRACK_DIFFICULTY.HARD_TORN,spr_background_monkey_town_docks_preview)
+global.tracks.conveyor_belt = new Track("Conveyor Belt",TRACK_DIFFICULTY.HARD_TORN,spr_background_conveyor_belts_preview)
+global.tracks.circuit = new Track("Circuit",TRACK_DIFFICULTY.HARD_TORN,spr_background_circuit_preview)
+global.tracks.crimson_creek = new Track("Crimson Creek",TRACK_DIFFICULTY.HARD_TORN,spr_background_crimson_creek_preview)
+global.tracks.space_portals = new Track("Space Portals",TRACK_DIFFICULTY.HARD_TORN,spr_background_space_portals_preview)
+global.tracks.village_defense = new Track("Village Defense",TRACK_DIFFICULTY.HARD_TORN,spr_background_village_defense_preview)
+global.tracks.lava_stream = new Track("Lava Stream",TRACK_DIFFICULTY.HARD_TORN,spr_background_lava_stream_preview)
+global.tracks.ravine_river = new Track("Ravine River",TRACK_DIFFICULTY.HARD_TORN,spr_background_ravine_river_preview)
+global.tracks.sun_stone = new Track("Sun Stone",TRACK_DIFFICULTY.MAD_POP,spr_background_sun_stone_preview)
+global.tracks.xtreme_park = new Track("Xtreme Park",TRACK_DIFFICULTY.MAD_POP,spr_background_xtreme_park_preview)
+global.tracks.bloonside_river = new Track("Bloonside River",TRACK_DIFFICULTY.MAD_POP,spr_background_bloonside_river_preview)
+global.tracks.grand_canyon = new Track("Grand Canyon",TRACK_DIFFICULTY.MAD_POP,spr_background_grandcanyon_preview)
+global.tracks.peaceful_bridge = new Track("Peaceful Bridge",TRACK_DIFFICULTY.MAD_POP,spr_background_peaceful_bridge_preview)
+global.tracks.the_depths = new Track("The Depths",TRACK_DIFFICULTY.MAD_POP,spr_background_the_depths_preview)
+global.tracks.lawless_badlands = new Track("Lawless Badlands",TRACK_DIFFICULTY.MAD_POP,spr_background_lawless_badlands_preview)
+global.tracks.lost_pools = new Track("Lost Pools",TRACK_DIFFICULTY.MAD_POP,spr_background_lost_pools_preview)
 
-global.tracks.bloon_bounty_center = new Track("Bloon Bounty Center",TRACK_DIFFICULTY.MAD_POP,,TRACK_TYPE.SPECIAL)
-global.tracks.lunar_temple = new Track("Lunar Temple",TRACK_DIFFICULTY.MAD_POP,,TRACK_TYPE.SPECIAL)
+global.tracks.bloon_bounty_center = new Track("Bloon Bounty Center",TRACK_DIFFICULTY.MAD_POP,spr_background_break_out_preview,TRACK_TYPE.SPECIAL)
+global.tracks.lunar_temple = new Track("Lunar Temple",TRACK_DIFFICULTY.MAD_POP,spr_background_lunar_temple_preview,TRACK_TYPE.SPECIAL)
+
+global.tracks_order = ["monkey_meadows","bloon_oasis","shade_woods","bloonlight_throwback","bloon_circles_x","rubber_rug","monkey_fort","swamp_spirals","portal_lab","autumn_acres","minecarts","omega_river","graveyard","frozen_lake","sky_battles","monkey_town_docks","conveyor_belt","circuit","crimson_creek","space_portals","village_defense","lava_stream","ravine_river","sun_stone","xtreme_park","bloonside_river","grand_canyon","peaceful_bridge","the_depths","lawless_badlands","lost_pools"]
 //
 
 enum BOUNTY_RANK {
@@ -258,10 +278,14 @@ enum BOUNTY_RANK {
     ANNOINGLY_ALMIGHTY
 }
 
-function Bounty(_max_rank,_location) constructor {
+function Bounty(_id,_max_rank,_location,_medal_icon) constructor {
     rank = 0
     max_rank = _max_rank
+    my_id = _id
     location = _location
+    
+    global.tracks[$ _location].setBounty(_id,_medal_icon)
+    
 }
 
 global.bounty = {
@@ -277,20 +301,20 @@ global.bounty = {
         }
     },
     list:{
-        big_bully: new Bounty(5,"monkey_meadows"),
-        mighty_moab: new Bounty(4,"monkey_fort"),
-        horror_bloon: new Bounty(4,"the_depths"),
-        ufo_bloon: new Bounty(4,"bloon_oasis"),
-        super_bloon: new Bounty(4,"swamp_spirals"),
-        mother: new Bounty(4,"minecarts"),
-        annoying_bloon: new Bounty(5,"shade_woods"),
-        clown_bloon: new Bounty(5,"omega_river"),
-        blooming_bloon: new Bounty(4,"autumn_acres"),
-        track_crawler: new Bounty(4,"bloon_circles_x"),
-        tdom: new Bounty(4,"graveyard"),
-        flying_bloon: new Bounty(4,"sky_battles"),
-        bloon_knight: new Bounty(4,"bloonlight_throwback"),
-        worm_bloon: new Bounty(4,"rubber_rug")
+        big_bully: new Bounty("big_bully",5,"monkey_meadows",spr_medals_big_bully),
+        mighty_moab: new Bounty("mighty_moab",4,"monkey_fort",spr_medals_mighty_moab),
+        horror_bloon: new Bounty("horror_bloon",4,"the_depths",spr_medals_horror_bloon),
+        ufo_bloon: new Bounty("ufo_bloon",4,"bloon_oasis",spr_medals_ufo_bloon),
+        super_bloon: new Bounty("super_bloon",4,"swamp_spirals",spr_medals_super_bloon),
+        mother: new Bounty("mother",4,"minecarts",spr_medals_mother),
+        annoying_bloon: new Bounty("annoying_bloon",5,"shade_woods",spr_medals_annoying_bloon),
+        clown_bloon: new Bounty("clown_bloon",5,"omega_river",spr_medals_clown_bloon),
+        blooming_bloon: new Bounty("blooming_bloon",4,"autumn_acres",spr_medals_blooming_bloon),
+        track_crawler: new Bounty("track_crawler",4,"bloon_circles_x",spr_medals_track_crawler),
+        tdom: new Bounty("tdom",4,"graveyard",spr_medals_tdom),
+        flying_bloon: new Bounty("flying_bloon",4,"sky_battles",spr_medals_flying_bloon),
+        bloon_knight: new Bounty("bloon_knight",4,"bloonlight_throwback",spr_medals_bloon_knight),
+        worm_bloon: new Bounty("worm_bloon",4,"rubber_rug",spr_medals_worm_bloon)
     }
 }
 
@@ -356,6 +380,39 @@ global.settings = {
     show_fps: false,
     fullscreen: false,
     hotkeys:[
+        vk_backspace,
+        vk_space,
+        ord("Z"),
+        ord("X"),
+        ord("C"),
+        ord("1"),
+        ord("Q"),
+        ord("2"),
+        ord("W"),
+        ord("3"),
+        ord("E"),
+        ord("4"),
+        ord("R"),
+        ord("5"),
+        ord("T"),
+        ord("6"),
+        ord("Y"),
+        ord("7"),
+        ord("U"),
+        ord("8"),
+        ord("I"),
+        ord("9"),
+        ord("O"),
+        ord("0"),
+        ord("P"),
+        ord("F"),
+        ord("V"),
+        ord("G"),
+        ord("B"),
+        ord("H"),
+        ord("N")
+    ],
+    default_hotkeys:[
         vk_backspace,
         vk_space,
         ord("Z"),

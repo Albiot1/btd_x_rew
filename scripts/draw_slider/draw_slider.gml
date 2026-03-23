@@ -29,7 +29,6 @@ function draw_slider(id_,spr_bot,spr_top,max_val,x_,y_,mx_,my_,default_=1){
 	}
 	if c_grab==true{
 	slider[$ id_].pos=median( 0,1, (mx_-x_-grab_w/2)/(slider_w-grab_w) )
-	show_debug_message(slider[$ id_].pos)
 	
 	if !mouse_check_button(mb_left)
 	slider[$ id_].grab=false
