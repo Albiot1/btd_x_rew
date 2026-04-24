@@ -1,3 +1,5 @@
+randomize()
+
 global.gui_layer = 0
 global.gui_wait = 0
 global.start_transition_ened = false
@@ -32,6 +34,12 @@ alarm[0] = SPLASH_TIME
 #macro COLOR_RANK c_aqua 
 #macro COLOR_NOT_ENOUGH #c40000
 
+#macro COLOR_INGAME_LIVES #ff00ff
+#macro COLOR_INGAME_CASH #ffff00
+
+#macro COLOR_SCORE_BAR #00ff00
+#macro COLOR_SCORE_BAR_TIME #ffff00
+
 #macro HOVER_OUTLINE_R 1
 #macro HOVER_OUTLINE_G 1
 #macro HOVER_OUTLINE_B 1
@@ -61,7 +69,7 @@ global.monkey_money = 2500
 global.goodie_points_used = 0
 global.goodie_points = floor(global.trophies/10) - global.goodie_points_used
 
-global.rank = 25
+global.rank = 45
 global.xp = 0
 global.max_xp = 0
 global.max_xp = round(global.max_xp * 1.05) + 60 * (global.rank+2)
@@ -150,6 +158,8 @@ enum TRACK_TYPE {
     SPECIAL
 }
 
+
+
 global.milestone_rewards = {
     normal:{
         wave:[40,60,75,90,140,190],
@@ -171,12 +181,16 @@ global.milestone_rewards = {
         time:[720,600,480,390,240],
         monkeymoney:[100,150,200,400,600],
         bloonpoints:[2,3,4,6,8],
+    },
+    score:{
+        value:[50_000,250_000,500_000,1_000_000,2_000_000],
+        monkeymoney:[100,200,300,400,500],
+        bloonpoints:[2,4,6,8,10]
     }
-    //only show 8min, 6,5 min and 4 min in track selected menu
 }
 
-Track = function (_name,_difficulty,_icon = -1,_type = TRACK_TYPE.NORMAL) constructor {
-    name = _name
+Track = function (_id,_difficulty,_icon = -1,_type = TRACK_TYPE.NORMAL) constructor {
+    name = global.translation[$ "track_"+_id+"_name"]
     difficulty = _difficulty
     icon = _icon
     type = _type
@@ -184,13 +198,14 @@ Track = function (_name,_difficulty,_icon = -1,_type = TRACK_TYPE.NORMAL) constr
     bounty_medal_icon = -1
     
     if type == TRACK_TYPE.NORMAL{
-        best_time = 86_400
+        best_time = 500 //86_400
         
         milestone = {
             normal: 0,
             impoppable: 0,
             nightmare: 0,
             timetrial: 0,
+            score: 0
         }
         lastmedal = {
             milestone_normal: 0,
@@ -206,12 +221,8 @@ Track = function (_name,_difficulty,_icon = -1,_type = TRACK_TYPE.NORMAL) constr
         best_score = {
             normal: 0,
             impoppable: 0,
-            nightmare: 0
-        }
-        winning_wave = {
-            normal: 0,
-            impoppable: 0,
-            nightmare: 0
+            nightmare: 0,
+            overall: 90_000
         }
     }
     
@@ -225,40 +236,40 @@ Track = function (_name,_difficulty,_icon = -1,_type = TRACK_TYPE.NORMAL) constr
 
 global.tracks = {}
 
-global.tracks.monkey_meadows = new Track("Monkey Meadows",TRACK_DIFFICULTY.FLOATY,spr_background_monkey_meadows_preview)
-global.tracks.bloon_oasis = new Track("Bloon Oasis",TRACK_DIFFICULTY.FLOATY,spr_background_bloon_oasis_preview)
-global.tracks.shade_woods = new Track("Shade Woods",TRACK_DIFFICULTY.FLOATY,spr_background_shade_woods_preview)
-global.tracks.bloonlight_throwback = new Track("Bloonlight Throwback",TRACK_DIFFICULTY.FLOATY,spr_background_bloon_light_throwback_preview)
-global.tracks.bloon_circles_x = new Track("Bloon Circles X",TRACK_DIFFICULTY.FLOATY,spr_background_bloon_circles_preview)
-global.tracks.rubber_rug = new Track("Rubber Rug",TRACK_DIFFICULTY.FLOATY,spr_background_rubber_rug_preview)
-global.tracks.monkey_fort = new Track("Monkey Fort",TRACK_DIFFICULTY.INFLATE,spr_background_monkey_fort_preview)
-global.tracks.swamp_spirals = new Track("Swamp Spirals",TRACK_DIFFICULTY.INFLATE,spr_background_swamp_spirals_preview)
-global.tracks.portal_lab = new Track("Portal Lab",TRACK_DIFFICULTY.INFLATE,spr_background_portal_lab_preview)
-global.tracks.autumn_acres = new Track("Autumn Acres",TRACK_DIFFICULTY.INFLATE,spr_background_autumn_acres_preview)
-global.tracks.minecarts = new Track("Minecarts",TRACK_DIFFICULTY.INFLATE,spr_background_minecarts_preview)
-global.tracks.omega_river = new Track("Omega River",TRACK_DIFFICULTY.INFLATE,spr_background_omega_river_preview)
-global.tracks.graveyard = new Track("Graveyard",TRACK_DIFFICULTY.INFLATE,spr_background_graveyard_preview)
-global.tracks.frozen_lake = new Track("Frozen Lake",TRACK_DIFFICULTY.INFLATE,spr_background_frozen_lake_preview)
-global.tracks.sky_battles = new Track("Sky Battles",TRACK_DIFFICULTY.INFLATE,spr_background_sky_battles_preview)
-global.tracks.monkey_town_docks = new Track("Monkey Town Docks",TRACK_DIFFICULTY.HARD_TORN,spr_background_monkey_town_docks_preview)
-global.tracks.conveyor_belt = new Track("Conveyor Belt",TRACK_DIFFICULTY.HARD_TORN,spr_background_conveyor_belts_preview)
-global.tracks.circuit = new Track("Circuit",TRACK_DIFFICULTY.HARD_TORN,spr_background_circuit_preview)
-global.tracks.crimson_creek = new Track("Crimson Creek",TRACK_DIFFICULTY.HARD_TORN,spr_background_crimson_creek_preview)
-global.tracks.space_portals = new Track("Space Portals",TRACK_DIFFICULTY.HARD_TORN,spr_background_space_portals_preview)
-global.tracks.village_defense = new Track("Village Defense",TRACK_DIFFICULTY.HARD_TORN,spr_background_village_defense_preview)
-global.tracks.lava_stream = new Track("Lava Stream",TRACK_DIFFICULTY.HARD_TORN,spr_background_lava_stream_preview)
-global.tracks.ravine_river = new Track("Ravine River",TRACK_DIFFICULTY.HARD_TORN,spr_background_ravine_river_preview)
-global.tracks.sun_stone = new Track("Sun Stone",TRACK_DIFFICULTY.MAD_POP,spr_background_sun_stone_preview)
-global.tracks.xtreme_park = new Track("Xtreme Park",TRACK_DIFFICULTY.MAD_POP,spr_background_xtreme_park_preview)
-global.tracks.bloonside_river = new Track("Bloonside River",TRACK_DIFFICULTY.MAD_POP,spr_background_bloonside_river_preview)
-global.tracks.grand_canyon = new Track("Grand Canyon",TRACK_DIFFICULTY.MAD_POP,spr_background_grandcanyon_preview)
-global.tracks.peaceful_bridge = new Track("Peaceful Bridge",TRACK_DIFFICULTY.MAD_POP,spr_background_peaceful_bridge_preview)
-global.tracks.the_depths = new Track("The Depths",TRACK_DIFFICULTY.MAD_POP,spr_background_the_depths_preview)
-global.tracks.lawless_badlands = new Track("Lawless Badlands",TRACK_DIFFICULTY.MAD_POP,spr_background_lawless_badlands_preview)
-global.tracks.lost_pools = new Track("Lost Pools",TRACK_DIFFICULTY.MAD_POP,spr_background_lost_pools_preview)
+global.tracks.monkey_meadows = new Track("monkey_meadows",TRACK_DIFFICULTY.FLOATY,spr_background_monkey_meadows_preview)
+global.tracks.bloon_oasis = new Track("bloon_oasis",TRACK_DIFFICULTY.FLOATY,spr_background_bloon_oasis_preview)
+global.tracks.shade_woods = new Track("shade_woods",TRACK_DIFFICULTY.FLOATY,spr_background_shade_woods_preview)
+global.tracks.bloonlight_throwback = new Track("bloonlight_throwback",TRACK_DIFFICULTY.FLOATY,spr_background_bloon_light_throwback_preview)
+global.tracks.bloon_circles_x = new Track("bloon_circles_x",TRACK_DIFFICULTY.FLOATY,spr_background_bloon_circles_preview)
+global.tracks.rubber_rug = new Track("rubber_rug",TRACK_DIFFICULTY.FLOATY,spr_background_rubber_rug_preview)
+global.tracks.monkey_fort = new Track("monkey_fort",TRACK_DIFFICULTY.INFLATE,spr_background_monkey_fort_preview)
+global.tracks.swamp_spirals = new Track("swamp_spirals",TRACK_DIFFICULTY.INFLATE,spr_background_swamp_spirals_preview)
+global.tracks.portal_lab = new Track("portal_lab",TRACK_DIFFICULTY.INFLATE,spr_background_portal_lab_preview)
+global.tracks.autumn_acres = new Track("autumn_acres",TRACK_DIFFICULTY.INFLATE,spr_background_autumn_acres_preview)
+global.tracks.minecarts = new Track("minecarts",TRACK_DIFFICULTY.INFLATE,spr_background_minecarts_preview)
+global.tracks.omega_river = new Track("omega_river",TRACK_DIFFICULTY.INFLATE,spr_background_omega_river_preview)
+global.tracks.graveyard = new Track("graveyard",TRACK_DIFFICULTY.INFLATE,spr_background_graveyard_preview)
+global.tracks.frozen_lake = new Track("frozen_lake",TRACK_DIFFICULTY.INFLATE,spr_background_frozen_lake_preview)
+global.tracks.sky_battles = new Track("sky_battles",TRACK_DIFFICULTY.INFLATE,spr_background_sky_battles_preview)
+global.tracks.monkey_town_docks = new Track("monkey_town_docks",TRACK_DIFFICULTY.HARD_TORN,spr_background_monkey_town_docks_preview)
+global.tracks.conveyor_belt = new Track("conveyor_belt",TRACK_DIFFICULTY.HARD_TORN,spr_background_conveyor_belts_preview)
+global.tracks.circuit = new Track("circuit",TRACK_DIFFICULTY.HARD_TORN,spr_background_circuit_preview)
+global.tracks.crimson_creek = new Track("crimson_creek",TRACK_DIFFICULTY.HARD_TORN,spr_background_crimson_creek_preview)
+global.tracks.space_portals = new Track("space_portals",TRACK_DIFFICULTY.HARD_TORN,spr_background_space_portals_preview)
+global.tracks.village_defense = new Track("village_defense",TRACK_DIFFICULTY.HARD_TORN,spr_background_village_defense_preview)
+global.tracks.lava_stream = new Track("lava_stream",TRACK_DIFFICULTY.HARD_TORN,spr_background_lava_stream_preview)
+global.tracks.ravine_river = new Track("ravine_river",TRACK_DIFFICULTY.HARD_TORN,spr_background_ravine_river_preview)
+global.tracks.sun_stone = new Track("sun_stone",TRACK_DIFFICULTY.MAD_POP,spr_background_sun_stone_preview)
+global.tracks.xtreme_park = new Track("xtreme_park",TRACK_DIFFICULTY.MAD_POP,spr_background_xtreme_park_preview)
+global.tracks.bloonside_river = new Track("bloonside_river",TRACK_DIFFICULTY.MAD_POP,spr_background_bloonside_river_preview)
+global.tracks.grand_canyon = new Track("grand_canyon",TRACK_DIFFICULTY.MAD_POP,spr_background_grandcanyon_preview)
+global.tracks.peaceful_bridge = new Track("peaceful_bridge",TRACK_DIFFICULTY.MAD_POP,spr_background_peaceful_bridge_preview)
+global.tracks.the_depths = new Track("the_depths",TRACK_DIFFICULTY.MAD_POP,spr_background_the_depths_preview)
+global.tracks.lawless_badlands = new Track("lawless_badlands",TRACK_DIFFICULTY.MAD_POP,spr_background_lawless_badlands_preview)
+global.tracks.lost_pools = new Track("lost_pools",TRACK_DIFFICULTY.MAD_POP,spr_background_lost_pools_preview)
 
-global.tracks.bloon_bounty_center = new Track("Bloon Bounty Center",TRACK_DIFFICULTY.MAD_POP,spr_background_break_out_preview,TRACK_TYPE.SPECIAL)
-global.tracks.lunar_temple = new Track("Lunar Temple",TRACK_DIFFICULTY.MAD_POP,spr_background_lunar_temple_preview,TRACK_TYPE.SPECIAL)
+global.tracks.bloon_bounty_center = new Track("bloon_bounty_center",TRACK_DIFFICULTY.MAD_POP,spr_background_break_out_preview,TRACK_TYPE.SPECIAL)
+global.tracks.lunar_temple = new Track("lunar_temple",TRACK_DIFFICULTY.MAD_POP,spr_background_lunar_temple_preview,TRACK_TYPE.SPECIAL)
 
 global.tracks_order = ["monkey_meadows","bloon_oasis","shade_woods","bloonlight_throwback","bloon_circles_x","rubber_rug","monkey_fort","swamp_spirals","portal_lab","autumn_acres","minecarts","omega_river","graveyard","frozen_lake","sky_battles","monkey_town_docks","conveyor_belt","circuit","crimson_creek","space_portals","village_defense","lava_stream","ravine_river","sun_stone","xtreme_park","bloonside_river","grand_canyon","peaceful_bridge","the_depths","lawless_badlands","lost_pools"]
 //
@@ -294,7 +305,7 @@ global.bounty = {
         monkey_money:[],
         bloon_points:[],
         xp:[],
-        add:function (_type,_cash,_bloonp,_xp){
+        add: function (_type,_cash,_bloonp,_xp){
             monkey_money[_type] = _cash
             bloon_points[_type] = _bloonp
             xp[_type] = _xp
@@ -607,3 +618,38 @@ array_push(global.achievements_order.challenge,_ach_id)
 var _ach_id = $"challenge_moon_temple_2"
 global.achievements[$ _ach_id] = new Achievement("Beat moon temple III",ACHIEVEMENT_MAIN_TYPE.CHALLENGE,ACHIEVEMENT_EXACT_TYPE.CHALLENGE_MOON_TEMPLE)
 array_push(global.achievements_order.challenge,_ach_id)
+
+
+enum GAME_MODES {
+    NORMAL,
+    IMPOPPABLE,
+    NIGHTMARE,
+    TIME_TRIAL,
+    SANDBOX,
+    SPECIAL
+}
+
+global.game_modes_info = {
+    starting_lives:[],
+    starting_cash:[],
+    points_multiplier:[],
+    bloon_power:[],
+    bloon_speed:[],
+    cash_flow:[],
+    unlock_rank:[],
+    add:function (_lives,_cash,_points_multiplier,_bloon_power,_bloon_speed,_cash_flow,_unlock_rank){
+        array_push(starting_lives,_lives)
+        array_push(starting_cash,_cash)
+        array_push(points_multiplier,_points_multiplier)
+        array_push(bloon_power,_bloon_power)
+        array_push(bloon_speed,_bloon_speed)
+        array_push(cash_flow,_cash_flow)
+        array_push(unlock_rank,_unlock_rank)
+        
+    }
+}
+
+global.game_modes_info.add(200,750,1,1,1.16,1,0) //normal
+global.game_modes_info.add(200,900,1.5,1.1,1.33,0.75,30) //impoppable
+global.game_modes_info.add(200,1200,2,1.2,1.33,0.7,40) //nightmare
+global.game_modes_info.add(200,900,1,1,1,1,20) //time trial

@@ -123,8 +123,10 @@ for (var i = 8*page; i < clamp(8*(page+1),0,bounties_num); i++) {
             	bounty_selected = i
             
             surface_free(bounty_info.surface)
+            
             if buffer_exists(bounty_info.buffer)
                 buffer_delete(bounty_info.buffer)
+            
             bounty_info.initialized = false
         }
     }

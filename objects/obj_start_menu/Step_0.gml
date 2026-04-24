@@ -10,6 +10,7 @@ if flash_pos>=140{
 if pressed_any_key == false{
     if keyboard_check_pressed(vk_anykey){
         pressed_any_key = true
+        instance_destroy(obj_attack_trail)
         if global.settings.instant_start_transition == true{
             room_goto(rm_main_menu)
         }
@@ -44,6 +45,9 @@ else {
     instance_create_depth(-100,0+random(1400),depth,obj_start_menu_blimp)
 }
 
+if pressed_any_key == true
+    exit;
+
 mouse_dist = point_distance(mouse_x,mouse_y,mouse_prev_x,mouse_prev_y)
 
 mdraw=[mouse_x,mouse_y,mouse_prev_x,mouse_prev_y]
@@ -63,6 +67,9 @@ if mouse_dist>8{
         
         if mouse_dist<40
             _id.mouse_on = 10
+        else {
+        	_id.mouse_on = 3
+        }
         
         audio_play_sound(snd_popping,0,0,1,0,random_range(0.9,1.1))
         instance_create_depth(_id.x,_id.y,_id.depth-1,obj_fake_pop)
@@ -92,9 +99,14 @@ if mouse_dist>8{
         
         if mouse_dist<60
             _id.mouse_on = 10
+        else {
+        	_id.mouse_on = 3
+        }
         
         audio_play_sound(snd_blimp_hit,0,0,1,0,random_range(0.9,1.1))
         _id.life--
+        
+        instance_create_depth(_id.x+irandom_range(-16,16),_id.y+irandom_range(-8,8),_id.depth-1,obj_fake_pop)
         
         if (_id.life<=0){
             instance_create_depth(_id.x,_id.y,_id.depth-1,obj_fake_pop)

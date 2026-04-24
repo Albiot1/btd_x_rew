@@ -90,7 +90,7 @@ draw_sprite(spr_scroll_down,0,1024-64,336)
 draw_sprite_stretched(spr_bounty_backpanel,0,0,384,1024,192)
 
 if bounty_info.initialized == false and bounty_selected != -1{
-    
+
     var _bounty_data = bounties[bounty_selected]
     var _info_data = _bounty_data.info_icon
     var _icon = _info_data.spr
@@ -242,16 +242,22 @@ if bounty_info.initialized == false and bounty_selected != -1{
 }
 
 if bounty_info.initialized == true and bounty_selected != -1{
-    if surface_exists(bounty_info.surface){
-        
-        shader_set(sh_replace)
-        shader_set_uniform_f( global.shaders.replace[0],HOVER_OUTLINE_R,HOVER_OUTLINE_G,HOVER_OUTLINE_B )
-        shader_set_uniform_f( global.shaders.replace[1],onduel )
-        draw_sprite_stretched(spr_bounty_info_icon_panel,0,815,398,167,163)
-        shader_reset()
-        
-        draw_surface(bounty_info.surface,35,398)
+    if !surface_exists(bounty_info.surface){
+        bounty_info.surface = surface_create(1024,163)
+        buffer_to_surface(bounty_info.buffer,bounty_info.surface)
     }
+    
+    shader_set(sh_replace)
+    shader_set_uniform_f( global.shaders.replace[0],HOVER_OUTLINE_R,HOVER_OUTLINE_G,HOVER_OUTLINE_B )
+    shader_set_uniform_f( global.shaders.replace[1],onduel )
+    draw_sprite_stretched(spr_bounty_info_icon_panel,0,815,398,167,163)
+    shader_reset()
+    
+    draw_surface(bounty_info.surface,35,398)
 }
 
 dialogue.draw()
+
+if keyboard_check_pressed(vk_space){
+    surface_free(bounty_info.surface)
+}

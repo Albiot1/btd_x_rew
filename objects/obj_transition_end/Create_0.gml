@@ -12,5 +12,7 @@ else{
 anim = animcurve_get_channel( animcurve_get(an_transition_clouds_dissapear),"curve1" )
 anim_pos = 0
 anim_val = 0
+set_layer = false
 
 depth = -2500
+

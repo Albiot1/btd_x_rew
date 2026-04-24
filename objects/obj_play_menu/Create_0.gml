@@ -1,3 +1,4 @@
+
 tracks = {
     surfaces:[],
     num:array_length(global.tracks_order),
@@ -152,6 +153,10 @@ tracks = {
             
             if point_in_rectangle(mouse_x,mouse_y,_x,_y,_x+250,_y+202){
                 mouse_on = i
+                if mouse_check_button_pressed(mb_left){
+                    global.current_map = global.tracks_order[i]
+                    room_goto(rm_mode_select)
+                }
             }
             
             if medal_normal_play_anim[i] == true{
@@ -378,7 +383,7 @@ tracks = {
     }
 }
 
+instance_create_depth(4,5,depth,obj_exit_button)
 
 tracks.init()
-show_debug_message(json_stringify(tracks,true))
-instance_create_depth(4,5,depth,obj_exit_button)
+global.current_map = -1

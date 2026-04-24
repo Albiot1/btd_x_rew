@@ -17,8 +17,10 @@ mouse_prev_y = mouse_y
 mouse_diff = 0
 mouse_dist = 0
 
-instance_create_depth(0,0,98,obj_trail)
+instance_create_depth(0,0,98,obj_attack_trail)
 
 mdraw = [0,0,0,0]
 
 collisions_list = ds_list_create()
+
+depth = -500
