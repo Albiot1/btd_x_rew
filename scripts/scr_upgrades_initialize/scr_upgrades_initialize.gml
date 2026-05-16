@@ -22,25 +22,13 @@ function scr_upgrades_initialize(){
         upgr_id = _upgrade_id
         
         var _search = _tower_id+"_"+_upgrade_id+"_name"
-        var _name = "NOT FOUND!"
-        if variable_struct_exists(global.translation,_search){
-            _name = global.translation[$ _search]
-        }
-        else {
-            show_debug_message($"Upgrade name : {_search} NOT FOUND !!!")
-        }
+        var _name = scr_get_translation(_search)
         
         name = _name
         
         
         var _search = _tower_id+"_"+_upgrade_id+"_desc"
-        var _desc = "NOT FOUND!"
-        if variable_struct_exists(global.translation,_search){
-            _desc = global.translation[$ _search]
-        }
-        else {
-            show_debug_message($"Upgrade desc : {_search} NOT FOUND !!!")
-        }
+        var _desc = scr_get_translation(_search)
         
         desc = _desc
         

@@ -14,9 +14,9 @@ goodies = {
     page:0,
     max_page:0,
     mouse_on:[],
-    default_text:"Spend 1 Goodie Token to Unlock",
-    add:function (_description,_icon,_icon_scale,_id,_type){
-        array_push(desc,_description)
+    default_text: scr_get_translation("goodie_default_text"),
+    add:function (_icon,_icon_scale,_id,_type){
+        array_push(desc, scr_get_translation("goodie_"+_id+"_desc"))
         array_push(icon,_icon)
         array_push(scale,_icon_scale)
         array_push(mid,_id)
@@ -236,105 +236,90 @@ goodies = {
 }
 
 goodies.add(
-    "Monkeys Wear a Cap",
     spr_cap_goodie,
     1,
     "monkey_cap",
     GTYPE.MONKEY
 )
 goodies.add(
-    "Bloons look Mean",
     spr_mean_bloons_goodie,
     1,
     "bloon_mean",
     GTYPE.BLOON
 )
 goodies.add(
-    "Monkeys Wear a Beanie",
     spr_beanie_goodie,
     1,
     "monkey_beanie",
     GTYPE.MONKEY
 )
 goodies.add(
-    "Bloons look Emoji",
     spr_emoji_bloon_goodie,
     1,
     "bloon_emoji",
     GTYPE.BLOON
 )
 goodies.add(
-    "Monkeys Wear a Party Hat",
     spr_party_hat_goodie,
     1,
     "monkey_party_hat",
     GTYPE.MONKEY
 )
 goodies.add(
-    "Bloons look Scary",
     spr_scary_bloons_goodie,
     1,
     "bloon_scary",
     GTYPE.BLOON
 )
 goodies.add(
-    "Monkeys Wear a Cape",
     spr_super_cape_goodie,
     1,
     "monkey_super_cape",
     GTYPE.MONKEY
 )
 goodies.add(
-    "Bloons look Silly",
     spr_silly_bloons_goodie,
     1,
     "bloon_silly",
     GTYPE.BLOON
 )
 goodies.add(
-    "Monkeys Look like Rams",
     spr_ram_goodie,
     1,
     "monkey_ram",
     GTYPE.MONKEY
 )
 goodies.add(
-    "Bloons look Computery",
     spr_computery_bloons_goodie,
     1,
     "bloon_computery",
     GTYPE.BLOON
 )
 goodies.add(
-    "Loving Family Gives Extra Vitality\nShows up at 50K+ Score",
     spr_love_goodie,
     1,
     "love",
     GTYPE.SPECIAL
 )
 goodies.add(
-    "This Blimp is pretty Bad",
     spr_bad_goodie,
     0.4,
     "bad_blimp",
     GTYPE.SPECIAL
 )
 goodies.add(
-    "Lit Moab gives money when hit\nShows up at 75K+ Score",
     spr_lit_moab_goodie,
     0.4,
     "lit_moab",
     GTYPE.SPECIAL
 )
 goodies.add(
-    "Super Storm?\nShows up atk 100K+ Score",
     spr_super_storm_goodie,
     1,
     "super_storm",
     GTYPE.SPECIAL
 )
 goodies.add(
-    "Unidentified Laughing Object\nGives Extra Cash at start",
     spr_ulo_goodie,
     1,
     "ulo",

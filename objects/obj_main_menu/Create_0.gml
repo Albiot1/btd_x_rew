@@ -1,6 +1,6 @@
 statues = {
     sprite:[spr_towers_statue,spr_agents_statue,spr_play_statue,spr_medals_statue,spr_bounty_statue,spr_info_statue,spr_credits_statue,spr_missions_statue,spr_goodie_statue,spr_challenges_statue],
-    text:["Towers","Agents","Play!","Medals","Bounty","Info","Credits","Missions","Goodie","Challenges"],
+    text:[scr_get_translation("statue_0_text"),scr_get_translation("statue_1_text"),scr_get_translation("statue_2_text"),scr_get_translation("statue_3_text"),scr_get_translation("statue_4_text"),scr_get_translation("statue_5_text"),scr_get_translation("statue_6_text"),scr_get_translation("statue_7_text"),scr_get_translation("statue_8_text"),scr_get_translation("statue_9_text")],
     px:[352,864,48,576,864,16,160,344,512,864],
     py:[64,48,224,224,208,432,432,368,432,368],
     yplus:[0,0,0,0,0,0,0,0,0,0],
@@ -89,7 +89,7 @@ statues = {
 
 discord_link = {
     pos:[ 64+8,8 ],
-    text:"Ramaf Party discord server",
+    text:scr_get_translation("main_menu_link_name"),
     link:"https://discord.com/invite/hVYHPzA",
     str_w:-1,
     step:function (){

@@ -15,12 +15,18 @@ achievements = {
     mouse_on: -1,
     type_selected: -1,
     claim_button:{
-        text: global.translation[$ "achievement_claim_button"],
+        text: scr_get_translation("achievement_claim_button"),
         px: 12,
         py: 576-54,
-        text_w: string_width(global.translation[$ "achievement_claim_button"])+16,
+        text_w: string_width( scr_get_translation("achievement_claim_button") )+16,
         mouse_on: false
     },
+    
+    achievement_type_texts:[ scr_get_translation("achievement_type_0"),scr_get_translation("achievement_type_1"),scr_get_translation("achievement_type_2"),scr_get_translation("achievement_type_3") ],
+    achievement_done_text:scr_get_translation("achievement_done_text"),
+    achievement_count_text:scr_get_translation("achievement_count_text"),
+    achievement_shown_text:scr_get_translation("achievement_shown_text"),
+    
     type_buttons: {
         px:[],
         py:[],
@@ -236,17 +242,17 @@ achievements = {
     draw:function (){
         draw_set_font(font_general_15)
         draw_set_halign(fa_middle)
-        draw_text_outline(room_width/2,2,c_black,COLOR_TROPHIES,$"Achievements {allunlocked}/{allmaximum}")
+        draw_text_outline(room_width/2,2,c_black,COLOR_TROPHIES, scr_text_format_insert( achievement_count_text,[allunlocked,allmaximum] ) )
         draw_set_halign(fa_left)
         
-        var _type_text = "ALL"
+        var _type_text = achievement_type_texts[3]
         switch (type_selected) {
-        	case ACHIEVEMENT_MAIN_TYPE.CHALLENGE: _type_text = "CHALLENGES" break;
-            case ACHIEVEMENT_MAIN_TYPE.MILESTONE: _type_text = "MILESTONES" break;
-            case ACHIEVEMENT_MAIN_TYPE.TOWER: _type_text = "TOWERS" break;
+        	case ACHIEVEMENT_MAIN_TYPE.CHALLENGE: _type_text = achievement_type_texts[0] break;
+            case ACHIEVEMENT_MAIN_TYPE.MILESTONE: _type_text = achievement_type_texts[1] break;
+            case ACHIEVEMENT_MAIN_TYPE.TOWER: _type_text = achievement_type_texts[2] break;
         }
         draw_set_font(font_general_12)
-        draw_text_outline(room_width/2-148-48,32+96,c_black,c_white,$"SHOWING : "+_type_text+" ACHIEVEMENTS")
+        draw_text_outline(room_width/2-148-48,32+96,c_black,c_white,scr_text_format_insert( achievement_shown_text,[_type_text] ))
         
         var _row = 0
         var _col = 0
@@ -307,7 +313,7 @@ achievements = {
                     draw_sprite(_icon,0,_ax,_ay)
                     
                     draw_set_valign(fa_center)
-                    draw_text_color(_ax+84,_ay+9+36,"CLICK TO RECEIVE REWARD!",c_black,c_black,c_black,c_black,1)
+                    draw_text_color(_ax+84,_ay+9+36,achievement_done_text,c_black,c_black,c_black,c_black,1)
                     draw_set_valign(fa_top)
                 break;
                 case ACHIEVEMENT_STATE.CHECKED:
@@ -369,6 +375,8 @@ achievements = {
     },
     update:function (){
         page = 0
+        number_to_claim = 0
+        
         switch (type_selected) {
         	case ACHIEVEMENT_MAIN_TYPE.MILESTONE: current_order = global.achievements_order.milestone break;
             case ACHIEVEMENT_MAIN_TYPE.CHALLENGE: current_order = global.achievements_order.challenge break;
@@ -424,9 +432,9 @@ for (var i = 0; i < 3; i++) {
     achievements.allunlocked+=achievements.unlocked[i]
 }
 
-achievements.type_buttons.add(room_width/2-148-48,32,global.translation[$ "achievement_type_0"],0,ACHIEVEMENT_MAIN_TYPE.MILESTONE)
-achievements.type_buttons.add(room_width/2-48,32,global.translation[$ "achievement_type_1"],1,ACHIEVEMENT_MAIN_TYPE.TOWER)
-achievements.type_buttons.add(room_width/2+148-48,32,global.translation[$ "achievement_type_2"],2,ACHIEVEMENT_MAIN_TYPE.CHALLENGE)
+achievements.type_buttons.add(room_width/2-148-48,32,scr_get_translation("achievement_type_button_0"),0,ACHIEVEMENT_MAIN_TYPE.MILESTONE)
+achievements.type_buttons.add(room_width/2-48,32,scr_get_translation("achievement_type_button_1"),1,ACHIEVEMENT_MAIN_TYPE.TOWER)
+achievements.type_buttons.add(room_width/2+148-48,32,scr_get_translation("achievement_type_button_2"),2,ACHIEVEMENT_MAIN_TYPE.CHALLENGE)
 
 instance_create_depth(4,5,depth,obj_exit_button)
 

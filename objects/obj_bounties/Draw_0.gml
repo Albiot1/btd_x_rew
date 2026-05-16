@@ -110,8 +110,8 @@ if bounty_info.initialized == false and bounty_selected != -1{
     draw_set_font(font_general_20)
     
     var _col = #400000
-    draw_text_color(21,0,"WANTED",_col,_col,_col,_col,1)
-    draw_line_color(21,8+21,21+string_width("WANTED"),8+21,_col,_col)
+    draw_text_color(21,0,bounty_top_text,_col,_col,_col,_col,1)
+    draw_line_color(21,8+21,21+string_width(bounty_top_text),8+21,_col,_col)
     
     var _x = 0
     var _y = 0
@@ -170,41 +170,27 @@ if bounty_info.initialized == false and bounty_selected != -1{
     var _location_type = _bounty_data.location
     var _location_text = global.tracks[$ _location_type].name
     var _desc = _bounty_data.desc
-    var _rank_text= ""
-    switch (_rank_type) {
-    	case BOUNTY_RANK.ALMIGHTY: _rank_text = "Almighty" break;
-        case BOUNTY_RANK.ANNOINGLY_ALMIGHTY: _rank_text = "Annoyingly Almighty" break;
-        case BOUNTY_RANK.ANNOYING: _rank_text = "Annoying" break;
-        case BOUNTY_RANK.HIGH: _rank_text = "Hihg" break;
-        case BOUNTY_RANK.IMPOPPABLE: _rank_text = "Impoppable" break;
-        case BOUNTY_RANK.IMPOPPABLY_ANNOYING: _rank_text = "Impoppably Annoying" break;
-        case BOUNTY_RANK.LOW: _rank_text = "Low" break;
-        case BOUNTY_RANK.MEDIUM: _rank_text = "Medium" break;
-        case BOUNTY_RANK.MODERATELY_ANNOYING: _rank_text = "Moderately Annoying" break;
-        case BOUNTY_RANK.MODERATELY_HIGH: _rank_text = "Moderately High" break;
-        case BOUNTY_RANK.VERY_ANNOYING: _rank_text = "Very Annoying" break;
-        case BOUNTY_RANK.VERY_HIGH: _rank_text = "Very High" break;
-    }
+    var _rank_text= ranking_texts[_rank_type]
     var _monkey_money = global.bounty.rewards.monkey_money[_rank_type]
     var _bloon_points = global.bounty.rewards.bloon_points[_rank_type]
     var _xp = global.bounty.rewards.xp[_rank_type]
     
     var _txt_x = _info_panel_x+9
     var _name_y = 8
-    draw_text(_txt_x,_name_y,$"Name: {_name}")
+    draw_text(_txt_x,_name_y,info_texts[0] + _name)
     var _ranking_y = 8+24
-    draw_text(_txt_x,_ranking_y,$"Ranking: {_rank_text}")
+    draw_text(_txt_x,_ranking_y,info_texts[1] + _rank_text)
     var _location_y = 8+48
-    draw_text(_txt_x,_location_y,$"Location: {_location_text}")
+    draw_text(_txt_x,_location_y,info_texts[2] + _location_text)
     var _description_y = 8+72
-    draw_text(_txt_x,_description_y,"Description:")
+    draw_text(_txt_x,_description_y,info_texts[3])
     
-    draw_line(_txt_x,_description_y+22,_txt_x+string_width("Description:"),_description_y+22)
+    draw_line(_txt_x,_description_y+22,_txt_x+string_width(info_texts[3]),_description_y+22)
     
     draw_text_ext(_info_panel_x+9,8+72+24+6,_desc,18,523)
     
     _txt_x = _info_panel_x+253
-    draw_text(_txt_x,8,"Reward:")
+    draw_text(_txt_x,8,info_texts[4])
     
     var _reward_x = _info_panel_x+348
     var _reward_y = 16
@@ -230,7 +216,7 @@ if bounty_info.initialized == false and bounty_selected != -1{
     draw_sprite(spr_bounty_duel_button,0,_x-46+167/2,_y-45+163/2)
     var _col = #400000
     draw_set_halign(fa_middle) draw_set_font(font_general_16)
-    draw_text_color(_x+167/2,_y+163-28,"START DUEL!",_col,_col,_col,_col,1)
+    draw_text_color(_x+167/2,_y+163-28,bounty_button_text,_col,_col,_col,_col,1)
     draw_set_halign(fa_left)  draw_set_font(font_general_12)
     
     draw_set_color(c_white)

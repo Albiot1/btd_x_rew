@@ -1,5 +1,5 @@
 switch (state) {
-	case "appear":
+	case CREDITS_STATE.APPEAR:
         var _an_value = animcurve_channel_evaluate(chan[0],anim_pos)
         y = 38+650 - 650*_an_value
         anim_pos+=0.025
@@ -8,16 +8,16 @@ switch (state) {
             back_alpha+=0.25
         
         if anim_pos>=1{
-            state = "show"
+            state = CREDITS_STATE.SHOW
             anim_pos = 0
         }
     break;
-    case "show":
+    case CREDITS_STATE.SHOW:
         if wait>0
             wait--
         
         if exit_button.step(x,y){
-            state = "dissapear"
+            state = CREDITS_STATE.DISSAPEAR
             global.gui_layer = 0
             global.gui_wait = 10
             exit
@@ -51,7 +51,7 @@ switch (state) {
                     texts_alpha = array_create(info.number[page],0)
                 }
                 else {
-                	state = "dissapear"
+                	state = CREDITS_STATE.DISSAPEAR
                     global.gui_layer = 0
                     global.gui_wait = 10
                 }
@@ -63,7 +63,7 @@ switch (state) {
             }
         }
     break;
-    case "dissapear":
+    case CREDITS_STATE.DISSAPEAR:
         var _an_value = animcurve_channel_evaluate(chan[1],anim_pos)
         y = 38+650*_an_value
         anim_pos+=0.025

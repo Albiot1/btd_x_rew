@@ -8,7 +8,8 @@ milestone_bar = {
     surface_size:[200,275],
     text_high_score:scr_get_translation("mode_high_score"),
     text_best_time:scr_get_translation("mode_best_time"),
-    text_best_wave:scr_get_translation("mode_best_wave"),
+    text_best_wave:"",
+    text_no_score:scr_get_translation("mode_no_best"),
     highest_waves:[0,0,0],
     draw:function (){
         
@@ -128,7 +129,7 @@ milestone_bar = {
             draw_text(pos[0],pos[1]+249,text_high_score+scr_format_number(_best_score))
         }
         else {
-        	draw_text(pos[0],pos[1]+249,text_high_score+"N/A")
+        	draw_text(pos[0],pos[1]+249,text_high_score+text_no_score)
         }
         
         
@@ -136,10 +137,10 @@ milestone_bar = {
             draw_text(pos[0],pos[1]+249-24,text_best_time+scr_format_time(_best_time))
         }
         else {
-        	draw_text(pos[0],pos[1]+249-24,text_best_time+"N/A")
+        	draw_text(pos[0],pos[1]+249-24,text_best_time+text_no_score)
         }
         
-        draw_text(pos[0],pos[1]+249-24-24-24-24-24,text_best_wave+$"\nnormal : {highest_waves[0] == 0 ? "N/A" : highest_waves[0]}\nimpoppable : {highest_waves[1] == 0 ? "N/A" : highest_waves[1]}\nnightmare : {highest_waves[2] == 0 ? "N/A" : highest_waves[2]}")
+        draw_text(pos[0],pos[1]+249-24-24-24-24-24,text_best_wave)
         
         draw_set_halign(fa_left)
         //draw_text(mouse_x,mouse_y,$"X:{mouse_x}|{mouse_y}")
@@ -159,12 +160,19 @@ milestone_bar = {
             _data.best_wave.impoppable,
             _data.best_wave.nightmare
         ]
+        
+        var _score_normal = highest_waves[0] == 0 ? text_no_score : highest_waves[0]
+        var _score_impopp = highest_waves[1] == 0 ? text_no_score : highest_waves[1]
+        var _score_nightm = highest_waves[2] == 0 ? text_no_score : highest_waves[2]
+        
+        text_best_wave = scr_text_format_insert( scr_get_translation("mode_highest_waves"),[_score_normal,_score_impopp,_score_nightm] )
     }
 }
 
 modifications = {
     tab_pos:[80,416-25],
     tab_txt:scr_get_translation("mode_mods"),
+    text_points_multiplier:scr_get_translation("mode_multiplier"),
     tab_w:0,
     tab_h:50,
     name:[],
@@ -235,7 +243,7 @@ modifications = {
                         obj_mode_select.multipliers_update()
                         
                     }
-                    show_desc = desc[i]+"\n\n"+$"x {multipliers[i]} Points"
+                    show_desc = desc[i] scr_text_format_insert( text_points_multiplier,[multipliers[i]] )
                 }
             }
             
@@ -529,6 +537,7 @@ mode_select = {
     starting_cash_value:0,
     point_multiplier_value:0,
     point_multipleir_base_value:0,
+    infinite_txt:scr_get_translation("mode_infinite_resource"),
     
     values_reset:function (){
         values_anim_pos = [0,0,0]
@@ -553,8 +562,8 @@ mode_select = {
             obj_mode_select.modifications.enabled = true
         }
         else {
-        	starting_lives_value = "INF"
-            starting_cash_value = "INF"
+        	starting_lives_value = infinite_txt
+            starting_cash_value = infinite_txt
             point_multiplier_value = 0
             point_multipleir_base_value = 0
             

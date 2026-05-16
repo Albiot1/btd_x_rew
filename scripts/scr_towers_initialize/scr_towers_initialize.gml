@@ -12,13 +12,7 @@ function scr_towers_initialize(){
     function Tower(_id,_price,_rank = 0,_placement = PLACEMENT.GROUND,_unlocked = false) constructor {
         myid = _id
         
-        var _name = "NOT FOUND!"
-        if variable_struct_exists(global.translation,_id){
-            _name = global.translation[$ _id]
-        }
-        else {
-            show_debug_message($"Tower name : {_id} NOT FOUND !!!")
-        }
+        var _name = scr_get_translation(_id)
         
         name = _name
         

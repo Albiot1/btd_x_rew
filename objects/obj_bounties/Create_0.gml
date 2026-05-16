@@ -14,10 +14,10 @@ enum BOUNTY_ICON_POSITION {
     LEFT
 }
 
-Bounty = function (_id,_description) constructor {
+Bounty = function (_id) constructor {
     mid = _id
     max_rank = global.bounty.list[$ _id].max_rank
-    desc = global.translation[$ "bounty_"+_id+"_desc"]
+    desc = scr_get_translation( "bounty_"+_id+"_desc" )
     location = global.bounty.list[$ _id].location
     current_rank = global.bounty.list[$ _id].rank
     names = []
@@ -36,7 +36,7 @@ Bounty = function (_id,_description) constructor {
     }
     
     for (var i = 0; i < max_rank; i++) {
-    	names[i] = global.translation[$ "bounty_"+_id+$"_name_{i}"]
+    	names[i] = scr_get_translation( "bounty_"+_id+$"_name_{i}" )
     }
     
     static SetInfoIcon = function (_sprite,_position = BOUNTY_ICON_POSITION.MIDDLE){
@@ -110,6 +110,15 @@ bounty_info = {
     surface: undefined,
     buffer: undefined,
     initialized: false
+}
+
+bounty_button_text = scr_get_translation("bounty_button_text")
+bounty_top_text = scr_get_translation("bounty_top_text")
+info_texts = [ scr_get_translation("bounty_info_0"),scr_get_translation("bounty_info_1"),scr_get_translation("bounty_info_2"),scr_get_translation("bounty_info_3"),scr_get_translation("bounty_info_4") ]
+ranking_texts = []
+
+for (var i = 0; i < 12; i++) {
+	array_push( ranking_texts,scr_get_translation("bounty_ranking_"+string(i)) )
 }
 
 bounties[0] = new Bounty("big_bully")
@@ -201,7 +210,7 @@ max_page = ceil(bounties_num/8)-1
 
 dialogue = {
     active:false,
-    texts: global.translation[$ "bounty_intro"],
+    texts: scr_get_translation("bounty_intro"),
     current_text_num:0,
     monkey_pos:[-100,100],
     monkey_angle:0,

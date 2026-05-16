@@ -118,3 +118,5 @@ if mouse_dist>8{
     }
     
 }
+
+text = scr_get_translation("start_menu_text")

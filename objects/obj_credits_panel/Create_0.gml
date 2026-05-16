@@ -1,96 +1,9 @@
+page_text = scr_get_translation("credits_page_count_text")
+
 page = 0
 max_page = 6
 info = {
-    texts:[
-            [
-                "Bloons TDX Rewritten Credits:",
-                "Bloons TDX Rewritten is made by Peeko Hiko with consultation",
-                "from Ramaf",
-                "",
-                "Its a complete rewrite of Bloons TDX",
-                "",
-                "Original Bloons TDX Credits:",
-                "Bloons TDX is a fangame made by Ramaf Party",
-                "ramafparty.com @ramafparty for more cool stuff"
-            ],
-            [
-                "Newer Map Art + New Blimp/Boss Sprites",
-                "",
-                "* Weirdoverse *",
-                "New Map Art",
-                "Eruption",
-                "",
-                "Old and New Blimp Sprites, Sound Effects, and Animations",
-                "Kaasblokje",
-                "",
-                "Balance and Testing - Bob, Salaziel, Nanerbag",
-                "Music Bug - FlandreScarlet64"
-            ],
-            [
-                "Crimson Creek - Ludicrousity",
-                "Shade Woods - Top Carrot",
-                "Omega River - Kalock100",
-                "Portal Lab - Sheeper259",
-                "Space Portals - Top Carrot",
-                "Xtreme Park - Top Carrot & OverThePower",
-                "Annoying Bloon + DDT - YouWouldNotBelieveYourEyes & Esprite",
-                "Super Bloon 2&3 - YouWouldNotBelieveYourEyes & IHaventCare",
-                "Bounty Bloon Medals - YouWouldNotBelieveYourEyes",
-                "Heli-Pilot Sprite - Bnewton",
-                "Bounty Mission Track - Bnewton",
-                "Track Crawler Sprite + Prison Break Icons - YWNBYE",
-                "Dart and Sniper Alt Sprites - OverThePower's alt account",
-                "Dartling Alt Sprites - YouWouldNotBelieveYourEyes's Second Form",
-                "New Final Boss Sprites - Extra",
-                
-            ],
-            [
-                "Love Bloon Family Sprites - THEZIGIX",
-                "Bloonlight Throwback - TripledYou",
-                "Bloon Circles X - Sheeper259 & YWNBYE",
-                "Autumn Acres - Timobloonstime",
-                "Graveyard - Jay + YWNBYE",
-                "Village Defense - Weirdoverse",
-                "Circuit - Top Carrot",
-                "Grand Canyon - Weaz",
-                "Bloonside River - AIDc",
-                "Dreadnaut Sprite - Sheeper259",
-                "Ghost Ship - Wierdoverse and kaasblokje",
-                "Bananamobile Idea - Robert Marcinkowski",
-                "New Bounty Medals - One of YouWouldNotBelieveYourEyes Alts",
-                "The Destroyer base sprite - One of YWNBYE's Alts",
-                "New Sub and Buccaneer Sprites - kaasblokje",
-            ],
-            [
-                "New Dartling Sprites - The Classical (Sheeper)",
-                "Goodie Shop Hats - Extra",
-                "New Bloon Sprites - Toyatak",
-                "Nightmare Medals - The Classical(Shepper)",
-                "Frozen Lake - AIDc",
-                "Lava Stream - Teal Knight",
-                "Peaceful Bridge - Granddoggo",
-                "Ravine River - Kaasblokje",
-                "Rubber Rug - Timobloonstime + Weirdoverse",
-                "Sky Battles - Fallen Alt",
-                "Lawless Badlands - OverThePower but like the original account",
-                "Lost Ponds - BTD666(but also known as YWNBYE)",
-                "Lit Plasma Art - YWNBYE",
-                "Math - The Classical (Sheeper)  <>  Balance - Nanerbag ",
-                "New Ace Sprites - You Would Not Believe Your Eyes",
-            ],
-            [
-                "New Emoji DDT sprites - You Would Not Believe Your Eyes",
-                "Worm Bloon Sprites - You Would Not Believe Your Eyes",
-                "A bunch of other misc sprites probably - YWNBYE"
-            ],
-            [
-                "Thanks to Ninja Kiwi for the permission to make this game",
-                "Special Thanks to everyone who played and got the word out",
-                "",
-                "Special Thanks - XModLoader, Weaz, FrostedGH, TripledYou,",
-                "Wiki Tay, Garrok, Zakoji(H), and double-pmcl-dot-net"
-            ]
-    ],
+    texts:scr_get_translation("credits_texts"),
     //halign !
     alignment:[
         fa_center,
@@ -138,7 +51,13 @@ texts_alpha = array_create(info.number[page],0)
 
 wait = 10
 
-state = "appear"
+enum CREDITS_STATE {
+    APPEAR,
+    SHOW,
+    DISSAPEAR
+}
+
+state = CREDITS_STATE.APPEAR
 
 //139, 38
 x = 139

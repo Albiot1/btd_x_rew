@@ -1,5 +1,5 @@
 switch (state) {
-	case "appear":
+	case SETTINGS_PANEL_STATE.APPEAR:
         var _an_value = animcurve_channel_evaluate(chan[0],anim_pos)
         y = 38+650 - 650*_an_value
         anim_pos+=0.025
@@ -8,14 +8,14 @@ switch (state) {
             back_alpha+=0.25
         
         if anim_pos>=1{
-            state = "show"
+            state = SETTINGS_PANEL_STATE.SHOW
             anim_pos = 0
         }
     break;
-    case "show":
+    case SETTINGS_PANEL_STATE.SHOW:
 
     break;
-    case "dissapear":
+    case SETTINGS_PANEL_STATE.DISSAPEAR:
         var _an_value = animcurve_channel_evaluate(chan[1],anim_pos)
         y = 38+650*_an_value
         anim_pos+=0.025
@@ -29,12 +29,12 @@ switch (state) {
     break;
 }
 
-if state != "hotkeys"{
+if state != SETTINGS_PANEL_STATE.HOTKEYS{
     if global.gui_wait == 0{
         main_settings.step(x,y)
         
         if exit_button.step(x,y){
-            state = "dissapear"
+            state = SETTINGS_PANEL_STATE.DISSAPEAR
             global.gui_layer = 0
             global.gui_wait = 10
             exit
@@ -46,7 +46,7 @@ else{
         hotkey_settings.step(x,y)
         
         if back_button.step(x,y){
-            state = "show"
+            state = SETTINGS_PANEL_STATE.SHOW
             
             global.settings.hotkeys = variable_clone( hotkey_settings.keys )
             

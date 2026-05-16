@@ -2,23 +2,21 @@ draw_set_font(font_general_15)
 
 info = {
     texts:[
-            "Bloons TDX Rewritten Information:",
+            scr_get_translation("info_panel_main"),
             "",
-            "When starting off you have access to [YELLOW]all tier 3[END] upgrades",
-            "   Tier [YELLOW]4[END] and [YELLOW]5[END] can be unlocked in the [YELLOW]\"Towers\"[END] menu",
+            scr_get_translation("info_panel_upgrades"),
+            scr_get_translation("info_panel_upgrades_1"),
             "",
-            "The game [GREEN]automatically[END] saves when in the main menu",
-            "   The game [GREEN]automatically[END] loads when it starts",
+            scr_get_translation("info_panel_saving"),
+            scr_get_translation("info_panel_saving_1"),
             "",
-            "The hot keys for upgrading are [YELLOW]Z[END], [YELLOW]X[END], and [YELLOW]C[END]",
-            "   Hot keys for towers are [YELLOW]0[END]-[YELLOW]9[END], [YELLOW]Q[END]-[YELLOW]P[END], and [YELLOW]FGHVBN[END]",
+            scr_get_translation("info_panel_hotkeys"),
             "",
-            "You earn extra [BP]Bloon Points[END] by getting a [YELLOW]large score[END]",
-            "   You can do this multiple times",
+            scr_get_translation("info_panel_extra"),
+            scr_get_translation("info_panel_extra_1"),
     ],
     alignment:[
         fa_center,
-        fa_left,
         fa_left,
         fa_left,
         fa_left,
@@ -43,11 +41,9 @@ info = {
         8,
         8,
         8,
-        8,
         8
     ],
     start_y:[
-        250,
         250,
         250,
         250,
@@ -124,8 +120,6 @@ function text_format(_text,_num){
         color: _col,
         number: array_length(_txts)
     }
-    
-   // show_message(formatted_texts[_num])
 }
 
 
@@ -162,7 +156,13 @@ texts_alpha = array_create(info.number,0)
 
 wait = 10
 
-state = "appear"
+enum INFO_PANEL_STATE {
+    APPEAR,
+    SHOW,
+    DISSAPEAR
+}
+
+state = INFO_PANEL_STATE.APPEAR
 
 //139, 38
 x = 139

@@ -47,16 +47,9 @@ resources = {
             _pos_x = valuables_xpos[_current_xpos]
             draw_sprite(spr_monkey_money_icon,0,_pos_x+xshift,valuables_ypos)
             
-            var _amount = round(global.current_monkey_money)
+            var _amount = scr_format_number( round(global.current_monkey_money) )
             
-            if _amount>1_000 and _amount<1_000_000{
-                _amount = $"{_amount/1_000}K"
-            }
-            else if _amount>1_000_000{
-                _amount = $"{_amount/1_000_000}M"
-            }
-            
-            draw_text_outline(_pos_x+60+xshift,valuables_ypos+48,c_black,COLOR_MONKEYMONEY,_amount)
+            draw_text_outline(_pos_x+60+xshift+8,valuables_ypos+48,c_black,COLOR_MONKEYMONEY,_amount)
             _current_xpos++
         }
         

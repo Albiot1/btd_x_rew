@@ -20,7 +20,7 @@ for (var i = 0; i < info.number; i++) {
 }
 
 switch (state) {
-	case "appear":
+	case INFO_PANEL_STATE.APPEAR:
         var _an_value = animcurve_channel_evaluate(chan[0],anim_pos)
         y = 38+650 - 650*_an_value
         anim_pos+=0.025
@@ -29,11 +29,11 @@ switch (state) {
             back_alpha+=0.25
         
         if anim_pos>=1{
-            state = "show"
+            state = INFO_PANEL_STATE.SHOW
             anim_pos = 0
         }
     break;
-    case "show":
+    case INFO_PANEL_STATE.SHOW:
         if wait>0
             wait--
         
@@ -47,14 +47,14 @@ switch (state) {
         
         if _all_alpha == true{
             if exit_button.step(x,y){
-                state = "dissapear"
+                state = INFO_PANEL_STATE.DISSAPEAR
                 global.gui_layer = 0
                 global.gui_wait = 10
             }
         }
         
     break;
-    case "dissapear":
+    case INFO_PANEL_STATE.DISSAPEAR:
         var _an_value = animcurve_channel_evaluate(chan[1],anim_pos)
         y = 38+650*_an_value
         anim_pos+=0.025

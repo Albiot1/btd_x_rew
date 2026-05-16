@@ -6,7 +6,7 @@ draw_set_alpha(1)
 
 draw_sprite(spr_info_panel,0,x,y)
 
-if state != "hotkeys"{
+if state != SETTINGS_PANEL_STATE.HOTKEYS{
     exit_button.draw(x,y)
     main_settings.draw(x,y)
 }

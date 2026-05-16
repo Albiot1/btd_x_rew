@@ -1,4 +1,11 @@
-state = "appear"
+enum SETTINGS_PANEL_STATE {
+    APPEAR,
+    SHOW,
+    DISSAPEAR,
+    HOTKEYS
+}
+
+state = SETTINGS_PANEL_STATE.APPEAR
 
 back_alpha = 0
 
@@ -326,11 +333,11 @@ main_settings = {
 
 draw_set_font(font_general_15)
 
-main_settings.buttons.add(8,133,"Hotkeys",
+main_settings.buttons.add(8,133,scr_get_translation("settings_button_hotkeys"),
     function (){
         main_settings.slider_grabbed = noone
         global.gui_wait = 10
-        state = "hotkeys"
+        state = SETTINGS_PANEL_STATE.HOTKEYS
         with obj_settings_panel.main_settings{
             for (var i = 0; i < buttons.num; i++) {
             	buttons.mouse_on[i] = false
@@ -339,28 +346,28 @@ main_settings.buttons.add(8,133,"Hotkeys",
     }
 )
 
-main_settings.checkboxes.add(373+8,143,"Instant upgrade unlocking",global.settings.instant_upgrade_unlocking,
+main_settings.checkboxes.add(373+8,143,scr_get_translation("settings_check_instantupgr"),global.settings.instant_upgrade_unlocking,
     function (){
         global.settings.instant_upgrade_unlocking = !global.settings.instant_upgrade_unlocking
         
         return true
     }
 )
-main_settings.checkboxes.add(373+8,143+48,"Instant start transition",global.settings.instant_start_transition,
+main_settings.checkboxes.add(373+8,143+48,scr_get_translation("settings_check_insttrans"),global.settings.instant_start_transition,
     function (){
         global.settings.instant_start_transition = !global.settings.instant_start_transition
         
         return true
     }
 )
-main_settings.checkboxes.add(373+8,143+48+48,"Show FPS",global.settings.show_fps,
+main_settings.checkboxes.add(373+8,143+48+48,scr_get_translation("settings_check_fps"),global.settings.show_fps,
     function (){
         global.settings.show_fps = !global.settings.show_fps
         
         return true
     }
 )
-main_settings.checkboxes.add(373+8,143+48+48+48,"Fullscreen",global.settings.fullscreen,
+main_settings.checkboxes.add(373+8,143+48+48+48,scr_get_translation("settings_check_full"),global.settings.fullscreen,
     function (){
         
         if global.settings.fullscreen == true{
@@ -390,7 +397,7 @@ main_settings.checkboxes.add(373+8,143+48+48+48,"Fullscreen",global.settings.ful
     }
 )
 
-main_settings.reset_buttons.add(8,500-48-8,"RESET BOUNTIES",
+main_settings.reset_buttons.add(8,500-48-8,scr_get_translation("settings_reset_bounty"),
     function (){
         var _names = variable_struct_get_names(global.bounty.list)
         for (var i = 0; i < array_length(_names); i++) {
@@ -399,13 +406,13 @@ main_settings.reset_buttons.add(8,500-48-8,"RESET BOUNTIES",
     }
 )
 
-main_settings.reset_buttons.add(8,500-48-8-48-8,"RESET HOTKEYS",
+main_settings.reset_buttons.add(8,500-48-8-48-8,scr_get_translation("settings_reset_hotkey"),
     function (){
         global.settings.hotkeys = variable_clone( global.settings.default_hotkeys )
     }
 )
 
-main_settings.reset_buttons.add(746-256-8,500-48-8,"DELETE SAVE",
+main_settings.reset_buttons.add(746-256-8,500-48-8,scr_get_translation("settings_reset_save"),
     function (){
         //TODO delete save when saving is added
         game_restart()
@@ -416,11 +423,11 @@ hotkey_settings = {
     page: 0,
     max_page: 0,
     text: [
-        "Sell tower",
-        "Start wave / speed up",
-        "Upgrade Left",
-        "Upgrade Middle",
-        "Upgrade Right",
+        scr_get_translation("hotkey_sell"),
+        scr_get_translation("hotkey_spdup"),
+        scr_get_translation("hotkey_upgr_l"),
+        scr_get_translation("hotkey_upgr_m"),
+        scr_get_translation("hotkey_upgr_r"),
         global.towers.dart_monkey.name,
         global.towers.tack_shooter.name,
         global.towers.boomerang_thrower.name,
@@ -460,6 +467,13 @@ hotkey_settings = {
     on_clear_button: false,
     on_cancel_button: false,
     mouse_on: -1,
+    hotkey_empty_text:scr_get_translation("hotkey_empty"),
+    hotkey_cancel_text:scr_get_translation("hotkey_cancel"),
+    hotkey_clear_text:scr_get_translation("hotkey_clear"),
+    hotkey_done_text:scr_get_translation("hotkey_done"),
+    hotkey_change_text:scr_get_translation("hotkey_change"),
+    hotkey_press_text:scr_get_translation("hotkey_press"),
+    hotkey_error_text:scr_get_translation("hotkey_error"),
     step:function (_x,_y){
         
         if warning_time>0
@@ -668,7 +682,7 @@ hotkey_settings = {
                 draw_text(_hx+128,_hy+5, _htxt )
             }
             else {
-                var _htxt = "NOT SET"
+                var _htxt = hotkey_empty_text
                 
                 if _key!=-1{
                     _htxt = "\""+scr_get_key_name( _key )+"\"" 
@@ -700,7 +714,7 @@ hotkey_settings = {
             shader_set_uniform_f(global.shaders.replace[1],on_cancel_button)
             draw_sprite_stretched(spr_button_settings,0,_cancel_pos[0],_cancel_pos[1],96,32)
             shader_reset()
-            draw_text(_cancel_pos[0]+48,_cancel_pos[1]+5,"CANCEL")
+            draw_text(_cancel_pos[0]+48,_cancel_pos[1]+5,hotkey_cancel_text)
             
             var _reset_pos = [_cancel_pos[0]+96+37,_cancel_pos[1]]
             
@@ -709,7 +723,7 @@ hotkey_settings = {
             shader_set_uniform_f(global.shaders.replace[1],on_clear_button)
             draw_sprite_stretched(spr_button_settings,0,_reset_pos[0],_reset_pos[1],96,32)
             shader_reset()
-            draw_text(_reset_pos[0]+48,_reset_pos[1]+5,"CLEAR")
+            draw_text(_reset_pos[0]+48,_reset_pos[1]+5,hotkey_clear_text)
             
             var _done_pos = [_reset_pos[0]+96+37,_reset_pos[1]]
             
@@ -719,17 +733,17 @@ hotkey_settings = {
             draw_sprite_stretched(spr_button_settings,0,_done_pos[0],_done_pos[1],96,32)
             shader_reset()
             
-            draw_text(_done_pos[0]+48,_done_pos[1]+5,"DONE")
+            draw_text(_done_pos[0]+48,_done_pos[1]+5,hotkey_done_text)
             
             var _px = room_width/2-128
             var _py = room_height/2-16
             
-            draw_text(_px+128,_py-48,"Changing key bind\n\""+text[replacing]+"\"")
+            draw_text(_px+128,_py-48,hotkey_change_text+text[replacing]+"\"")
             
             draw_sprite_stretched(spr_button_settings,0,_px,_py,256,32)
             
             if new_key == -1 and new_additional_key == -1{
-                draw_text(_px+128,_py+5, "PRESS ANY KEY" )
+                draw_text(_px+128,_py+5,hotkey_press_text)
             }
             else {
                 var _htxt = ""
@@ -750,7 +764,7 @@ hotkey_settings = {
                     draw_set_alpha(_alpha)
                 }
                 
-                var _warn_text = $"SAME KEY BIND FOUND FOR\n\"{text[warning_bind_number]}\"\nPRESSING DONE AGAIN WILL CLEAR IT"
+                var _warn_text = scr_text_format_insert(hotkey_error_text,[text[warning_bind_number]])
                 var _str_h = string_height(_warn_text)
                 _px = room_width/2
                 _py = room_height/2+32+96

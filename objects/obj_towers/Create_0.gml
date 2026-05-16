@@ -116,6 +116,8 @@ enum UPGRADE_STATE {
 global.selected_tower_id = -1
 
 upgrades = {
+    locked_text:scr_get_translation("upgrade_locked"),
+    rank_text:scr_get_translation("upgrade_rank"),
     sprite:[], //-
     color:[],
     name:[], //-
@@ -376,7 +378,7 @@ upgrades = {
                     
                     draw_set_font(font_upgrade_name)
                     
-                    draw_text(_x+67+4,_y+6,"Locked")
+                    draw_text(_x+67+4,_y+6,locked_text)
                     
                     draw_sprite_ext(spr_upgrade_bp_cost,0,_x+67+4,_y+48,1,1,0,c_white,_show_percent)
                     
@@ -394,7 +396,7 @@ upgrades = {
                         _rankcost_color = COLOR_NOT_ENOUGH
                     }
                     
-                    draw_text_outline(_x+67+172-8,_y+6,c_black,_rankcost_color,$"Rank {_rank}")
+                    draw_text_outline(_x+67+172-8,_y+6,c_black,_rankcost_color, scr_text_format_insert( rank_text,[_rank] ) )
                     
                     draw_set_halign(fa_left)
                     
@@ -481,70 +483,70 @@ upgrades = {
                 _mx = 75
                 _my = 360
                 _color = UPGRADE_MAIN_COLOR
-                _prev_upgr_id = global.upgrades[$ global.selected_tower_id].main_0 //"main_0"
+                _prev_upgr_id = global.upgrades[$ global.selected_tower_id].main_0 
                 _order_num = 1
             break;
             case "left_0":
                 _mx = 298
                 _my = 168
                 _color = UPGRADE_LEFT_COLOR
-                _prev_upgr_id = global.upgrades[$ global.selected_tower_id].main_1 //"main_1"
+                _prev_upgr_id = global.upgrades[$ global.selected_tower_id].main_1
                 _order_num = 2
             break;
             case "left_1":
                 _mx = 540
                 _my = 168
                 _color = UPGRADE_LEFT_COLOR
-                _prev_upgr_id = global.upgrades[$ global.selected_tower_id].left_0 //"left_0"
+                _prev_upgr_id = global.upgrades[$ global.selected_tower_id].left_0 
                 _order_num = 3
             break;
             case "left_2":
                 _mx = 782
                 _my = 168
                 _color = UPGRADE_LEFT_COLOR
-                _prev_upgr_id = global.upgrades[$ global.selected_tower_id].left_1 //"left_1"
+                _prev_upgr_id = global.upgrades[$ global.selected_tower_id].left_1
                 _order_num = 4
             break;
             case "middle_0":
                 _mx = 298
                 _my = 296
                 _color = UPGRADE_MIDDLE_COLOR
-                _prev_upgr_id = global.upgrades[$ global.selected_tower_id].main_1 //"main_1"
+                _prev_upgr_id = global.upgrades[$ global.selected_tower_id].main_1 
                 _order_num = 2
             break;
             case "middle_1":
                 _mx = 540
                 _my = 296
                 _color = UPGRADE_MIDDLE_COLOR
-                _prev_upgr_id = global.upgrades[$ global.selected_tower_id].middle_0 //"middle_0"
+                _prev_upgr_id = global.upgrades[$ global.selected_tower_id].middle_0 
                 _order_num = 3
             break;
             case "middle_2":
                 _mx = 782
                 _my = 296
                 _color = UPGRADE_MIDDLE_COLOR
-                _prev_upgr_id = global.upgrades[$ global.selected_tower_id].middle_1 //"middle_1"
+                _prev_upgr_id = global.upgrades[$ global.selected_tower_id].middle_1 
                 _order_num = 4
             break;
             case "right_0":
                 _mx = 298
                 _my = 424
                 _color = UPGRADE_RIGHT_COLOR
-                _prev_upgr_id = global.upgrades[$ global.selected_tower_id].main_1 //"main_1"
+                _prev_upgr_id = global.upgrades[$ global.selected_tower_id].main_1 
                 _order_num = 2
             break;
             case "right_1":
                 _mx = 540
                 _my = 424
                 _color = UPGRADE_RIGHT_COLOR
-                _prev_upgr_id = global.upgrades[$ global.selected_tower_id].right_0 //"right_0"
+                _prev_upgr_id = global.upgrades[$ global.selected_tower_id].right_0 
                 _order_num = 3
             break;
             case "right_2":
                 _mx = 782
                 _my = 424
                 _color = UPGRADE_RIGHT_COLOR
-                _prev_upgr_id = global.upgrades[$ global.selected_tower_id].right_1 //"right_1"
+                _prev_upgr_id = global.upgrades[$ global.selected_tower_id].right_1 
                 _order_num = 4
             break;
             case "special_0":

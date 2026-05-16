@@ -6,15 +6,17 @@ enum BTYPES {
 buyables = {
     icon:[spr_buy_squirrel,spr_buy_bloonbury_bush,spr_buy_sprinkler,spr_buy_monkey_nurse,spr_buy_banana_mobile,spr_buy_bloon_points],
     cost:[60,70,100,90,100,400],
-    name:["Angry Squirrel","Bloonbury Bush","Sprinkler","Monkey Nurse","Banana-Mobile","4 Bloon Points"],
+    name:[scr_get_translation("buyable_0_name"),scr_get_translation("buyable_1_name"),scr_get_translation("buyable_2_name"),scr_get_translation("buyable_3_name"),scr_get_translation("buyable_4_name"),scr_get_translation("buyable_5_name")],
     info:[
-        ["Gets angry when bloons leak","Gets angrier over time","Throws bigger acorns","Gets furious and shoots up a storm"],
-        ["Pops bloons that pass by","Regrows thorns as the wave passes by","Shoots throns out at the bloons","Shoots a powerful vine attack",],
-        ["Placed on land and water\nStores and shoots water","Gains more water","More Nozzles","Overfills the sprinkler"],
-        ["Heals stun & gives lives","Stronger Healing and more lives","Even stronger healing and more lives","Heals + Lives, Can prevent death"],
-        ["Drives and sucks up Bananas","Better Fuel Efficiency","Sharp banana Peels","Turbo Jet Engines"],
-        [""]
+        scr_get_translation("buyable_0_desc"),
+        scr_get_translation("buyable_1_desc"),
+        scr_get_translation("buyable_2_desc"),
+        scr_get_translation("buyable_3_desc"),
+        scr_get_translation("buyable_4_desc"),
+        scr_get_translation("buyable_5_desc")
     ],
+    level_text:scr_get_translation("buyable_info_0"),
+    amount_text:scr_get_translation("buyable_info_1"),
     agent_id:["squirrel","bloonbury_bush","sprinkler","monkey_nurse","banana_mobile",-1],
     buy_type:[BTYPES.NORMAL,BTYPES.NORMAL,BTYPES.NORMAL,BTYPES.NORMAL,BTYPES.NORMAL,BTYPES.BLOON_POINTS],
     level:[0,0,0,0,0,0],
@@ -117,7 +119,7 @@ buyables = {
                 }
                 var _txt = ""
                 if _lvl>0{
-                    _txt = $"Level {_lvl+1}: "
+                    _txt = level_text+string(_lvl+1)+": "
                 }
                 draw_text_ext(_x+108,_y+12+24,_txt+_info[_lvl],18,236)
             }
@@ -129,7 +131,7 @@ buyables = {
             
             if _id!=-1{
                 var _num = global.agents[$ _id]
-                var _txt = $"You have: {_num}"
+                var _txt = amount_text + string(_num)
                 var _txt_w = string_width(_txt)
                 
                 shader_set(sh_replace)

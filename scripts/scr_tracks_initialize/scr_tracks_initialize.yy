@@ -1,0 +1,13 @@
+{
+  "$GMScript":"v1",
+  "%Name":"scr_tracks_initialize",
+  "isCompatibility":false,
+  "isDnD":false,
+  "name":"scr_tracks_initialize",
+  "parent":{
+    "name":"DataInit",
+    "path":"folders/Scripts/DataInit.yy",
+  },
+  "resourceType":"GMScript",
+  "resourceVersion":"2.0",
+}
