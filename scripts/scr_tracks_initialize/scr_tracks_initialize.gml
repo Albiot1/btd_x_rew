@@ -91,6 +91,7 @@ function scr_tracks_initialize(){
     global.tracks.lawless_badlands = new Track("lawless_badlands",TRACK_DIFFICULTY.MAD_POP,spr_background_lawless_badlands_preview)
     global.tracks.lost_pools = new Track("lost_pools",TRACK_DIFFICULTY.MAD_POP,spr_background_lost_pools_preview)
     
+    //special tracks (not included in tracks order)
     global.tracks.bloon_bounty_center = new Track("bloon_bounty_center",TRACK_DIFFICULTY.MAD_POP,spr_background_break_out_preview,TRACK_TYPE.SPECIAL)
     global.tracks.lunar_temple = new Track("lunar_temple",TRACK_DIFFICULTY.MAD_POP,spr_background_lunar_temple_preview,TRACK_TYPE.SPECIAL)
     

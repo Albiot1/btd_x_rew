@@ -28,12 +28,10 @@ goodies = {
         
         var _row = 0
         var _col = 0
-        var _start_i = 0
-        var _end_i = clamp(8,0,num)
-        if page>0{
-            _start_i = 2*page
-            _end_i = clamp(8+2*(page),0,num)
-        }
+        
+        var _start_i = 2*page
+        var _end_i = clamp(8+2*(page),0,num)
+        
         for (var i = _start_i; i < _end_i; i++) {
             
             var _x = 32 + 478*_row
@@ -49,6 +47,9 @@ goodies = {
                     _unlocked = true
                 if global.goodies[$ _id].active == true
                     _active = true
+            }
+            else {
+            	continue;
             }
             
             if point_in_rectangle(mouse_x,mouse_y,_x-18,_y-6,_x+435,_y+78){
@@ -134,11 +135,14 @@ goodies = {
 
         var _start_i = 2*page
         var _end_i = clamp(8+2*(page),0,num)
+        
+        draw_set_color(c_black)
+        draw_set_font(font_general_12)
+        
         for (var i = _start_i; i < _end_i; i++) {
             
             var _x = 32 + 478*_row
             var _y = 96 + (96)*_col
-            var _type = type[i]
             var _desc = desc[i]
             var _icon = icon[i]
             var _icon_scale = scale[i]
@@ -197,14 +201,11 @@ goodies = {
             shader_reset()
             
             if _unlocked == true{
-                draw_sprite_ext(_icon,_type,_x+24,_y+32,_icon_scale,_icon_scale,0,c_white,1)
+                draw_sprite_ext(_icon,0,_x+24,_y+32,_icon_scale,_icon_scale,0,c_white,1)
             }
             else {
-            	draw_sprite_ext(spr_goodie_token,_type,_x-8,_y+4,1,1,0,c_white,1)
+            	draw_sprite_ext(spr_goodie_token,0,_x-8,_y+4,1,1,0,c_white,1)
             }
-            
-            draw_set_color(c_black)
-            draw_set_font(font_general_12)
             
             if _unlocked == true{
                 draw_text_ext(_x+68,_y+4,_desc,16,370)
@@ -213,8 +214,6 @@ goodies = {
             	draw_text(_x+68,_y+4,default_text)
             }
             
-            
-            draw_set_color(c_white)
             _row++
             if _row>1{
                 _row = 0
@@ -222,6 +221,7 @@ goodies = {
             }
             
         }
+        draw_set_color(c_white)
         
         draw_sprite_stretched(spr_scroll_bar,0,1024-64,0,64,576)
         if page>0
@@ -326,30 +326,6 @@ goodies.add(
     GTYPE.SPECIAL
 )
 
-//goodies.max_page = ceil(goodies.num/8)-1
 goodies.max_page = ceil((goodies.num-6)/2)-1
 
-exit_button = {
-    pos:[4,5],
-    mouse_on:false,
-    step:function (){
-        var _x = pos[0]
-        var _y = pos[1]
-        if point_in_rectangle(mouse_x,mouse_y,_x,_y,_x+64,_y+64){
-            mouse_on = true
-            if mouse_check_button_pressed(mb_left){
-                room_goto(rm_main_menu)
-            }
-        }
-        else {
-        	mouse_on = false
-        }
-    },
-    draw:function (){
-        shader_set(sh_replace)
-        shader_set_uniform_f( global.shaders.replace[0],HOVER_OUTLINE_R,HOVER_OUTLINE_G,HOVER_OUTLINE_B )
-        shader_set_uniform_f( global.shaders.replace[1],mouse_on )
-        draw_sprite(spr_exit_button,0,pos[0],pos[1])
-        shader_reset()
-    }
-}
+instance_create_depth(4,5,depth,obj_exit_button)

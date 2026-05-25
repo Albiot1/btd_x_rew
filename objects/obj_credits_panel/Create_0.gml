@@ -24,13 +24,6 @@ info = {
         373
     ],
     start_y:[
-        250,
-        250,
-        250,
-        250,
-        250,
-        250,
-        250
     ],
     number:[
         
@@ -42,7 +35,7 @@ text_shown = 0
 for (var i = 0; i <= max_page; i++) {
     var _texts_num = array_length(info.texts[i])
 	var _texts_height = _texts_num*32
-    info.start_y[i] = info.start_y[i] - _texts_height/2
+    info.start_y[i] = 250 - _texts_height/2
     info.number[i] = _texts_num
 }
 
@@ -54,7 +47,7 @@ wait = 10
 enum CREDITS_STATE {
     APPEAR,
     SHOW,
-    DISSAPEAR
+    DISAPPEAR
 }
 
 state = CREDITS_STATE.APPEAR

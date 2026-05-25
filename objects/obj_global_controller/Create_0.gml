@@ -2,7 +2,7 @@ randomize()
 
 global.gui_layer = 0
 global.gui_wait = 0
-global.start_transition_ened = false
+global.start_transition_ended = false
 
 global.show_debug = false
 

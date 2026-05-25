@@ -109,9 +109,9 @@ if bounty_info.initialized == false and bounty_selected != -1{
     
     draw_set_font(font_general_20)
     
-    var _col = #400000
-    draw_text_color(21,0,bounty_top_text,_col,_col,_col,_col,1)
-    draw_line_color(21,8+21,21+string_width(bounty_top_text),8+21,_col,_col)
+    var _txt_col = #400000
+    draw_text_color(21,0,bounty_top_text,_txt_col,_txt_col,_txt_col,_txt_col,1)
+    draw_line_color(21,8+21,21+string_width(bounty_top_text),8+21,_txt_col,_txt_col)
     
     var _x = 0
     var _y = 0
@@ -144,15 +144,15 @@ if bounty_info.initialized == false and bounty_selected != -1{
     for (var i = 0; i < _max_rank; i++) {
     	var _ny = _icon_panel_size[1]/2-_numbers_max_size/2+30*i
         var _nx = _icon_panel_size[0]
-        var _col = c_black
+        _txt_col = c_black
         
         if _rank==i{
-            _col = c_white
+            _txt_col = c_white
         }
         
         draw_sprite(spr_bounty_info_number_panel,0,round(_nx),round(_ny))
         
-        draw_text_color(_nx+6,_ny+6,i+1,_col,_col,_col,_col,1)
+        draw_text_color(_nx+6,_ny+6,i+1,_txt_col,_txt_col,_txt_col,_txt_col,1)
     }
     draw_set_halign(fa_left)
     
@@ -211,12 +211,12 @@ if bounty_info.initialized == false and bounty_selected != -1{
     
     draw_set_valign(fa_top)
     
-    var _x = _info_panel_x+_info_panel_size[0]+32
-    var _y = 0
+    _x = _info_panel_x+_info_panel_size[0]+32
+    _y = 0
     draw_sprite(spr_bounty_duel_button,0,_x-46+167/2,_y-45+163/2)
-    var _col = #400000
+    _txt_col = #400000
     draw_set_halign(fa_middle) draw_set_font(font_general_16)
-    draw_text_color(_x+167/2,_y+163-28,bounty_button_text,_col,_col,_col,_col,1)
+    draw_text_color(_x+167/2,_y+163-28,bounty_button_text,_txt_col,_txt_col,_txt_col,_txt_col,1)
     draw_set_halign(fa_left)  draw_set_font(font_general_12)
     
     draw_set_color(c_white)
@@ -243,7 +243,3 @@ if bounty_info.initialized == true and bounty_selected != -1{
 }
 
 dialogue.draw()
-
-if keyboard_check_pressed(vk_space){
-    surface_free(bounty_info.surface)
-}

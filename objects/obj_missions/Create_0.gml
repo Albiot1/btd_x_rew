@@ -16,6 +16,28 @@ list = [
 ]
 
 number = array_length(list)
+
+desc = array_create( number,"" )
+desc_h = array_create( number, 0 )
+
+start_x = 96
+start_y = 16
+spacing_x = 448
+spacing_y = 184
+
+for (var i = 0; i < number; i++) {
+    var _mission = list[i]
+    var _completed = _mission.completed
+    var _desc = _mission.desc
+    
+    if _completed == true{
+        _desc += "\n" + mission_completed_text
+    }
+    
+    desc[i] = _desc
+    desc_h[i] = string_height_ext(_desc,16,356)
+}
+
 max_page = ceil((number-4)/2)-1
 
 mouse_on = -1

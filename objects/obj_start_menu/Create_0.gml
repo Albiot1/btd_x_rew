@@ -4,7 +4,8 @@ bloon_spawn_cooldown = 2
 blimp_spawn_cooldown = 10
 pressed_any_key = false
 camy = 976
-cammaxy = 976-576-100
+viewheight = 576
+cammaxy = camy-viewheight-100
 cam_anim = animcurve_get_channel( animcurve_get(an_start_camera_pan),"curve1" )
 cam_anim_pos = 0
 
@@ -24,3 +25,5 @@ mdraw = [0,0,0,0]
 collisions_list = ds_list_create()
 
 depth = -500
+
+title_text = scr_get_translation("start_menu_text")

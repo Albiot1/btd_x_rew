@@ -1,7 +1,7 @@
 enum SETTINGS_PANEL_STATE {
     APPEAR,
     SHOW,
-    DISSAPEAR,
+    DISAPPEAR,
     HOTKEYS
 }
 
@@ -16,57 +16,10 @@ anim = [animcurve_get(an_credits_appear),animcurve_get(an_credits_disappear)]
 chan = [animcurve_get_channel(anim[0],"curve1"),animcurve_get_channel(anim[1],"curve1")]
 anim_pos = 0
 
-exit_button = {
-    pos:[8,8],
-    mouse_on:false,
-    step:function (_xp,_yp){
-        var _x = pos[0]
-        var _y = pos[1]
-        if point_in_rectangle(mouse_x,mouse_y,_x+_xp,_y+_yp,_x+_xp+64,_y+_yp+64){
-            mouse_on = true
-            if mouse_check_button_pressed(mb_left){
-                return true
-            }
-        }
-        else {
-        	mouse_on = false
-        }
-        return false
-    },
-    draw:function (_x,_y){
-        shader_set(sh_replace)
-        shader_set_uniform_f( global.shaders.replace[0],HOVER_OUTLINE_R,HOVER_OUTLINE_G,HOVER_OUTLINE_B )
-        shader_set_uniform_f( global.shaders.replace[1],mouse_on )
-        draw_sprite(spr_exit_button,0,_x+pos[0],_y+pos[1])
-        shader_reset()
-    }
-}
-
-back_button = {
-    pos:[8,8],
-    mouse_on:false,
-    step:function (_xp,_yp){
-        var _x = pos[0]
-        var _y = pos[1]
-        if point_in_rectangle(mouse_x,mouse_y,_x+_xp,_y+_yp,_x+_xp+64,_y+_yp+64){
-            mouse_on = true
-            if mouse_check_button_pressed(mb_left){
-                return true
-            }
-        }
-        else {
-        	mouse_on = false
-        }
-        return false
-    },
-    draw:function (_x,_y){
-        shader_set(sh_replace)
-        shader_set_uniform_f( global.shaders.replace[0],HOVER_OUTLINE_R,HOVER_OUTLINE_G,HOVER_OUTLINE_B )
-        shader_set_uniform_f( global.shaders.replace[1],mouse_on )
-        draw_sprite(spr_back_button,0,_x+pos[0],_y+pos[1])
-        shader_reset()
-    }
-}
+back_button_x = 8
+back_button_y = 8
+back_button_mouse_on = false
+back_button_sprite = spr_exit_button
 
 main_settings = {
     music_pos:[8,75],
@@ -338,6 +291,7 @@ main_settings.buttons.add(8,133,scr_get_translation("settings_button_hotkeys"),
         main_settings.slider_grabbed = noone
         global.gui_wait = 10
         state = SETTINGS_PANEL_STATE.HOTKEYS
+        back_button_sprite = spr_back_button
         with obj_settings_panel.main_settings{
             for (var i = 0; i < buttons.num; i++) {
             	buttons.mouse_on[i] = false
@@ -789,8 +743,6 @@ hotkey_settings = {
         
     }
 }
-
-
 
 hotkey_settings.num = array_length(hotkey_settings.text)
 hotkey_settings.max_page = ceil( hotkey_settings.num/9 )-1

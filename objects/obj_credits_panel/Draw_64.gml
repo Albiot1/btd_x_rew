@@ -15,6 +15,5 @@ for (var i = 0; i < info.number[page]; i++) {
 draw_set_halign(fa_left)
 
 draw_text(x+746-120,y+500-32,page_text+string(page)+"/"+string(max_page))
-draw_set_font(font_general_16)
 
 exit_button.draw(x,y)

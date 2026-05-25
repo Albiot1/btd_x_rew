@@ -32,7 +32,7 @@ function scr_towers_initialize(){
             
             return self
         }
-        static setObjcet = function (_object){
+        static setObject = function (_object){
             obj = _object
             
             return self

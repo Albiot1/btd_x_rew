@@ -18,6 +18,4 @@ for (var i = 0; i < info.number; i++) {
 }
 draw_set_halign(fa_left)
 
-draw_set_font(font_general_16)
-
 exit_button.draw(x,y)

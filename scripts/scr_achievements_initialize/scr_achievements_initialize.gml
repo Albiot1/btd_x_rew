@@ -70,12 +70,12 @@ function scr_achievements_initialize(){
         challenge:[]
     }
     
-    var _tracks = variable_struct_get_names(global.tracks)
+    var _tracks = global.tracks_order
     var _tracks_num = array_length(_tracks)
     
     for (var i = 0; i < _tracks_num; i++) {
         var _track_id = _tracks[i]
-    	var _mytrack = global.tracks[$ _track_id]
+    	var _mytrack = global.tracks[$ _tracks[i]]
         
         if _mytrack.type != TRACK_TYPE.NORMAL
             continue
@@ -119,7 +119,7 @@ function scr_achievements_initialize(){
         global.achievements[$ _ach_id] = new Achievement(scr_text_format_insert( scr_get_translation("achievement_unl_v"),[_monkey_name] ),ACHIEVEMENT_MAIN_TYPE.TOWER,ACHIEVEMENT_EXACT_TYPE.TOWER_ALL_FIFTH_TIER_UPGRADES)
             .setData( { tower:_monkey_id } )
         array_push(global.achievements_order.tower,_ach_id)
-        var _ach_id = "tower_unlock_special_path_"+_monkey_id
+        _ach_id = "tower_unlock_special_path_"+_monkey_id
         global.achievements[$ _ach_id] = new Achievement(scr_text_format_insert( scr_get_translation("achievement_unl_s"),[_monkey_name] ),ACHIEVEMENT_MAIN_TYPE.TOWER,ACHIEVEMENT_EXACT_TYPE.TOWER_SPECIAL_PATH)
             .setData( { tower:_monkey_id } )
         array_push(global.achievements_order.tower,_ach_id)
@@ -150,14 +150,13 @@ function scr_achievements_initialize(){
         array_push(global.achievements_order.challenge,_ach_id)
     }
     
-    
     var _ach_id = $"challenge_moon_temple_0"
     global.achievements[$ _ach_id] = new Achievement(scr_get_translation("achievement_bet_m_i"),ACHIEVEMENT_MAIN_TYPE.CHALLENGE,ACHIEVEMENT_EXACT_TYPE.CHALLENGE_MOON_TEMPLE)
     array_push(global.achievements_order.challenge,_ach_id)
-    var _ach_id = $"challenge_moon_temple_1"
+    _ach_id = $"challenge_moon_temple_1"
     global.achievements[$ _ach_id] = new Achievement(scr_get_translation("achievement_bet_m_ii"),ACHIEVEMENT_MAIN_TYPE.CHALLENGE,ACHIEVEMENT_EXACT_TYPE.CHALLENGE_MOON_TEMPLE)
     array_push(global.achievements_order.challenge,_ach_id)
-    var _ach_id = $"challenge_moon_temple_2"
+    _ach_id = $"challenge_moon_temple_2"
     global.achievements[$ _ach_id] = new Achievement(scr_get_translation("achievement_bet_m_iii"),ACHIEVEMENT_MAIN_TYPE.CHALLENGE,ACHIEVEMENT_EXACT_TYPE.CHALLENGE_MOON_TEMPLE)
     array_push(global.achievements_order.challenge,_ach_id)
     

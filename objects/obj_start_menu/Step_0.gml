@@ -50,8 +50,6 @@ if pressed_any_key == true
 
 mouse_dist = point_distance(mouse_x,mouse_y,mouse_prev_x,mouse_prev_y)
 
-mdraw=[mouse_x,mouse_y,mouse_prev_x,mouse_prev_y]
-
 if mouse_dist>8{
     ds_list_clear(collisions_list)
     var _num = collision_line_list(mouse_x,mouse_y,mouse_prev_x,mouse_prev_y,obj_start_menu_bloon,false,true,collisions_list,true)
@@ -119,4 +117,3 @@ if mouse_dist>8{
     
 }
 
-text = scr_get_translation("start_menu_text")

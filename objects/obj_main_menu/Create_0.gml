@@ -3,8 +3,8 @@ statues = {
     text:[scr_get_translation("statue_0_text"),scr_get_translation("statue_1_text"),scr_get_translation("statue_2_text"),scr_get_translation("statue_3_text"),scr_get_translation("statue_4_text"),scr_get_translation("statue_5_text"),scr_get_translation("statue_6_text"),scr_get_translation("statue_7_text"),scr_get_translation("statue_8_text"),scr_get_translation("statue_9_text")],
     px:[352,864,48,576,864,16,160,344,512,864],
     py:[64,48,224,224,208,432,432,368,432,368],
-    yplus:[0,0,0,0,0,0,0,0,0,0],
-    mouse_on:[false,false,false,false,false,false,false,false,false,false],
+    yplus:array_create(10,0),
+    mouse_on:array_create(10,false),
     actions:[
         function (){
             room_goto(rm_towers_menu)
@@ -48,7 +48,7 @@ statues = {
             if point_in_rectangle(mouse_x,mouse_y,_x-64,_y-64,_x+64,_y+64) and global.gui_layer == 0 and global.gui_wait == 0{
                 mouse_on[i] = true
                 yplus[i] = lerp(yplus[i],10,0.1)
-                if mouse_check_button_pressed(mb_left) and actions[i]!=-1{
+                if mouse_check_button_pressed(mb_left){
                     actions[i]()
                 }
             }

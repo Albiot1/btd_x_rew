@@ -57,7 +57,7 @@ global.music = {
     paused: false,
     emitter: audio_emitter_create(),
     change: function (_music){
-        changing = true
+        changing = MUSIC_STATE.LOWER_GAIN
         next = _music
     },
     pause: function (){
@@ -73,7 +73,7 @@ global.music = {
         paused = false
     },
     play: function (_music){
-        audio_play_sound_on(emitter,_music,true,5)
+        current = audio_play_sound_on(emitter,_music,true,5)
     },
     step: function (){
         switch (changing) {
@@ -99,7 +99,8 @@ global.music = {
                 
                 gain = lerp(gain,1,0.15)
                 gain_real = gain*global.gain.music
-                if gain>=1{
+                if gain>=0.99{
+                    gain = 1
                     changing = MUSIC_STATE.NONE
                 }
                 

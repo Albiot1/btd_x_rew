@@ -52,26 +52,29 @@ achievements = {
                 
                 if point_in_rectangle(mouse_x,mouse_y,_x,_y,_x+96,_y+96){
                     mouse_on = i
+                    var _achievements = obj_medals.achievements
                     if mouse_check_button_pressed(mb_left){
                         if selected == i{
-                            obj_medals.achievements.type_selected = -1
+                            _achievements.type_selected = -1
                             selected = -1
-                            obj_medals.achievements.update()
+                            _achievements.update()
                         }
                         else {
-                            obj_medals.achievements.type_selected = type[i]
+                            _achievements.type_selected = type[i]
                             selected = i
-                            obj_medals.achievements.update()
+                            _achievements.update()
                         }
                     }
                 }
             }
         },
         draw:function (){
+            var _achievements = obj_medals.achievements
+            
             draw_set_halign(fa_middle)
             draw_set_font(font_general_12)
-            var _unlocked = obj_medals.achievements.unlocked
-            var _maximum = obj_medals.achievements.maximum
+            var _unlocked = _achievements.unlocked
+            var _maximum = _achievements.maximum
             for (var i = 0; i < num; i++) {
                 var _x = px[i]
                 var _y = py[i]
@@ -84,7 +87,7 @@ achievements = {
             	draw_sprite_stretched(spr_achievement_type_panel,0,_x,_y,96,96)
                 shader_reset()
                 
-                draw_sprite(spr_achievemnt_type_icons,_ico,_x+16,_y+16)
+                draw_sprite(spr_achievement_type_icons,_ico,_x+16,_y+16)
                 draw_text_outline(_x+48,_y+2,c_black,c_white,_txt)
                 
                 draw_text_outline(_x+48,_y+96-20,c_black,c_white,$"{_unlocked[i]}/{_maximum[i]}")
@@ -145,6 +148,10 @@ achievements = {
                         }
                         
                         global.achievements[$ current_order[i] ].state = ACHIEVEMENT_STATE.CHECKED
+                    }
+                    
+                    if number_to_claim<0{
+                        number_to_claim = 0
                     }
                     
                     while (floor(global.trophies/10) - global.goodie_points_used > global.goodie_points){

@@ -27,7 +27,7 @@ function scr_upgrades_initialize(){
         name = _name
         
         
-        var _search = _tower_id+"_"+_upgrade_id+"_desc"
+        _search = _tower_id+"_"+_upgrade_id+"_desc"
         var _desc = scr_get_translation(_search)
         
         desc = _desc
@@ -65,10 +65,6 @@ function scr_upgrades_initialize(){
             
             return self
         }
-    }
-    
-    global.upgrades = {
-        translation: {},
     }
     
     #region DART MONKEY

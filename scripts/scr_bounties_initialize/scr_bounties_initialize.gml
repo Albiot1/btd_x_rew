@@ -12,7 +12,7 @@ function scr_bounties_initialize(){
         VERY_ANNOYING,
         IMPOPPABLY_ANNOYING,
         ALMIGHTY,
-        ANNOINGLY_ALMIGHTY
+        ANNOYINGLY_ALMIGHTY
     }
     
     function Bounty(_id,_max_rank,_location,_medal_icon) constructor {
@@ -66,7 +66,8 @@ function scr_bounties_initialize(){
     global.bounty.rewards.add(BOUNTY_RANK.VERY_ANNOYING,600,6,300000)
     global.bounty.rewards.add(BOUNTY_RANK.IMPOPPABLY_ANNOYING,700,7,350000)
     global.bounty.rewards.add(BOUNTY_RANK.ALMIGHTY,1000,10,500000)
-    global.bounty.rewards.add(BOUNTY_RANK.ANNOINGLY_ALMIGHTY,1100,11,550000)
+    global.bounty.rewards.add(BOUNTY_RANK.ANNOYINGLY_ALMIGHTY,1100,11,550000)
+    
     
     
 }

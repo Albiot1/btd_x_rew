@@ -1,4 +1,6 @@
 {
+	"resources_rank_text":"Rank:{0}",
+	
 	"start_menu_text":"Press Any Key to Start",
 	
 	"mission_completed_text":"Mission Complete!",
@@ -64,43 +66,49 @@
 	
 	"buyable_info_0":"Level ",
 	"buyable_info_1":"You have: ",
+	"buyable_agent_info":"Scroll - change level",
 	"buyable_0_name":"Angry Squirrel",
-	"buyable_0_desc":[
+	"buyable_0_desc":"Squirrel with anger issues...",
+	"buyable_0_info":[
 		"Gets angry when bloons leak",
 		"Gets angrier over time",
 		"Throws bigger acorns",
 		"Gets furious and shoots up a storm"
 	],
 	"buyable_1_name":"Bloonbury Bush",
-	"buyable_1_desc":[
+	"buyable_1_desc":"Just a spiky bloonbury bush...",
+	"buyable_1_info":[
 		"Pops bloons that pass by",
 		"Regrows thorns as the wave passes by",
 		"Shoots throns out at the bloons",
 		"Shoots a powerful vine attack"
 	],
 	"buyable_2_name":"Sprinkler",
-	"buyable_2_desc":[
+	"buyable_2_desc":"Pops bloons with water!?",
+	"buyable_2_info":[
 		"Placed on land and water\nStores and shoots water",
 		"Gains more water",
 		"More Nozzles",
 		"Overfills the sprinkler"
 	],
 	"buyable_3_name":"Monkey Nurse",
-	"buyable_3_desc":[
+	"buyable_3_desc":"Helps you by healing your monkeys",
+	"buyable_3_info":[
 		"Heals stun & gives lives",
 		"Stronger Healing and more lives",
 		"Even stronger healing and more lives",
 		"Heals + Lives, Can prevent death"
 	],
 	"buyable_4_name":"Banana-Mobile",
-	"buyable_4_desc":[
+	"buyable_4_desc":"Car fueled by bananas, yeah!",
+	"buyable_4_info":[
 		"Drives and sucks up Bananas",
 		"Better Fuel Efficiency",
 		"Sharp banana Peels",
 		"Turbo Jet Engines"
 	],
-	"buyable_5_name":"4 Bloon Points",
-	"buyable_5_desc":[""],
+	"buyable_5_name":"{0} Bloon Points",
+	"buyable_5_desc":"A bunch of bloon points",
 	
 	"bounty_top_text":"WANTED",
 	"bounty_button_text":"START DUEL!",

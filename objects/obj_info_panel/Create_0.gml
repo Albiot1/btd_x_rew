@@ -44,18 +44,6 @@ info = {
         8
     ],
     start_y:[
-        250,
-        250,
-        250,
-        250,
-        250,
-        250,
-        250,
-        250,
-        250,
-        250,
-        250,
-        250,
     ],
     number:-1
 }
@@ -145,7 +133,7 @@ text_shown = 0
 var _texts_num = array_length(info.texts)
 var _texts_height = _texts_num*32
 for (var i = 0; i < _texts_num; i++) {
-	info.start_y[i] = info.start_y[i] - _texts_height/2
+	info.start_y[i] = 250 - _texts_height/2
     text_format(info.texts[i],i)
 }
 info.number = _texts_num
@@ -159,7 +147,7 @@ wait = 10
 enum INFO_PANEL_STATE {
     APPEAR,
     SHOW,
-    DISSAPEAR
+    DISAPPEAR
 }
 
 state = INFO_PANEL_STATE.APPEAR

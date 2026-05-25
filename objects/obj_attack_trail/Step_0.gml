@@ -5,9 +5,9 @@ y=mouse_y
 if sptime<=0 and point_distance(prevx,prevy,x,y)>8{
     array_push(trail.px,mouse_x)
     array_push(trail.py,mouse_y)
-        
-    prevx=mouse_x
-    prevy=mouse_y
+    
+    prevx = x
+    prevy = y
         
     var _newdir = prevdir + angle_difference(point_direction(xprevious,yprevious,mouse_x,mouse_y),prevdir)*0.4
     

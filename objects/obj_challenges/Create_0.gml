@@ -1,5 +1,11 @@
 page = 0
 
+enum COMPLETION_MARK {
+    NOT_COMPLETED,
+    COMPLETED,
+    COMPLETED_TIME
+}
+
 list = [
     global.challenges.deflation,
     global.challenges.antishield,

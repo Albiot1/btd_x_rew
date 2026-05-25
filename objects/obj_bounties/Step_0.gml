@@ -40,6 +40,7 @@ for (var i = 0; i < bounties_num; i++) {
     var _effect = _cage.effect
     
     switch (_effect) {
+        // case BOUNTY_EFFECT_TYPE.NONE: // intentional
     	case BOUNTY_EFFECT_TYPE.FLOATY:
             
             _cage.effect_time+=_cage.effect_time_speed
@@ -78,7 +79,7 @@ for (var i = 0; i < bounties_num; i++) {
                 _cage.effect_wait--
             }
             else {
-                var _animch = animcurve_get_channel( animcurve_get( an_bounty_push_effect ), "curve1" )
+                var _animch = _cage.effect_animcurve
                 var _value = animcurve_channel_evaluate( _animch,_cage.effect_pos )
                 _cage.effect_pos += _cage.effect_speed
                 _cage.icon_pos[0] = _cage.effect_distance*_value

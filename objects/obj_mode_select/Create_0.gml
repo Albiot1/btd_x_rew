@@ -143,7 +143,6 @@ milestone_bar = {
         draw_text(pos[0],pos[1]+249-24-24-24-24-24,text_best_wave)
         
         draw_set_halign(fa_left)
-        //draw_text(mouse_x,mouse_y,$"X:{mouse_x}|{mouse_y}")
         
     },
     clean_up:function (){
@@ -243,7 +242,7 @@ modifications = {
                         obj_mode_select.multipliers_update()
                         
                     }
-                    show_desc = desc[i] scr_text_format_insert( text_points_multiplier,[multipliers[i]] )
+                    show_desc = desc[i] + scr_text_format_insert( text_points_multiplier,[multipliers[i]] )
                 }
             }
             
@@ -536,7 +535,7 @@ mode_select = {
     starting_lives_value:0,
     starting_cash_value:0,
     point_multiplier_value:0,
-    point_multipleir_base_value:0,
+    point_multiplier_base_value:0,
     infinite_txt:scr_get_translation("mode_infinite_resource"),
     
     values_reset:function (){
@@ -545,7 +544,7 @@ mode_select = {
         starting_lives_value = 0
         starting_cash_value = 0
         point_multiplier_value = 0
-        point_multipleir_base_value = 0
+        point_multiplier_base_value = 0
     },
     values_get:function (){
         values_anim_pos[0] = -0.2
@@ -555,7 +554,7 @@ mode_select = {
             starting_lives_value = global.game_modes_info.starting_lives[global.game_mode]
             starting_cash_value = global.game_modes_info.starting_cash[global.game_mode]
             point_multiplier_value = global.game_modes_info.points_multiplier[global.game_mode]
-            point_multipleir_base_value = global.game_modes_info.points_multiplier[global.game_mode]
+            point_multiplier_base_value = global.game_modes_info.points_multiplier[global.game_mode]
             
             obj_mode_select.multipliers_update()
             
@@ -565,7 +564,7 @@ mode_select = {
         	starting_lives_value = infinite_txt
             starting_cash_value = infinite_txt
             point_multiplier_value = 0
-            point_multipleir_base_value = 0
+            point_multiplier_base_value = 0
             
             obj_mode_select.modifications.enabled = false
         }
@@ -841,7 +840,7 @@ instance_create_depth(4,5,depth-1,obj_exit_button)
 
 function multipliers_update(){
     
-    mode_select.point_multiplier_value = mode_select.point_multipleir_base_value
+    mode_select.point_multiplier_value = mode_select.point_multiplier_base_value
     for (var i = 0; i < modifications.number; i++) {
     	if modifications.selected[i] == true{
             mode_select.point_multiplier_value *= modifications.multipliers[i]

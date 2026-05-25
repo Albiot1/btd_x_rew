@@ -17,7 +17,6 @@ tracks = {
     medal_normal_anim_pos:[],
     medal_normal_play_anim:[],
     medal_normal_rank:[],
-    model_normal_next_rank:[],
     medal_impoppable_anim_pos:[],
     medal_impoppable_play_anim:[],
     medal_impoppable_rank:[],
@@ -80,7 +79,6 @@ tracks = {
                 
                 var _bounty_rank = global.bounty.list[$ _bounty].rank
                 
-                medal_bounty_rank[i] = _bounty_rank
                 if _bounty_rank>_lastmedal.bounty{
                     medal_bounty_play_anim[i] = true
                     medal_bounty_next_rank[i] = _bounty_rank
@@ -132,7 +130,7 @@ tracks = {
         if mouse_wheel_up(){
             if page>0{
                 page--
-            update()
+                update()
             }
         }
         
@@ -148,7 +146,6 @@ tracks = {
             
             var _x = 97 + 288*_row
             var _y = 26 + (272)*_col
-            var _anim_playing = false
             var _anim_ended = false
             
             if point_in_rectangle(mouse_x,mouse_y,_x,_y,_x+250,_y+202){
@@ -165,12 +162,10 @@ tracks = {
                 
                 medal_normal_anim_pos[i][0]+=_anim_spd
                 
-                _anim_playing = true
                 if medal_normal_anim_pos[i][0]>=1{
                     medal_normal_play_anim[i] = false
                     medal_normal_rank[i] = medal_normal_next_rank[i]
                     _anim_ended = true
-                    _anim_playing = false
                 }
             }
             
@@ -181,12 +176,10 @@ tracks = {
                 
                 medal_impoppable_anim_pos[i][0]+=_anim_spd
                 
-                _anim_playing = true
                 if medal_impoppable_anim_pos[i][0]>=1{
                     medal_impoppable_play_anim[i] = false
                     medal_impoppable_rank[i] = medal_impoppable_next_rank[i]
                     _anim_ended = true
-                    _anim_playing = false
                 }
             }
             
@@ -196,12 +189,10 @@ tracks = {
                 
                 medal_nightmare_anim_pos[i][0]+=_anim_spd
                 
-                _anim_playing = true
                 if medal_nightmare_anim_pos[i][0]>=1{
                     medal_nightmare_play_anim[i] = false
                     medal_nightmare_rank[i] = medal_nightmare_next_rank[i]
                     _anim_ended = true
-                    _anim_playing = false
                 }
             }
             
@@ -211,12 +202,10 @@ tracks = {
                 
                 medal_time_anim_pos[i][0]+=_anim_spd
                 
-                _anim_playing = true
                 if medal_time_anim_pos[i][0]>=1{
                     medal_time_play_anim[i] = false
                     medal_time_rank[i] = medal_time_next_rank[i]
                     _anim_ended = true
-                    _anim_playing = false
                 }
             }
             
@@ -226,19 +215,16 @@ tracks = {
                 
                 medal_bounty_anim_pos[i][0]+=_anim_spd
                 
-                _anim_playing = true
                 if medal_bounty_anim_pos[i][0]>=1{
                     medal_bounty_play_anim[i] = false
                     medal_bounty_rank[i] = medal_bounty_next_rank[i]
                     _anim_ended = true
-                    _anim_playing = false
                 }
             }
             
-            if _anim_ended == true and _anim_playing == false{
+            if _anim_ended == true{
                 surface_free(surfaces[_num])
             }
-            
             
             _row++
             _num++
@@ -333,27 +319,27 @@ tracks = {
             
             if medal_normal_play_anim[i] == true{
                 var _anim_val = medal_normal_anim_pos[i][1]
-                draw_sprite_ext(spr_normal_medals,medal_normal_next_rank[i]-1,_x+medals_x[0],_y+medals_y,1*_anim_val,1*_anim_val,-90 + 90 * _anim_val,c_white,1)
+                draw_sprite_ext(spr_normal_medals,medal_normal_next_rank[i]-1,_x+medals_x[0],_y+medals_y,_anim_val,_anim_val,-90 + 90 * _anim_val,c_white,1)
             }
             
             if medal_impoppable_play_anim[i] == true{
                 var _anim_val = medal_impoppable_anim_pos[i][1]
-                draw_sprite_ext(spr_impoppable_medals,medal_impoppable_next_rank[i]-1,_x+medals_x[1],_y+medals_y,1*_anim_val,1*_anim_val,-90 + 90 * _anim_val,c_white,1)
+                draw_sprite_ext(spr_impoppable_medals,medal_impoppable_next_rank[i]-1,_x+medals_x[1],_y+medals_y,_anim_val,_anim_val,-90 + 90 * _anim_val,c_white,1)
             }
             
             if medal_nightmare_play_anim[i] == true{
                 var _anim_val = medal_nightmare_anim_pos[i][1]
-                draw_sprite_ext(spr_nightmare_medals,medal_nightmare_next_rank[i]-1,_x+medals_x[2],_y+medals_y,1*_anim_val,1*_anim_val,-90 + 90 * _anim_val,c_white,1)
+                draw_sprite_ext(spr_nightmare_medals,medal_nightmare_next_rank[i]-1,_x+medals_x[2],_y+medals_y,_anim_val,_anim_val,-90 + 90 * _anim_val,c_white,1)
             }
             
             if medal_time_play_anim[i] == true{
                 var _anim_val = medal_time_anim_pos[i][1]
-                draw_sprite_ext(spr_time_medals,medal_time_next_rank[i]-1,_x+medals_x[3],_y+medals_y,1*_anim_val,1*_anim_val,-90 + 90 * _anim_val,c_white,1)
+                draw_sprite_ext(spr_time_medals,medal_time_next_rank[i]-1,_x+medals_x[3],_y+medals_y,_anim_val,_anim_val,-90 + 90 * _anim_val,c_white,1)
             }
             
             if medal_bounty_play_anim[i] == true{
                 var _anim_val = medal_bounty_anim_pos[i][1]
-                draw_sprite_ext(bounty_icon[i],medal_bounty_next_rank[i]-1,_x+medals_x[4],_y+medals_y,1*_anim_val,1*_anim_val,-90 + 90 * _anim_val,c_white,1)
+                draw_sprite_ext(bounty_icon[i],medal_bounty_next_rank[i]-1,_x+medals_x[4],_y+medals_y,_anim_val,_anim_val,-90 + 90 * _anim_val,c_white,1)
             }
             
             _row++

@@ -1,28 +1,21 @@
 var _row = 0
 var _col = 0
-var _start_i = 0
-var _end_i = clamp(6,0,number)
-if page>0{
-    _start_i = 2*page
-    _end_i = clamp(6+2*(page),0,number)
-}
+var _start_i = 2*page
+var _end_i = clamp(6+2*(page),0,number)
+
 for (var i = _start_i; i < _end_i; i++) {
     
-    var _x = 96 + 448*_row
-    var _y = 16 + (184)*_col
+    var _x = start_x + spacing_x*_row
+    var _y = start_y + spacing_y*_col
     var _mission = list[i]
     var _icon = _mission.icon
     var _name = _mission.name
-    var _desc = _mission.desc
+    var _desc = desc[i]
     var _color = _mission.color
     var _mouse_on = (mouse_on == i)
     var _completed = _mission.completed
     
-    if _completed == true{
-        _desc += "\n" + mission_completed_text
-    }
-    
-    var _desc_h = string_height_ext(_desc,16,356)
+    var _desc_h = desc_h[i]
     
     shader_set(sh_replace_mission)
     
@@ -52,13 +45,12 @@ for (var i = _start_i; i < _end_i; i++) {
     draw_sprite(_icon,0,_x-24,_y-6)
     
     draw_set_font(font_general_16)
-    draw_set_color(c_black)
     draw_text_outline(_x+64,_y+24,c_black,c_white,_name)
     
     draw_set_font(font_general_12)
-    draw_text_ext(_x+3,_y+84,_desc,16,356)
+    draw_text_ext_color(_x+3,_y+84,_desc,16,356,c_black,c_black,c_black,c_black,1)
     
-    draw_set_color(c_white)
+    
     _row++
     if _row>1{
         _row = 0
@@ -66,6 +58,7 @@ for (var i = _start_i; i < _end_i; i++) {
     }
     
 }
+draw_set_color(c_white)
 
 draw_sprite_stretched(spr_scroll_bar,0,1024-64,0,64,576)
 if page>0

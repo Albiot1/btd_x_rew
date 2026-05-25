@@ -118,21 +118,21 @@ global.selected_tower_id = -1
 upgrades = {
     locked_text:scr_get_translation("upgrade_locked"),
     rank_text:scr_get_translation("upgrade_rank"),
-    sprite:[], //-
+    sprite:[],
     color:[],
-    name:[], //-
-    desc:[], //-
-    price:[], //-
-    rank:[], //-
-    bp_cost:[], //-
-    state:[], //-
+    name:[],
+    desc:[],
+    price:[],
+    rank:[],
+    bp_cost:[],
+    state:[],
     order_number:[],
-    upgrade_id:[], //- like "left_0" etc.
-    prev_upgrade_id: [], //to know if you can unolock upgrade
-    show_anim_pos: [], //- text show percent 
-    show_flash: [], //- int - time amount
-    unlock_hold: [], //- int - how much time you held to unlock the upgrade
-    bp_now: [], //- int - for how much bp is left to "get in the upgrade" to unlock it
+    upgrade_id:[],
+    prev_upgrade_id: [],
+    show_anim_pos: [],
+    show_flash: [],
+    unlock_hold: [],
+    bp_now: [],
     bp_spawned: [],
     mouse_on: [],
     instant_unlocking: global.settings.instant_upgrade_unlocking,
@@ -153,6 +153,7 @@ upgrades = {
                     show_anim_pos[i]+=0.1
                     if show_anim_pos[i] - _order*0.2>=1{
                         state[i] = UPGRADE_STATE.SHOW
+                        show_anim_pos[i] = 1
                     }
                     
                 break;
@@ -177,7 +178,7 @@ upgrades = {
                         mouse_on[i] = true
                         if mouse_check_button(mb_left) and instant_unlocking==false{
                             
-                            var _can_ulnock = false
+                            var _can_unlock = false
                             var _enough_bloonpoints = false
                             var _enough_rank = false
                             
@@ -189,14 +190,14 @@ upgrades = {
                             }
                             
                             if prev_upgrade_id[i]==-1
-                                _can_ulnock = true
+                                _can_unlock = true
                             else {
                                 
                             	if prev_upgrade_id[i].unlocked == true
-                                    _can_ulnock = true
+                                    _can_unlock = true
                             }
                             
-                            if (_can_ulnock == true and _enough_bloonpoints == true and _enough_rank == true){
+                            if (_can_unlock == true and _enough_bloonpoints == true and _enough_rank == true){
                                 unlock_hold[i] += unlock_hold[i]*0.1+0.02
                                 
                                 if unlock_hold[i] > 1{
@@ -403,7 +404,7 @@ upgrades = {
                 break;
                 case UPGRADE_STATE.UNLOCKING:
                     
-                    var _multi = show_flash[i]/1
+                    var _multi = show_flash[i]
                     
                     var _hue = color_get_hue(_col)
                     var _sat = color_get_saturation(_col)
@@ -445,7 +446,7 @@ upgrades = {
         array_delete(bp_now,_index,1)
         array_delete(bp_spawned,_index,1)
         array_delete(mouse_on,_index,1)
-        array_delete(py,_index,1)
+        array_delete(px,_index,1)
         array_delete(py,_index,1)
         num--
     },
@@ -464,7 +465,7 @@ upgrades = {
         var _spec_colo = c_white
         if string_count("special",_upgrade_id)>0{
             _special_data = global.upgrades[$ global.selected_tower_id].special_path
-            _spec_path = _special_data.replace
+            _spec_path = _special_data.replaces
             _spec_colo = _special_data.color
         }
         
@@ -473,6 +474,19 @@ upgrades = {
         var _order_num = 0
         var _prev_upgr_id = -1
         var _color = c_white
+        
+        switch (_spec_path) {
+            case PATH_UPGR_TYPE.LEFT:
+                _my = 168
+            break;
+            case PATH_UPGR_TYPE.MIDDLE:
+                _my = 296
+            break;
+            case PATH_UPGR_TYPE.RIGHT:
+                _my = 424
+            break;
+        }
+        
         switch (_upgrade_id) {
         	case "main_0":
                 _mx = 1
@@ -551,18 +565,6 @@ upgrades = {
             break;
             case "special_0":
                 _mx = 298
-                _my = 0
-                switch (_spec_path) {
-                	case PATH_UPGR_TYPE.LEFT:
-                        _my = 168
-                    break;
-                    case PATH_UPGR_TYPE.MIDDLE:
-                        _my = 296
-                    break;
-                    case PATH_UPGR_TYPE.RIGHT:
-                        _my = 424
-                    break;
-                }
                 
                 _color = _spec_colo
                 _prev_upgr_id = -1
@@ -570,18 +572,6 @@ upgrades = {
             break;
             case "special_1":
                 _mx = 540
-                _my = 0
-                switch (_spec_path) {
-                	case PATH_UPGR_TYPE.LEFT:
-                        _my = 168
-                    break;
-                    case PATH_UPGR_TYPE.MIDDLE:
-                        _my = 296
-                    break;
-                    case PATH_UPGR_TYPE.RIGHT:
-                        _my = 424
-                    break;
-                }
                 
                 _color = _spec_colo
                 _prev_upgr_id = global.upgrades[$ global.selected_tower_id].special_0 //"special_0"
@@ -589,18 +579,6 @@ upgrades = {
             break;
             case "special_2":
                 _mx = 782
-                _my = 0
-                switch (_spec_path) {
-                	case PATH_UPGR_TYPE.LEFT:
-                        _my = 168
-                    break;
-                    case PATH_UPGR_TYPE.MIDDLE:
-                        _my = 296
-                    break;
-                    case PATH_UPGR_TYPE.RIGHT:
-                        _my = 424
-                    break;
-                }
                 
                 _color = _spec_colo
                 _prev_upgr_id = global.upgrades[$ global.selected_tower_id].special_1 //"special_1"

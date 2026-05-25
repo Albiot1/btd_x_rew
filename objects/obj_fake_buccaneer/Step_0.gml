@@ -12,10 +12,10 @@ if in_port == false{
     else{
         var _x = exit_point[0] + exit_random_x
         var _y = exit_point[1] + exit_random_y
-        var _dir = point_direction(x,y,exit_point[0],exit_point[1])
+        var _dir = point_direction(x,y,_x,_y)
         direction += angle_difference( _dir,image_angle )*0.1
         
-        if point_in_circle(x,y,exit_point[0],exit_point[1],4){
+        if point_in_circle(x,y,_x,_y,4){
             exiting = false
         }
     }

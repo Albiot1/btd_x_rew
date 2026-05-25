@@ -96,6 +96,7 @@ Bounty = function (_id) constructor {
         cage.effect_distance = _anim_distance
         cage.effect_wait = 0
         cage.effect_wait_max = _anim_wait
+        cage.effect_animcurve = animcurve_get_channel( animcurve_get(an_bounty_push_effect ),"curve1" )
         return self
     }
 }
@@ -161,7 +162,7 @@ bounties[6] = new Bounty("annoying_bloon")
     .SetInfoIcon(spr_bounty_icon_annoying_bloon)
     .SetCageIcon(spr_bounty_annoying_bloon)
     .SetCageEffectFloaty(5)
-    .SetRanks([BOUNTY_RANK.MODERATELY_ANNOYING,BOUNTY_RANK.ANNOYING,BOUNTY_RANK.VERY_ANNOYING,BOUNTY_RANK.IMPOPPABLY_ANNOYING,BOUNTY_RANK.ANNOINGLY_ALMIGHTY])
+    .SetRanks([BOUNTY_RANK.MODERATELY_ANNOYING,BOUNTY_RANK.ANNOYING,BOUNTY_RANK.VERY_ANNOYING,BOUNTY_RANK.IMPOPPABLY_ANNOYING,BOUNTY_RANK.ANNOYINGLY_ALMIGHTY])
 
 bounties[7] = new Bounty("clown_bloon")
     .SetInfoIcon(spr_bounty_icon_clown_bloon)
