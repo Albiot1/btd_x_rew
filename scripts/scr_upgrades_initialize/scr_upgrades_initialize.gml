@@ -17,6 +17,8 @@ function scr_upgrades_initialize(){
     #macro UPGRADE_SPECIAL_COLOR_II #ff9c2b
     #macro UPGRADE_SPECIAL_COLOR_III #ffff47
 
+    global.upgrades = {}
+    
     Upgrade = function(_icon,_tower_id,_upgrade_id,_unlocked = false) constructor {
         icon = _icon
         upgr_id = _upgrade_id
