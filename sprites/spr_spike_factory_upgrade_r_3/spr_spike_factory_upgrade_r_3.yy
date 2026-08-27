@@ -26,7 +26,7 @@
   "origin":0,
   "parent":{
     "name":"Spike factory",
-    "path":"folders/Sprites/Upgrades menu/Spike factory.yy",
+    "path":"folders/Sprites/REDONE_MENUS/Upgrades menu/Spike factory.yy",
   },
   "preMultiplyAlpha":false,
   "resourceType":"GMSprite",

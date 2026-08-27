@@ -26,7 +26,7 @@
   "origin":0,
   "parent":{
     "name":"Buccaneer",
-    "path":"folders/Sprites/Upgrades menu/Buccaneer.yy",
+    "path":"folders/Sprites/REDONE_MENUS/Upgrades menu/Buccaneer.yy",
   },
   "preMultiplyAlpha":false,
   "resourceType":"GMSprite",

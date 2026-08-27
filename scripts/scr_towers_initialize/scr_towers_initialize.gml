@@ -24,7 +24,7 @@ function scr_towers_initialize(){
         obj = undefined
         price = _price
         unlocked = _unlocked
-        stats = { range:0 }
+        preview_range = 0
         static setPanel = function (_icon,_color,_hotkey = -1){
             panel_icon = _icon
             panel_color = _color
@@ -37,8 +37,8 @@ function scr_towers_initialize(){
             
             return self
         }
-        static setStats = function (_range){
-            stats.range = _range
+        static setPreviewRange = function (_range){
+            stats.preview_range = _range
             
             return self
         }

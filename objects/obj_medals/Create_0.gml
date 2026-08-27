@@ -235,6 +235,14 @@ achievements = {
             }
         }
         
+        if page > 0 and point_in_rectangle(mouse_x,mouse_y,1024-64,16,1024,16+32) and mouse_check_button_pressed(mb_left){
+            page--
+        }
+        
+        if page < max_page and point_in_rectangle(mouse_x,mouse_y,1024-64,576-48,1024,576-48+32) and mouse_check_button_pressed(mb_left){
+            page++
+        }
+        
         if mouse_wheel_down(){
             if page<max_page{
                 page++
@@ -342,7 +350,9 @@ achievements = {
                     var _icon = _data.icon
                     
                     var _text = _data.text
-                    draw_sprite(_icon,1,_ax,_ay)
+                    shader_set(sh_grayscale)
+                    draw_sprite(_icon,0,_ax,_ay)
+                    shader_reset()
                     
                     draw_text_ext_color(_ax+84,_ay+9,_text,16,359,c_black,c_black,c_black,c_black,1)
                 break;

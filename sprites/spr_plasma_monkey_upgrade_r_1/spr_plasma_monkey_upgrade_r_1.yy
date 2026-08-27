@@ -26,7 +26,7 @@
   "origin":0,
   "parent":{
     "name":"Plasma monkey",
-    "path":"folders/Sprites/Upgrades menu/Plasma monkey.yy",
+    "path":"folders/Sprites/REDONE_MENUS/Upgrades menu/Plasma monkey.yy",
   },
   "preMultiplyAlpha":false,
   "resourceType":"GMSprite",

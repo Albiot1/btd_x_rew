@@ -26,7 +26,7 @@
   "origin":0,
   "parent":{
     "name":"Tackshooter",
-    "path":"folders/Sprites/Upgrades menu/Tackshooter.yy",
+    "path":"folders/Sprites/REDONE_MENUS/Upgrades menu/Tackshooter.yy",
   },
   "preMultiplyAlpha":false,
   "resourceType":"GMSprite",

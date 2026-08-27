@@ -1,4 +1,3 @@
-
 tracks = {
     surfaces:[],
     num:array_length(global.tracks_order),

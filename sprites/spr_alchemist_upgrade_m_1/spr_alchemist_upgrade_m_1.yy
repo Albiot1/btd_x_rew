@@ -26,7 +26,7 @@
   "origin":0,
   "parent":{
     "name":"Alchemist",
-    "path":"folders/Sprites/Upgrades menu/Alchemist.yy",
+    "path":"folders/Sprites/REDONE_MENUS/Upgrades menu/Alchemist.yy",
   },
   "preMultiplyAlpha":false,
   "resourceType":"GMSprite",

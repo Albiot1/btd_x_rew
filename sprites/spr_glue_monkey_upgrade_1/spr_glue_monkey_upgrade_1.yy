@@ -26,7 +26,7 @@
   "origin":0,
   "parent":{
     "name":"Glue gunner",
-    "path":"folders/Sprites/Upgrades menu/Glue gunner.yy",
+    "path":"folders/Sprites/REDONE_MENUS/Upgrades menu/Glue gunner.yy",
   },
   "preMultiplyAlpha":false,
   "resourceType":"GMSprite",

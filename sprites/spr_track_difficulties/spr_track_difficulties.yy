@@ -34,7 +34,7 @@
   "origin":0,
   "parent":{
     "name":"Play Menu",
-    "path":"folders/Sprites/Play Menu.yy",
+    "path":"folders/Sprites/REDONE_MENUS/Play Menu.yy",
   },
   "preMultiplyAlpha":false,
   "resourceType":"GMSprite",

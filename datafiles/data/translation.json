@@ -292,6 +292,7 @@
 	"settings_button_hotkeys":"Hotkeys",
 	"settings_check_instantupgr":"Instant upgrade unlocking",
 	"settings_check_insttrans":"Instant start transition",
+	"settings_check_highres":"Higher resolution",
 	"settings_check_fps":"Show FPS",
 	"settings_check_full":"Fullscreen",
 	"settings_reset_bounty":"RESET BOUNTIES",

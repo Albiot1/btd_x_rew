@@ -351,6 +351,25 @@ main_settings.checkboxes.add(373+8,143+48+48+48,scr_get_translation("settings_ch
     }
 )
 
+main_settings.checkboxes.add(373+8,143+48+48+48+48,scr_get_translation("settings_check_highres"),global.settings.high_scaling,
+    function (){
+        if global.settings.high_scaling == true{
+            surface_resize(application_surface,1024,576)
+            display_set_gui_size(1024,576)
+            global.settings.high_scaling = false
+            return true
+        }
+        else if global.settings.high_scaling == false{
+            surface_resize(application_surface,1024*2,576*2)
+            display_set_gui_size(1024,576)
+            global.settings.high_scaling = true
+            return true
+        }
+        
+        return false
+    }
+)
+
 main_settings.reset_buttons.add(8,500-48-8,scr_get_translation("settings_reset_bounty"),
     function (){
         var _names = variable_struct_get_names(global.bounty.list)

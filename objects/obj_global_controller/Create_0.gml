@@ -16,6 +16,8 @@ global.shaders = {
     replace_mission:[shader_get_uniform(sh_replace_mission,"newcolor"),shader_get_uniform(sh_replace_mission,"whitereplace"),shader_get_uniform(sh_replace_mission,"active")]
 }
 
+
+
 //
 global.part_system = part_system_create()
 part_system_depth(global.part_system,-5)
@@ -42,8 +44,13 @@ global.goodie_points = floor(global.trophies/10) - global.goodie_points_used
 
 global.rank = 45
 global.xp = 0
+
 global.max_xp = 0
 global.max_xp = round(global.max_xp * 1.05) + 60 * (global.rank+2)
+
+for (var i = 0; i < global.rank; i++) {
+	global.max_xp = round(global.max_xp * 1.05) + 60 * (i+2)
+}
 
 global.agents = {
     squirrel:0,
@@ -90,7 +97,7 @@ global.milestone_rewards = {
         bloonpoints:[5,6,7,8,8,8],
     },
     timetrial:{
-        // 12 min , 10 min , 8 min, 6,5 min, 4 min
+        // 12 min , 10 min , 8 min, 6.5 min, 4 min
         time:[720,600,480,390,240],
         monkeymoney:[100,150,200,400,600],
         bloonpoints:[2,3,4,6,8],
@@ -156,6 +163,7 @@ global.settings = {
     instant_start_transition: false,
     show_fps: false,
     fullscreen: false,
+    high_scaling: false,
     hotkeys:[
         vk_backspace,
         vk_space,

@@ -26,7 +26,7 @@
   "origin":0,
   "parent":{
     "name":"Submarine",
-    "path":"folders/Sprites/Upgrades menu/Submarine.yy",
+    "path":"folders/Sprites/REDONE_MENUS/Upgrades menu/Submarine.yy",
   },
   "preMultiplyAlpha":false,
   "resourceType":"GMSprite",

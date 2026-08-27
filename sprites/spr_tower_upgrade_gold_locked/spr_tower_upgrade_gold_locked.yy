@@ -31,7 +31,7 @@
   "origin":0,
   "parent":{
     "name":"Upgrades menu",
-    "path":"folders/Sprites/Upgrades menu.yy",
+    "path":"folders/Sprites/REDONE_MENUS/Upgrades menu.yy",
   },
   "preMultiplyAlpha":false,
   "resourceType":"GMSprite",

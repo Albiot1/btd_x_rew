@@ -26,7 +26,7 @@
   "origin":0,
   "parent":{
     "name":"Mortar monkey",
-    "path":"folders/Sprites/Upgrades menu/Mortar monkey.yy",
+    "path":"folders/Sprites/REDONE_MENUS/Upgrades menu/Mortar monkey.yy",
   },
   "preMultiplyAlpha":false,
   "resourceType":"GMSprite",
