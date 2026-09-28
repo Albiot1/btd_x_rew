@@ -26,7 +26,7 @@
   "origin":0,
   "parent":{
     "name":"Dart monkey",
-    "path":"folders/Sprites/REDONE_MENUS/Upgrades menu/Dart monkey.yy",
+    "path":"folders/Sprites/NEW/Upgrades menu/Dart monkey.yy",
   },
   "preMultiplyAlpha":false,
   "resourceType":"GMSprite",

@@ -31,7 +31,7 @@
   "origin":0,
   "parent":{
     "name":"Start Menu",
-    "path":"folders/Sprites/REDONE_MENUS/Start Menu.yy",
+    "path":"folders/Sprites/NEW/Start Menu.yy",
   },
   "preMultiplyAlpha":false,
   "resourceType":"GMSprite",

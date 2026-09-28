@@ -33,7 +33,7 @@
   "origin":0,
   "parent":{
     "name":"NEW medals menu",
-    "path":"folders/Sprites/NEW medals menu.yy",
+    "path":"folders/Sprites/NEW/NEW medals menu.yy",
   },
   "preMultiplyAlpha":false,
   "resourceType":"GMSprite",

@@ -26,7 +26,7 @@
   "origin":0,
   "parent":{
     "name":"Charge tower",
-    "path":"folders/Sprites/REDONE_MENUS/Upgrades menu/Charge tower.yy",
+    "path":"folders/Sprites/NEW/Upgrades menu/Charge tower.yy",
   },
   "preMultiplyAlpha":false,
   "resourceType":"GMSprite",

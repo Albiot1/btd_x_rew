@@ -30,8 +30,8 @@
   "nineSlice":null,
   "origin":0,
   "parent":{
-    "name":"In Game",
-    "path":"folders/Sprites/In Game.yy",
+    "name":"INGAME",
+    "path":"folders/Sprites/INGAME.yy",
   },
   "preMultiplyAlpha":false,
   "resourceType":"GMSprite",

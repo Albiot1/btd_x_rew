@@ -26,7 +26,7 @@
   "origin":0,
   "parent":{
     "name":"Boomerang monkey",
-    "path":"folders/Sprites/REDONE_MENUS/Upgrades menu/Boomerang monkey.yy",
+    "path":"folders/Sprites/NEW/Upgrades menu/Boomerang monkey.yy",
   },
   "preMultiplyAlpha":false,
   "resourceType":"GMSprite",

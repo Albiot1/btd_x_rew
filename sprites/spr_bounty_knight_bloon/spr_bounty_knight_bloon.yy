@@ -31,7 +31,7 @@
   "origin":0,
   "parent":{
     "name":"cage_icon",
-    "path":"folders/Sprites/Bounty Menu/bounties/cage_icon.yy",
+    "path":"folders/Sprites/NEW/Bounty Menu/bounties/cage_icon.yy",
   },
   "preMultiplyAlpha":false,
   "resourceType":"GMSprite",

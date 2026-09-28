@@ -26,7 +26,7 @@
   "origin":0,
   "parent":{
     "name":"Banana farm",
-    "path":"folders/Sprites/REDONE_MENUS/Upgrades menu/Banana farm.yy",
+    "path":"folders/Sprites/NEW/Upgrades menu/Banana farm.yy",
   },
   "preMultiplyAlpha":false,
   "resourceType":"GMSprite",

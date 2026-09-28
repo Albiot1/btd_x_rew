@@ -50,7 +50,7 @@
   "origin":9,
   "parent":{
     "name":"Goodie Menu",
-    "path":"folders/Sprites/Goodie Menu.yy",
+    "path":"folders/Sprites/NEW/Goodie Menu.yy",
   },
   "preMultiplyAlpha":false,
   "resourceType":"GMSprite",

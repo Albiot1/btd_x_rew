@@ -26,7 +26,7 @@
   "origin":0,
   "parent":{
     "name":"Sniper monkey",
-    "path":"folders/Sprites/REDONE_MENUS/Upgrades menu/Sniper monkey.yy",
+    "path":"folders/Sprites/NEW/Upgrades menu/Sniper monkey.yy",
   },
   "preMultiplyAlpha":false,
   "resourceType":"GMSprite",

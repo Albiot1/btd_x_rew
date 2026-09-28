@@ -51,7 +51,7 @@
   "origin":4,
   "parent":{
     "name":"NEW Main menu",
-    "path":"folders/Sprites/NEW Main menu.yy",
+    "path":"folders/Sprites/NEW/NEW Main menu.yy",
   },
   "preMultiplyAlpha":false,
   "resourceType":"GMSprite",

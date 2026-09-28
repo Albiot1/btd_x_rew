@@ -31,7 +31,7 @@
   "origin":9,
   "parent":{
     "name":"Bounty Menu",
-    "path":"folders/Sprites/Bounty Menu.yy",
+    "path":"folders/Sprites/NEW/Bounty Menu.yy",
   },
   "preMultiplyAlpha":false,
   "resourceType":"GMSprite",

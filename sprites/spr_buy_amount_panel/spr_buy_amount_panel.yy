@@ -50,7 +50,7 @@
   "origin":0,
   "parent":{
     "name":"Agents menu",
-    "path":"folders/Sprites/Agents menu.yy",
+    "path":"folders/Sprites/NEW/Agents menu.yy",
   },
   "preMultiplyAlpha":false,
   "resourceType":"GMSprite",

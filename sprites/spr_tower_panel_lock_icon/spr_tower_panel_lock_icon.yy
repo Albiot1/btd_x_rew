@@ -30,8 +30,8 @@
   "nineSlice":null,
   "origin":0,
   "parent":{
-    "name":"Panels",
-    "path":"folders/Sprites/REDONE_MENUS/Upgrades menu/Panels.yy",
+    "name":"Upgrades menu",
+    "path":"folders/Sprites/NEW/Upgrades menu.yy",
   },
   "preMultiplyAlpha":false,
   "resourceType":"GMSprite",

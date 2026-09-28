@@ -34,7 +34,7 @@
   "origin":0,
   "parent":{
     "name":"medals",
-    "path":"folders/Sprites/REDONE_MENUS/Play Menu/medals.yy",
+    "path":"folders/Sprites/NEW/Play Menu/medals.yy",
   },
   "preMultiplyAlpha":false,
   "resourceType":"GMSprite",

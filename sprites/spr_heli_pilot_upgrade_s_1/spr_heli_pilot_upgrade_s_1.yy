@@ -26,7 +26,7 @@
   "origin":0,
   "parent":{
     "name":"Heli pilot",
-    "path":"folders/Sprites/REDONE_MENUS/Upgrades menu/Heli pilot.yy",
+    "path":"folders/Sprites/NEW/Upgrades menu/Heli pilot.yy",
   },
   "preMultiplyAlpha":false,
   "resourceType":"GMSprite",

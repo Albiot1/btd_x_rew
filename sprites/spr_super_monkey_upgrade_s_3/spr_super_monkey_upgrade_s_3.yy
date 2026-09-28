@@ -26,7 +26,7 @@
   "origin":0,
   "parent":{
     "name":"Super monkey",
-    "path":"folders/Sprites/REDONE_MENUS/Upgrades menu/Super monkey.yy",
+    "path":"folders/Sprites/NEW/Upgrades menu/Super monkey.yy",
   },
   "preMultiplyAlpha":false,
   "resourceType":"GMSprite",

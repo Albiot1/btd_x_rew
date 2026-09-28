@@ -31,7 +31,7 @@
   "origin":0,
   "parent":{
     "name":"backgrounds",
-    "path":"folders/Sprites/REDONE_MENUS/Play Menu/backgrounds.yy",
+    "path":"folders/Sprites/NEW/Play Menu/backgrounds.yy",
   },
   "preMultiplyAlpha":false,
   "resourceType":"GMSprite",

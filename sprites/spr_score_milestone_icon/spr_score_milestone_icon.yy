@@ -26,7 +26,7 @@
   "origin":0,
   "parent":{
     "name":"Mode Select Menu",
-    "path":"folders/Sprites/Mode Select Menu.yy",
+    "path":"folders/Sprites/NEW/Mode Select Menu.yy",
   },
   "preMultiplyAlpha":false,
   "resourceType":"GMSprite",

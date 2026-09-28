@@ -26,7 +26,7 @@
   "origin":0,
   "parent":{
     "name":"Village",
-    "path":"folders/Sprites/REDONE_MENUS/Upgrades menu/Village.yy",
+    "path":"folders/Sprites/NEW/Upgrades menu/Village.yy",
   },
   "preMultiplyAlpha":false,
   "resourceType":"GMSprite",

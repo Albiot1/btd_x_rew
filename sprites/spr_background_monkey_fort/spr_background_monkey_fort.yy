@@ -50,7 +50,7 @@
   "origin":0,
   "parent":{
     "name":"Main",
-    "path":"folders/Sprites/Track Backgrounds/Tracks/Main.yy",
+    "path":"folders/Sprites/NEW/Track Backgrounds/Tracks/Main.yy",
   },
   "preMultiplyAlpha":false,
   "resourceType":"GMSprite",
@@ -105,8 +105,8 @@
   "swatchColours":null,
   "swfPrecision":2.525,
   "textureGroupId":{
-    "name":"Default",
-    "path":"texturegroups/Default",
+    "name":"backgrounds_group",
+    "path":"texturegroups/backgrounds_group",
   },
   "type":0,
   "VTile":true,

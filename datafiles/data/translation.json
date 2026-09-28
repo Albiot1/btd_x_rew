@@ -490,6 +490,11 @@
 	"super_monkey": "Super Monkey",
 	"road_spikes": "Road Spikes",
 	"grilled_pineapple": "Grilled Pineapple",
+    "squirrel": "Angry Squirrel",
+    "banana_mobile": "Banana Mobile",
+    "bloonbury_bush": "Bloonbury Bush",
+    "monkey_nurse": "Monkey Nurse",
+    "sprinkler": "Sprinkler",
 	
 	"upgrade_locked":"Locked",
 	"upgrade_rank":"Rank {0}",

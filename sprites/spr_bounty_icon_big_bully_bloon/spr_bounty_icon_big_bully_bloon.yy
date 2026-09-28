@@ -31,7 +31,7 @@
   "origin":0,
   "parent":{
     "name":"bounty_icon",
-    "path":"folders/Sprites/Bounty Menu/bounties/bounty_icon.yy",
+    "path":"folders/Sprites/NEW/Bounty Menu/bounties/bounty_icon.yy",
   },
   "preMultiplyAlpha":false,
   "resourceType":"GMSprite",

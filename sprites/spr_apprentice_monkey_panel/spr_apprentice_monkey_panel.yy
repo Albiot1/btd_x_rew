@@ -31,7 +31,7 @@
   "origin":0,
   "parent":{
     "name":"Panels",
-    "path":"folders/Sprites/REDONE_MENUS/Upgrades menu/Panels.yy",
+    "path":"folders/Sprites/NEW/Upgrades menu/Panels.yy",
   },
   "preMultiplyAlpha":false,
   "resourceType":"GMSprite",

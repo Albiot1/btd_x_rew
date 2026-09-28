@@ -4,7 +4,8 @@ function scr_towers_initialize(){
         GROUND,
         WATER,
         WATER_N_GROUND,
-        ONLY_PATH
+        ONLY_PATH,
+        GLOBAL_SPAWN
     }
     
     global.towers = {}
@@ -97,5 +98,18 @@ function scr_towers_initialize(){
         .setPanel(spr_spikes_panel,#ffffc0,HOTKEY.ROAD_SPIKES)
     global.towers.grilled_pineapple = new Tower("grilled_pineapple",30,0,PLACEMENT.ONLY_PATH,true)
         .setPanel(spr_pineapple_bomb_panel,#ffffc0,HOTKEY.GRIL_PINEAP)
+    
+    //agents
+    global.towers.squirrel = new Tower("squirrel",0,0,PLACEMENT.GROUND,true)
+        .setPanel(spr_angry_squirrel_panel,#62ff4a)
+    global.towers.banana_mobile = new Tower("banana_mobile",0,0,PLACEMENT.GLOBAL_SPAWN,true)
+        .setPanel(spr_banana_mobile_panel,#ffff4a)
+    global.towers.bloonbury_bush = new Tower("bloonbury_bush",0,0,PLACEMENT.ONLY_PATH,true)
+        .setPanel(spr_bloonbury_bush_panel,#ff624a)
+    global.towers.monkey_nurse = new Tower("monkey_nurse",0,0,PLACEMENT.GROUND,true)
+        .setPanel(spr_monkey_nurse_panel,#ffc0ff)
+    global.towers.sprinkler = new Tower("sprinkler",0,0,PLACEMENT.WATER_N_GROUND,true)
+        .setPanel(spr_sprinkler_panel,#62c3e6)
+    
     
 }

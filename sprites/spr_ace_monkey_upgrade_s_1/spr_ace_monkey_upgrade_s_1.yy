@@ -26,7 +26,7 @@
   "origin":0,
   "parent":{
     "name":"Ace monkey",
-    "path":"folders/Sprites/REDONE_MENUS/Upgrades menu/Ace monkey.yy",
+    "path":"folders/Sprites/NEW/Upgrades menu/Ace monkey.yy",
   },
   "preMultiplyAlpha":false,
   "resourceType":"GMSprite",

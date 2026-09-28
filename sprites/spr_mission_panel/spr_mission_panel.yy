@@ -50,7 +50,7 @@
   "origin":0,
   "parent":{
     "name":"Mission menu",
-    "path":"folders/Sprites/Mission menu.yy",
+    "path":"folders/Sprites/NEW/Mission menu.yy",
   },
   "preMultiplyAlpha":false,
   "resourceType":"GMSprite",

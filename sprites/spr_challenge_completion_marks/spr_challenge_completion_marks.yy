@@ -33,7 +33,7 @@
   "origin":0,
   "parent":{
     "name":"Challenges menu",
-    "path":"folders/Sprites/Challenges menu.yy",
+    "path":"folders/Sprites/NEW/Challenges menu.yy",
   },
   "preMultiplyAlpha":false,
   "resourceType":"GMSprite",

@@ -26,7 +26,7 @@
   "origin":0,
   "parent":{
     "name":"Ice monkey",
-    "path":"folders/Sprites/REDONE_MENUS/Upgrades menu/Ice monkey.yy",
+    "path":"folders/Sprites/NEW/Upgrades menu/Ice monkey.yy",
   },
   "preMultiplyAlpha":false,
   "resourceType":"GMSprite",
