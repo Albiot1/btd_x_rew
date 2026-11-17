@@ -1,9 +1,9 @@
 {
   "$GMScript":"v1",
-  "%Name":"scr_towers_initialize",
+  "%Name":"scr_tower_panels_initialize",
   "isCompatibility":false,
   "isDnD":false,
-  "name":"scr_towers_initialize",
+  "name":"scr_tower_panels_initialize",
   "parent":{
     "name":"DataInit",
     "path":"folders/Scripts/DataInit.yy",

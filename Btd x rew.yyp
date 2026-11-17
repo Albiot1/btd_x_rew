@@ -272,7 +272,7 @@
     {"id":{"name":"scr_is_additional_key","path":"scripts/scr_is_additional_key/scr_is_additional_key.yy",},},
     {"id":{"name":"scr_missions_initialize","path":"scripts/scr_missions_initialize/scr_missions_initialize.yy",},},
     {"id":{"name":"scr_text_format_insert","path":"scripts/scr_text_format_insert/scr_text_format_insert.yy",},},
-    {"id":{"name":"scr_towers_initialize","path":"scripts/scr_towers_initialize/scr_towers_initialize.yy",},},
+    {"id":{"name":"scr_tower_panels_initialize","path":"scripts/scr_tower_panels_initialize/scr_tower_panels_initialize.yy",},},
     {"id":{"name":"scr_tracks_initialize","path":"scripts/scr_tracks_initialize/scr_tracks_initialize.yy",},},
     {"id":{"name":"scr_upgrades_initialize","path":"scripts/scr_upgrades_initialize/scr_upgrades_initialize.yy",},},
     {"id":{"name":"scrwavealarmgetter","path":"scripts/scrwavealarmgetter/scrwavealarmgetter.yy",},},

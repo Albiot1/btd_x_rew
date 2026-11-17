@@ -8,8 +8,17 @@ global.show_debug = false
 
 global.translation = {}
 
-if file_exists("data//translation.json")
-    global.translation = load_json("data//translation.json")
+
+if os_type == os_android{
+    
+	if file_exists("data/translation.json")
+        global.translation = load_json("data/translation.json")
+}
+else {
+	if file_exists("data//translation.json")
+        global.translation = load_json("data//translation.json")
+}
+
 
 global.shaders = {
     replace:[shader_get_uniform(sh_replace,"newcolor"),shader_get_uniform(sh_replace,"active")],
@@ -116,7 +125,7 @@ global.moon_temple = {
 
 
 scr_upgrades_initialize()
-scr_towers_initialize()
+scr_tower_panels_initialize()
 
 scr_tracks_initialize()
 scr_missions_initialize()

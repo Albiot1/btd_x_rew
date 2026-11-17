@@ -15,6 +15,17 @@ if pressed_any_key == false{
             room_goto(rm_main_menu)
         }
     }
+    if os_type == os_android{
+        if device_mouse_check_button(0,mb_left){
+            if !variable_instance_exists(id,"tttt"){
+                tttt = 0
+            }
+            tttt++
+            if tttt>=10{
+                pressed_any_key = true
+            }
+        }
+    }
 }
 else {
     
@@ -79,8 +90,8 @@ if mouse_dist>8{
         }
         
         _id.knockback_time = clamp(mouse_dist/2,0,60)
-        _id.knockback[0] = clamp( (mouse_x - mouse_prev_x)/60,-4,4 )
-        _id.knockback[1] = clamp( (mouse_y - mouse_prev_y)/60,-4,4 )
+        _id.knockback[0] = clamp( (mouse_x - mouse_prev_x)/80,-1.5,1.5 )
+        _id.knockback[1] = clamp( (mouse_y - mouse_prev_y)/80,-1.5,1.5 )
     }
     
     ds_list_clear(collisions_list)
